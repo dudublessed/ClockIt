@@ -24,7 +24,7 @@ namespace ClockIt
                 MessageBox.Show("Uma nova versão está disponível! Atualize o aplicativo.");
             }
 
-            Application.Run(new Login());
+            Application.Run(new LoginForm());
         }
 
         static async Task<bool> CheckForUpdates()

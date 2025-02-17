@@ -1,6 +1,6 @@
 ﻿namespace ClockIt
 {
-    partial class Login
+    partial class LoginForm
     {
         /// <summary>
         /// Variável de designer necessária.

@@ -97,6 +97,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include=".config\db\DatabaseConfigReader.cs" />
+    <Compile Include=".config\log\exceptions\ExceptionHandler.cs" />
     <Compile Include="Model\UserDTO.cs" />
     <Compile Include="View\LoginForm.cs">
       <SubType>Form</SubType>
@@ -133,11 +135,14 @@
     <None Include=".config\App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".config\db\DatabaseConfig.xml" />
+    <Content Include=".config\log\exceptions\ExceptionsPattern.xml" />
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BusinessObjects\" />
-    <Folder Include="DataAcessObject\" />
+    <Folder Include=".config\log\debug\" />
+    <Folder Include="bo\" />
+    <Folder Include="dao\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

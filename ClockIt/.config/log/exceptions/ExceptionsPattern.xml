@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ExceptionsPattern>
+	<DBException>
+		<Exception id="4161">
+			<Type>ConnectionNotFound</Type>
+			<Message>Exception: Connection not found</Message>
+			<PC>PC: 4161</PC>
+		</Exception>
+
+		<Exception id="4162">
+			<Type>None</Type>
+			<Message>Exception: None</Message>
+			<PC>PC: 4162</PC>
+		</Exception>
+	</DBException>
+
+	<XMLException>
+		<Exception id="5161">
+			<Type>DocumentNotFound</Type>
+			<Message>Exception: Document not found</Message>
+			<PC>PC: 5161</PC>
+		</Exception>
+
+		<Exception id="5162">
+			<Type>None</Type>
+			<Message>Exception: None</Message>
+			<PC>PC: 5162</PC>
+		</Exception>
+	</XMLException>
+</ExceptionsPattern>

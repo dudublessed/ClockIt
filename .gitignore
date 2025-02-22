@@ -362,4 +362,8 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-!.config/log/*
+!.config/logging/*
+
+ILLink/
+
+Properties/

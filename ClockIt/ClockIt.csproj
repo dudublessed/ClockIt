@@ -98,7 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include=".config\db\DatabaseConfigReader.cs" />
-    <Compile Include=".config\log\exceptions\ExceptionHandler.cs" />
+    <Compile Include=".config\logging\exceptions\ExceptionHandler.cs" />
     <Compile Include="Model\UserDTO.cs" />
     <Compile Include="View\LoginForm.cs">
       <SubType>Form</SubType>
@@ -136,11 +136,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".config\db\DatabaseConfig.xml" />
-    <Content Include=".config\log\exceptions\ExceptionsPattern.xml" />
+    <Content Include=".config\logging\exceptions\ExceptionsPattern.xml" />
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include=".config\log\debug\" />
+    <Folder Include=".config\logging\debug\" />
     <Folder Include="bo\" />
     <Folder Include="dao\" />
   </ItemGroup>

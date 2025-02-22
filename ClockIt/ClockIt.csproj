@@ -97,18 +97,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include=".config\db\DatabaseConfigReader.cs" />
-    <Compile Include=".config\logging\exceptions\ExceptionHandler.cs" />
-    <Compile Include="Model\UserDTO.cs" />
-    <Compile Include="View\LoginForm.cs">
+    <Compile Include="config\database\DatabaseConfigReader.cs" />
+    <Compile Include="config\logging\exceptions\ExceptionHandler.cs" />
+    <Compile Include="src\Core\Models\UserDTO.cs" />
+    <Compile Include="src\UI\Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\LoginForm.Designer.cs">
+    <Compile Include="src\UI\Forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controller\Program.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="View\LoginForm.resx">
+    <EmbeddedResource Include="src\UI\Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -120,7 +120,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include=".config\packages.config" />
+    <None Include="config\packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -132,17 +132,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include=".config\App.config" />
+    <None Include="config\App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include=".config\db\DatabaseConfig.xml" />
-    <Content Include=".config\logging\exceptions\ExceptionsPattern.xml" />
+    <Content Include="config\database\DatabaseConfig.xml" />
+    <Content Include="config\logging\exceptions\ExceptionsPattern.xml" />
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include=".config\logging\debug\" />
-    <Folder Include="bo\" />
-    <Folder Include="dao\" />
+    <Folder Include="config\logging\debug\" />
+    <Folder Include="docs\" />
+    <Folder Include="src\Controllers\" />
+    <Folder Include="src\Core\Business\" />
+    <Folder Include="src\Core\Data\" />
+    <Folder Include="src\Core\DTOs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

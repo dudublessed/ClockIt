@@ -44,7 +44,7 @@ namespace ClockIt
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error while trying to verify updates."); // Change to a ExceptionPattern latter
+                    MessageBox.Show(ExceptionHandler.GetErrorMessages(3161)); 
                     return false;
                 }
             }

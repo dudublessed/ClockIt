@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ExceptionsPattern>
+	<UpdateException>
+		<Exception id="3161">
+			<Type>AppVersionNotFound</Type>
+			<Message>Exception: Could not verify for updates</Message>
+			<PC>PC: 3161</PC>
+		</Exception>
+	</UpdateException>
+	
 	<DBException>
 		<Exception id="4161">
 			<Type>ConnectionNotFound</Type>

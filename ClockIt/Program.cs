@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -21,7 +21,7 @@ namespace ClockIt
 
             if (isUpdated)
             {
-                MessageBox.Show("Uma nova versão está disponível! Atualize o aplicativo.");
+                MessageBox.Show("A new version is available. Update the app!");
             }
 
             Application.Run(new LoginForm());
@@ -31,7 +31,7 @@ namespace ClockIt
         {
             string localVersion = ConfigurationManager.AppSettings["AppVersion"];
 
-            string versionUrl = "https://raw.githubusercontent.com/dudublessed/ClockIt/Producao/.version";
+            string versionUrl = "https://raw.githubusercontent.com/dudublessed/ClockIt/release/.version";
 
             using (HttpClient client = new HttpClient())
             {
@@ -44,7 +44,7 @@ namespace ClockIt
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao verificar atualizações.");
+                    MessageBox.Show("Error while trying to verify updates."); // Change to a ExceptionPattern latter
                     return false;
                 }
             }

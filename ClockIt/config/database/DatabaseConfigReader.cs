@@ -7,7 +7,8 @@ public class DatabaseConfigReader
 
     public static string GetConnectionString()
     {
-        if (!string.IsNullOrEmpty(_connectionString)) {
+        if (!string.IsNullOrEmpty(_connectionString))
+        {
             return _connectionString;
         }
 
@@ -23,11 +24,12 @@ public class DatabaseConfigReader
             _connectionString = node.InnerText;
             return _connectionString;
 
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             throw new Exception(ExceptionHandler.GetErrorMessages(5161));
         }
-    }   
+    }
 
 
 }

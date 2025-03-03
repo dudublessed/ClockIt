@@ -1,30 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ExceptionsPattern>
+	<UpdateException>
+		<Exception id="3161">
+			<Type>AppVersionNotFound</Type>
+			<Message>Could not verify for updates</Message>
+			<PrognosticCode>3161</PrognosticCode>
+		</Exception>
+	</UpdateException>
+	
 	<DBException>
 		<Exception id="4161">
 			<Type>ConnectionNotFound</Type>
-			<Message>Exception: Connection not found</Message>
-			<PC>PC: 4161</PC>
+			<Message>Connection not found</Message>
+			<PrognosticCode>4161</PrognosticCode>
 		</Exception>
 
 		<Exception id="4162">
 			<Type>None</Type>
-			<Message>Exception: None</Message>
-			<PC>PC: 4162</PC>
+			<Message>None</Message>
+			<PrognosticCode>4162</PrognosticCode>
 		</Exception>
 	</DBException>
 
 	<XMLException>
 		<Exception id="5161">
 			<Type>DocumentNotFound</Type>
-			<Message>Exception: Document not found</Message>
-			<PC>PC: 5161</PC>
+			<Message>Document not found</Message>
+			<PrognosticCode>5161</PrognosticCode>
 		</Exception>
 
 		<Exception id="5162">
 			<Type>None</Type>
-			<Message>Exception: None</Message>
-			<PC>PC: 5162</PC>
+			<Message>None</Message>
+			<PrognosticCode>5162</PrognosticCode>
 		</Exception>
 	</XMLException>
 </ExceptionsPattern>

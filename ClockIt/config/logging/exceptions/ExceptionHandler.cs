@@ -3,15 +3,24 @@ using System.Xml;
 using System.Linq;
 using System.Xml.Linq;
 using System.IO;
+using ClockIt.Core.Utils;
+using ClockIt.src.UI.Forms;
 
 public class ExceptionHandler
 {
-    private static string _pathtofile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ExceptionsPattern.xml");
+    private static string? _pathtofile;
 
     public static string GetErrorMessages(int exceptionCode)
     {
         try
         {
+            _pathtofile = FileHelper.FindFileInProject("ExceptionsPattern.xml");
+
+            if (string.IsNullOrEmpty(_pathtofile) || !File.Exists(_pathtofile))
+            {
+                return "Error file not found or path is invalid.";
+            }
+
             XDocument xmlDoc = XDocument.Load(_pathtofile);
 
             var exception = xmlDoc.Descendants("Exception")
@@ -20,9 +29,11 @@ public class ExceptionHandler
             if (exception == null) return "Non-existent Error OR Error not found.";
 
             string exceptionMessage = exception.Element("Message").Value;
-            string exceptionPC = exception.Element("PC").Value;
+            string exceptionPrognosticCode = exception.Element("PrognosticCode").Value;
 
-            return exceptionMessage + exceptionPC;
+            string givenErrorMessage = $"Exception: {exceptionMessage}.\nP.C: {exceptionPrognosticCode}";
+
+            return givenErrorMessage;
         }
         catch (Exception ex)
         {

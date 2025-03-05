@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace ClockIt.Model
 {
-    public class UserDTO
+    public class UserModel
     {
         public enum UserType
         {
             Admin,
-            Employee
+            User
         }
 
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Password { get; set; }
+        public string Username { get; set; }
+        public string Login { get; set; }
+        public string UserPassword { get; set; }
         public UserType Type { get; set; }
     }
 }

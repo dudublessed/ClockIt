@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Npgsql;
 
 namespace ClockIt
 {
@@ -22,6 +23,23 @@ namespace ClockIt
             if (isUpdated)
             {
                 MessageBox.Show("A new version is available. Update the app!");
+            }
+
+            string connectionString = DatabaseConfigReader.GetConnectionString();
+
+
+            try
+            {
+                using (var connection = new NpgsqlConnection(connectionString))
+                {
+                    connection.Open();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ExceptionHandler.GetErrorMessages(4162));
+                Environment.Exit(0);
+                return;
             }
 
             Application.Run(new LoginForm());

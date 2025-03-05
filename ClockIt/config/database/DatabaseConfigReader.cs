@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Xml;
+using System.Xml.Linq;
+using ClockIt.Core.Utils;
 
 public class DatabaseConfigReader
 {
     private static string _connectionString;
+    private static string? _pathtofile;
 
     public static string GetConnectionString()
     {
@@ -14,14 +17,18 @@ public class DatabaseConfigReader
 
         try
         {
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(@".config/db/DatabaseConfig.xml");
+            _pathtofile = FileHelper.FindFileInProject("DatabaseConfig.xml");
 
-            XmlNode node = xmlDoc.SelectSingleNode("//DatabaseConfig/ConnectionString");
+            XDocument xmlDoc = XDocument.Load(_pathtofile);
 
-            if (node == null) throw new Exception(ExceptionHandler.GetErrorMessages(4161));
+            var node = xmlDoc.Descendants("DBConnectionString").FirstOrDefault();
 
-            _connectionString = node.InnerText;
+            if (string.IsNullOrWhiteSpace(node.Value))
+            {
+                throw new Exception(ExceptionHandler.GetErrorMessages(4161));
+            }
+
+            _connectionString = node.Value;
             return _connectionString;
 
         }

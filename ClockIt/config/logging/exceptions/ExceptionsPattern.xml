@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ExceptionsPattern>
+
+	<!-- Update Exception -->
 	<UpdateException>
 		<Exception id="3161">
 			<Type>AppVersionNotFound</Type>
@@ -7,7 +9,8 @@
 			<PrognosticCode>3161</PrognosticCode>
 		</Exception>
 	</UpdateException>
-	
+
+	<!-- DB Exception-->
 	<DBException>
 		<Exception id="4161">
 			<Type>ConnectionNotFound</Type>
@@ -16,12 +19,19 @@
 		</Exception>
 
 		<Exception id="4162">
+			<Type>FailedToConnect</Type>
+			<Message>Failed to connect to the database</Message>
+			<PrognosticCode>4162</PrognosticCode>
+		</Exception>
+		
+		<Exception id="4163">
 			<Type>None</Type>
 			<Message>None</Message>
-			<PrognosticCode>4162</PrognosticCode>
+			<PrognosticCode>4163</PrognosticCode>
 		</Exception>
 	</DBException>
 
+	<!-- XML Exception -->
 	<XMLException>
 		<Exception id="5161">
 			<Type>DocumentNotFound</Type>
@@ -35,4 +45,6 @@
 			<PrognosticCode>5162</PrognosticCode>
 		</Exception>
 	</XMLException>
+
+	<!-- End of file -->
 </ExceptionsPattern>

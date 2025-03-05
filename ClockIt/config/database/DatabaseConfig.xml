@@ -1,7 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <DatabaseConfig>
-	<DBConnectionString>Host=localhost;Port=5432;Database=db_testclockit;Username=postgres;Password=admin;</DBConnectionString>
-	<Provider>Npgsql</Provider>
-	<Timeout>30</Timeout>
-	<Pooling>true</Pooling>
+	<DBConnectionString>Host=localhost;Port=5432;Database=db_testclockit;Username=postgres;Password=admin;Timeout=30;Pooling=true;</DBConnectionString>
 </DatabaseConfig>

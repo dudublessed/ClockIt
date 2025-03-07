@@ -1,4 +1,6 @@
-﻿namespace ClockIt
+﻿using ClockIt.Core.Utils;
+
+namespace ClockIt
 {
     partial class LoginForm
     {
@@ -29,17 +31,39 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
+            interpriseData = new Label();
             SuspendLayout();
+            // 
+            // interpriseData
+            // 
+            string userAvatar = FileHelper.FindFileInProject("user_avatar.png");
+            resources.ApplyResources(interpriseData, "interpriseData");
+            interpriseData.BackColor = Color.FromArgb(235, 235, 235);
+            interpriseData.Name = "interpriseData";
+            interpriseData.Image = Image.FromFile(userAvatar);
+            interpriseData.ImageAlign = ContentAlignment.MiddleLeft;
+            interpriseData.Text = "ARMARINHO NATAL LTDA";
+            interpriseData.TextAlign = ContentAlignment.MiddleLeft;
+            interpriseData.Size = new Size(480, 60);
+            interpriseData.Font = new Font("Microsoft Sans Serif", 13, FontStyle.Bold);
+            MessageBox.Show(userAvatar);
+            interpriseData.Location = new Point(0, 0);
             // 
             // LoginForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(interpriseData);
             Name = "LoginForm";
-            Load += Form1_Load;
+            BackColor = Color.FromArgb(245, 245, 245);
+            FormBorderStyle = FormBorderStyle.None;
+            Load += LoginForm_Load;
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Label interpriseData;
+
     }
 }

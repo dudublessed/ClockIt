@@ -9,21 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="src\Core\DTOs\**" />
-    <EmbeddedResource Remove="src\Core\DTOs\**" />
-    <None Remove="src\Core\DTOs\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="config\logging\debug\" />
     <Folder Include="docs\" />
-    <Folder Include="src\Core\Data\" />
-    <Folder Include="src\Core\Business\" />
-    <Folder Include="src\Controllers\" />
+    <Folder Include="src\Assets\backgrounds\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Npgsql" Version="9.0.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
   </ItemGroup>
 
 </Project>

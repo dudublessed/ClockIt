@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Xml;
+using System.Xml.Linq;
+using ClockIt.src.Shared.Utils;
 
 public class DatabaseConfigReader
 {
     private static string _connectionString;
+    private static readonly object _lock = new object();
 
     public static string GetConnectionString()
     {
@@ -12,22 +15,39 @@ public class DatabaseConfigReader
             return _connectionString;
         }
 
-        try
+        lock (_lock)
         {
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(@".config/db/DatabaseConfig.xml");
+            if(!string.IsNullOrEmpty(_connectionString))
+            {
+                return _connectionString;
+            }
 
-            XmlNode node = xmlDoc.SelectSingleNode("//DatabaseConfig/ConnectionString");
+            try
+            {
+                string pathToFile = FileHelper.FindFileInProject("DatabaseConfig.xml");
 
-            if (node == null) throw new Exception(ExceptionHandler.GetErrorMessages(4161));
+                if (string.IsNullOrEmpty(pathToFile) || !System.IO.File.Exists(pathToFile))
+                {
+                    throw new Exception(ExceptionHandler.GetErrorMessages(4003));
+                }
 
-            _connectionString = node.InnerText;
-            return _connectionString;
+                XDocument xmlDoc = XDocument.Load(pathToFile);
 
-        }
-        catch (Exception ex)
-        {
-            throw new Exception(ExceptionHandler.GetErrorMessages(5161));
+                var node = xmlDoc.Descendants("DBConnectionString").FirstOrDefault();
+
+                if (string.IsNullOrWhiteSpace(node.Value))
+                {
+                    throw new Exception(ExceptionHandler.GetErrorMessages(4001));
+                }
+
+                _connectionString = node.Value;
+                return _connectionString;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ExceptionHandler.GetErrorMessages(5001));
+            }
         }
     }
 

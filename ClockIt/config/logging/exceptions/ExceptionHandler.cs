@@ -3,8 +3,7 @@ using System.Xml;
 using System.Linq;
 using System.Xml.Linq;
 using System.IO;
-using ClockIt.Core.Utils;
-using ClockIt.src.UI.Forms;
+using ClockIt.src.Shared.Utils;
 
 public class ExceptionHandler
 {

@@ -3,48 +3,159 @@
 
 	<!-- Update Exception -->
 	<UpdateException>
-		<Exception id="3161">
+		<Exception id = "3001">
 			<Type>AppVersionNotFound</Type>
 			<Message>Could not verify for updates</Message>
-			<PrognosticCode>3161</PrognosticCode>
+			<PrognosticCode>3001</PrognosticCode>
 		</Exception>
 	</UpdateException>
 
 	<!-- DB Exception-->
 	<DBException>
-		<Exception id="4161">
+		<Exception id = "4001">
 			<Type>ConnectionNotFound</Type>
-			<Message>Connection not found</Message>
-			<PrognosticCode>4161</PrognosticCode>
+			<Message>Connection could not be found</Message>
+			<PrognosticCode>4001</PrognosticCode>
 		</Exception>
 
-		<Exception id="4162">
+		<Exception id = "4002">
 			<Type>FailedToConnect</Type>
 			<Message>Failed to connect to the database</Message>
-			<PrognosticCode>4162</PrognosticCode>
+			<PrognosticCode>4002</PrognosticCode>
 		</Exception>
 		
-		<Exception id="4163">
+		<Exception id = "4003">
+			<Type>DatabaseConfigNotFound</Type>
+			<Message>Database Config file could not be found</Message>
+			<PrognosticCode>4003</PrognosticCode>
+		</Exception>
+
+		<Exception id = "4004">
 			<Type>None</Type>
 			<Message>None</Message>
-			<PrognosticCode>4163</PrognosticCode>
+			<PrognosticCode>4004</PrognosticCode>
 		</Exception>
 	</DBException>
 
 	<!-- XML Exception -->
 	<XMLException>
-		<Exception id="5161">
+		<Exception id = "5001">
 			<Type>DocumentNotFound</Type>
 			<Message>Document not found</Message>
-			<PrognosticCode>5161</PrognosticCode>
+			<PrognosticCode>5001</PrognosticCode>
 		</Exception>
 
-		<Exception id="5162">
+		<Exception id = "5002">
 			<Type>None</Type>
 			<Message>None</Message>
-			<PrognosticCode>5162</PrognosticCode>
+			<PrognosticCode>5002</PrognosticCode>
 		</Exception>
 	</XMLException>
+	
+	<!-- Invalid Password Exception -->
+	<PasswordException>
+		<Exception id = "6001">
+			<Type>CouldNotGetPassword</Type>
+			<Message>The user password could not be verified.</Message>
+			<PrognosticCode>6001</PrognosticCode>
+		</Exception>
 
-	<!-- End of file -->
+		<Exception id = "6003">
+			<Type>None</Type>
+			<Message>None</Message>
+			<PrognosticCode>6003</PrognosticCode>
+		</Exception>
+	</PasswordException>
+
+	<!-- Json File Exception -->
+	<JsonFileException>
+		<Exception id = "7001">
+			<Type>DocumentNotFound</Type>
+			<Message>The file could not be found.</Message>
+			<PrognosticCode>7001</PrognosticCode>
+		</Exception>
+	</JsonFileException>
+
+	<JsonFileException>
+		<Exception id = "7002">
+			<Type>CouldNotRead</Type>
+			<Message>The file could not be read.</Message>
+			<PrognosticCode>7002</PrognosticCode>
+		</Exception>
+	</JsonFileException>
+	
+	<!-- Registering Exceptions-->
+	
+		<!-- Enteprise Exists Exception-->
+		<EnterpriseException>
+			<Exception id = "8101">
+				<Type>EnterpriseAlreadyExists</Type>
+				<Message>The enterprise is already registered.</Message>
+				<PrognosticCode>8101</PrognosticCode>
+			</Exception>
+		</EnterpriseException>
+
+		<!-- Could Not Register Enterprise Exception -->
+		<EnterpriseException>
+			<Exception id = "8102">
+				<Type>CouldNotRegister</Type>
+				<Message>The enterprise could not be registered.</Message>
+				<PrognosticCode>8102</PrognosticCode>
+			</Exception>
+		</EnterpriseException>
+
+		<!-- Unexistent Enterprise Exception -->
+		<EnterpriseException>
+			<Exception id = "8101">
+				<Type>EnterpriseNotFound</Type>
+				<Message>The enterprise could not be found.</Message>
+				<PrognosticCode>8103</PrognosticCode>
+			</Exception>
+		</EnterpriseException>
+
+		<!-- Unexistent Machine GUID Exception-->
+		<MachineException>
+			<Exception id = "9101">
+				<Type>MachineGuidNotFound</Type>
+				<Message>The machine guid could not be found.</Message>
+				<PrognosticCode>9101</PrognosticCode>
+			</Exception>
+		</MachineException>
+	
+		<!-- Machine Exists Exception -->
+		<MachineException>
+			<Exception id = "9102">
+				<Type>MachineAlreadyExists</Type>
+				<Message>This machine is already registered.</Message>
+				<PrognosticCode>9102</PrognosticCode>
+			</Exception>
+		</MachineException>
+	
+		<!-- Unexistent Machine Exception -->
+		<MachineException>
+			<Exception id = "9103">
+				<Type>MachineNotFound</Type>
+				<Message>This machine could not be found.</Message>
+				<PrognosticCode>9103</PrognosticCode>
+			</Exception>
+		</MachineException>
+	
+	<!-- End of Registering Exceptions -->
+
+	<AdminException>
+		<Exception id = "11001">
+			<Type>NotFound</Type>
+			<Message>The desired data could not be found.</Message>
+			<PrognosticCode>11001</PrognosticCode>
+		</Exception>
+	</AdminException>
+	
+	<!-- List Exceptions -->
+	<ListException>
+		<Exception id = "10001">
+			<Type>UserListIsEmpty</Type>
+			<Message>The company users could not be found.</Message>
+			<PrognosticCode>10001</PrognosticCode>
+		</Exception>
+	</ListException>
 </ExceptionsPattern>

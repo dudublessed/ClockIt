@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Xml;
 using System.Xml.Linq;
-using ClockIt.Core.Utils;
+using ClockIt.src.Shared.Utils;
 
 public class DatabaseConfigReader
 {
     private static string _connectionString;
-    private static string? _pathtofile;
+    private static readonly object _lock = new object();
 
     public static string GetConnectionString()
     {
@@ -15,26 +15,39 @@ public class DatabaseConfigReader
             return _connectionString;
         }
 
-        try
+        lock (_lock)
         {
-            _pathtofile = FileHelper.FindFileInProject("DatabaseConfig.xml");
-
-            XDocument xmlDoc = XDocument.Load(_pathtofile);
-
-            var node = xmlDoc.Descendants("DBConnectionString").FirstOrDefault();
-
-            if (string.IsNullOrWhiteSpace(node.Value))
+            if(!string.IsNullOrEmpty(_connectionString))
             {
-                throw new Exception(ExceptionHandler.GetErrorMessages(4161));
+                return _connectionString;
             }
 
-            _connectionString = node.Value;
-            return _connectionString;
+            try
+            {
+                string pathToFile = FileHelper.FindFileInProject("DatabaseConfig.xml");
 
-        }
-        catch (Exception ex)
-        {
-            throw new Exception(ExceptionHandler.GetErrorMessages(5161));
+                if (string.IsNullOrEmpty(pathToFile) || !System.IO.File.Exists(pathToFile))
+                {
+                    throw new Exception(ExceptionHandler.GetErrorMessages(4003));
+                }
+
+                XDocument xmlDoc = XDocument.Load(pathToFile);
+
+                var node = xmlDoc.Descendants("DBConnectionString").FirstOrDefault();
+
+                if (string.IsNullOrWhiteSpace(node.Value))
+                {
+                    throw new Exception(ExceptionHandler.GetErrorMessages(4001));
+                }
+
+                _connectionString = node.Value;
+                return _connectionString;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ExceptionHandler.GetErrorMessages(5001));
+            }
         }
     }
 

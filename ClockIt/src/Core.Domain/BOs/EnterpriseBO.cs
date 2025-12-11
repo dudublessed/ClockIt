@@ -20,7 +20,7 @@ namespace ClockIt.src.Core.Domain.BOs
 
         public int AddEnterprise(EnterpriseRegisterDTO enterprise)
         {
-            var generatedEnterpriseId = _enterpriseRepository.AddEnterprise(enterprise);
+            var generatedEnterpriseId = _enterpriseRepository.RegisterEnterprise(enterprise);
 
             if (generatedEnterpriseId == 0)
             {

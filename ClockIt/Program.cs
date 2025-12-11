@@ -30,6 +30,10 @@ using ClockIt.src.ApplicationLayer.Navigation.Interfaces;
 using ClockIt.src.ApplicationLayer.Navigation;
 using ClockIt.src.Core.Domain.BOs.Interfaces;
 using ClockIt.src.Shared.Utils;
+using ClockIt.src.Presentation.Forms.Main.Admin.User;
+using ClockIt.src.Presentation.Forms.Main.Admin.Employee;
+using ClockIt.src.ApplicationLayer.Context.Interfaces;
+using ClockIt.src.ApplicationLayer.Context;
 
 
 namespace ClockIt
@@ -133,10 +137,23 @@ namespace ClockIt
             addTransientPresenters(services);
             addTransientForms(services);
             addSingletonServices(services);
+            AddSingletonContexts(services);
             addSingletonBOs(services);
             addTransientRepositories(services);
 
             return services;
+        }
+
+        private static void addTransientNavigators(IServiceCollection services)
+        {
+            services.AddTransient<ILoginNavigator, LoginNavigator>();
+            services.AddTransient<IRegisterEnterpriseNavigator, RegisterEnterpriseNavigator>();
+            services.AddTransient<IEmailValidationNavigator, EmailValidationNavigator>();
+            services.AddTransient<IAdminPasswordNavigator, AdminPasswordNavigator>();
+            services.AddTransient<IAdminMainNavigator, AdminMainNavigator>();
+            services.AddTransient<ICreateUserNavigator, CreateUserNavigator>();
+            services.AddTransient<ICreateEmployeeNavigator, CreateEmployeeNavigator>();
+            services.AddTransient<IEmployeeMainNavigator, EmployeeMainNavigator>();
         }
 
         private static void addTransientPresenters(IServiceCollection services)
@@ -151,7 +168,10 @@ namespace ClockIt
             services.AddTransient<IAdminPasswordPresenter, AdminPasswordPresenter>();
 
             services.AddTransient<IAdminMainPresenter, AdminMainPresenter>();
-            services.AddTransient<IUserMainPresenter, UserMainPresenter>();
+            services.AddTransient<ICreateUserPresenter, CreateUserPresenter>();
+            services.AddTransient<ICreateEmployeePresenter, CreateEmployeePresenter>();
+
+            services.AddTransient<IEmployeeMainPresenter, EmployeeMainPresenter>();
         }
 
         private static void addTransientForms(IServiceCollection services)
@@ -163,7 +183,9 @@ namespace ClockIt
 
             // Main
             services.AddTransient<IAdminMainForm, AdminMainForm>();
-            services.AddTransient<IUserMainForm, UserMainForm>();
+            services.AddTransient<ICreateUserForm, CreateUserForm>();
+            services.AddTransient<ICreateEmployeeForm, CreateEmployeeForm>();
+            services.AddTransient<IEmployeeMainForm, EmployeeMainForm>();
 
             // Validation
             services.AddTransient<IEmailValidationForm, EmailValidationForm>();
@@ -172,47 +194,34 @@ namespace ClockIt
             //services.AddTransient<IDebugForm, DebugForm>();
         }
 
-        private static void addTransientNavigators(IServiceCollection services)
-        {
-            services.AddTransient<ILoginNavigator, LoginNavigator>();
-            services.AddTransient<IRegisterEnterpriseNavigator, RegisterEnterpriseNavigator>();
-            services.AddTransient<IEmailValidationNavigator, EmailValidationNavigator>();
-            services.AddTransient<IAdminPasswordNavigator, AdminPasswordNavigator>();
-            services.AddTransient<IAdminMainNavigator, AdminMainNavigator>();
-            services.AddTransient<IUserMainNavigator, UserMainNavigator>();
-        }
-
         private static void addSingletonServices(IServiceCollection services)
         {
-            // Main
             services.AddSingleton<IMainService, MainService>();
-
-            // Forms
             services.AddSingleton<ILoginService, LoginService>();
             services.AddSingleton<IRegisterEnterpriseService, RegisterEnterpriseService>();
-            services.AddSingleton<IAdminPasswordService, AdminPasswordService>();
-            services.AddSingleton<IAdminMainService, AdminMainService>();
-            services.AddSingleton<IUserMainService, UserMainService>();
-
-            // Validation
+            services.AddSingleton<IAdminService, AdminService>();
             services.AddSingleton<IEmailService, EmailService>();
-
-            // Models
             services.AddSingleton<IEnterpriseService, EnterpriseService>();
             services.AddSingleton<IMachineService, MachineService>();
+            services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<IEmployeeService, EmployeeService>();
+            services.AddSingleton<IPositionsService, PositionsService>();
+            services.AddSingleton<IAttendanceService, AttendanceService>();
+            services.AddSingleton<IRecordService>();
+        }
+
+        private static void AddSingletonContexts(IServiceCollection services)
+        {
+            services.AddSingleton<IMainContext, MainContext>();
+            services.AddSingleton<IEmployeeLoggedContext, EmployeeLoggedContext>();
+            services.AddSingleton<IUserLoggedContext, UserLoggedContext>();
         }
 
         private static void addSingletonBOs(IServiceCollection services)
         {
-            // Main
-            services.AddSingleton<IMainBO, MainBO>();
-
             // Forms
             services.AddSingleton<ILoginBO, LoginBO>();
             services.AddSingleton<IRegisterEnterpriseBO, RegisterEnterpriseBO>();
-            services.AddSingleton<IAdminPasswordBO, AdminPasswordBO>();
-            services.AddSingleton<IAdminMainBO, AdminMainBO>();
-            services.AddSingleton<IUserMainBO, UserMainBO>();
 
             // Validation
             services.AddSingleton<IEmailBO, EmailBO>();
@@ -221,6 +230,7 @@ namespace ClockIt
             services.AddSingleton<IMachineBO, MachineBO>();
             services.AddSingleton<IEnterpriseBO, EnterpriseBO>();
             services.AddSingleton<IUserBO, UserBO>();
+            // services.AddSingleton<IEmployeeBO, EmployeeBO>();
         }
 
         private static void addTransientRepositories(IServiceCollection services)
@@ -229,9 +239,13 @@ namespace ClockIt
 
             services.AddSingleton(_ => connectionString);
 
-            services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IEnterpriseRepository, EnterpriseRepository>();
             services.AddTransient<IMachineRepository, MachineRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IPositionsRepository, PositionsRepository>();
+            services.AddTransient<IAttendanceRepository, AttendanceRepository>();
+            // services.AddTransient<IRecordRepository, RecordRepository>();
         }
 
 

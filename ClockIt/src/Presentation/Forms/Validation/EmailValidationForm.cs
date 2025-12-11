@@ -20,7 +20,7 @@ namespace ClockIt.src.Presentation.Forms.Validation
         private TimeSpan timeSpan;
 
         public string Email { get; private set; }
-        public string EnterpriseName { get; private set; }
+        public string Name { get; private set; }
         public string CodeInput => validationCodeRichBox.Text;
 
         public event EventHandler FormLoaded;
@@ -44,9 +44,9 @@ namespace ClockIt.src.Presentation.Forms.Validation
             Email = email;
         }
 
-        public void SetEnterpriseName(string enterpriseName)
+        public void SetName(string name)
         {
-            EnterpriseName = enterpriseName;
+            Name = name;
         }
 
         public void AdjustFieldsOnVisual()

@@ -14,8 +14,20 @@ namespace ClockIt.src.Shared.DTOs.UserDTOs
 
         public PasswordsMatchDTO(string password, string confirmPassword)
         {
+            ValidatePasswordInputs(password, confirmPassword);
+
             Password = UserPassword.FromInput(password);
             ConfirmPassword = UserPassword.FromInput(confirmPassword);
         }
-    }
+
+        private void ValidatePasswordInputs(string password, string confirmPassword)
+        {
+            if (string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword)) throw new ArgumentException("Nenhuma senha inserida.");
+        }
+
+        public bool DoesPasswordsMatch()
+        {
+            return Password.Value == ConfirmPassword.Value;
+        }
+    } 
 }

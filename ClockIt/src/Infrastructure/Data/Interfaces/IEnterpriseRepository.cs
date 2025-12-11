@@ -10,7 +10,7 @@ namespace ClockIt.src.Infrastructure.Data.Interfaces
 {
     public interface IEnterpriseRepository
     {
-        int AddEnterprise(EnterpriseRegisterDTO enterprise);
+        int RegisterEnterprise(EnterpriseRegisterDTO enterprise);
         //void UpdateEnterprise(EnterpriseModel enterprise);
         //void DeleteEnterprise(int id);
         EnterpriseModel GetEnterpriseById(int id);

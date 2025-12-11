@@ -14,6 +14,6 @@ namespace ClockIt.src.Infrastructure.Data.Interfaces
         void AddMachine(MachineRegisterDTO machine);
         //void UpdateMachine(MachineModel machine);
         //void DeleteMachine(Guid guid);
-        bool ExistsMachine(Guid guid);
+        bool IsMachineRegistered(Guid guid);
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClockIt.src.Core.Constants
+namespace ClockIt.src.Shared.Constants
 {
     public static class PasswordConstants
     {

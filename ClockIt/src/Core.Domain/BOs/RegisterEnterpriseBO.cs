@@ -34,34 +34,9 @@ namespace ClockIt.src.Core.Domain.BOs
             }
         }
 
-        public void CheckIfMachineExists()
-        {
-            bool isMachineRegistered = _machineBO.ExistsMachine();
-
-            if (isMachineRegistered)
-            {
-                throw new Exception("Esta máquina já está registrada.");
-            }
-        }
-
-        public Guid GetLocalMachineGuid()
-        {
-            return _machineBO.GetLocalMachineGuid();
-        }
-
         public int RegisterEnterprise(EnterpriseRegisterDTO enterprise)
         {
             return _enterpriseBO.AddEnterprise(enterprise);
-        }
-
-        public void RegisterMachine(MachineRegisterDTO machine)
-        {
-            _machineBO.AddMachine(machine);
-        }
-
-        public void RegisterAdminUser(UserRegisterDTO admin)
-        {
-            _userBO.AddUser(admin);
         }
 
         private string GetFile(string jsonFile)

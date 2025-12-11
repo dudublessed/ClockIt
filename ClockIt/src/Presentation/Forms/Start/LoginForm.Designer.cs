@@ -107,10 +107,10 @@ namespace ClockIt.src.Presentation.Forms.Start
             // nameBox
             // 
             resources.ApplyResources(nameBox, "nameBox");
-            nameBox.BackColor = Color.FromArgb(245, 245, 245);
+            nameBox.BackColor = Color.FromArgb(220, 220, 220);
             nameBox.BorderStyle = BorderStyle.FixedSingle;
             nameBox.Name = "nameBox";
-            nameBox.ReadOnly = true;
+            nameBox.Enabled = false;
             // 
             // passwordLabel
             // 
@@ -142,6 +142,7 @@ namespace ClockIt.src.Presentation.Forms.Start
             Name = "LoginForm";
             SizeGripStyle = SizeGripStyle.Show;
             Load += LoginForm_Load;
+            this.MaximizeBox = false;
             topPanel.ResumeLayout(false);
             loginContainer.ResumeLayout(false);
             loginContainer.PerformLayout();

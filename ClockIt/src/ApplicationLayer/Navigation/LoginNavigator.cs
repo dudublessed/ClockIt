@@ -1,4 +1,5 @@
 ﻿using System;
+using ClockIt.src.ApplicationLayer.Context.Interfaces;
 using ClockIt.src.ApplicationLayer.Navigation.Interfaces;
 using ClockIt.src.ApplicationLayer.Services.Interfaces;
 using ClockIt.src.Presentation.Forms.Interfaces;
@@ -24,8 +25,12 @@ namespace ClockIt.src.ApplicationLayer.Navigation
         public IAdminPasswordPresenter AdminPasswordPresenter => _serviceProvider.GetRequiredService<IAdminPasswordPresenter>();
 
         public IAdminMainPresenter AdminMainPresenter => _serviceProvider.GetRequiredService<IAdminMainPresenter>();
-        public IUserMainForm UserMainForm => _serviceProvider.GetRequiredService<IUserMainForm>();
+        public IEmployeeMainPresenter EmployeeMainPresenter => _serviceProvider.GetRequiredService<IEmployeeMainPresenter>();
 
         public ILoginService LoginService => _loginService;
+
+        public IMainContext MainContext => _serviceProvider.GetRequiredService<IMainContext>();
+        public IEmployeeLoggedContext EmployeeLoggedContext => _serviceProvider.GetRequiredService<IEmployeeLoggedContext>();
+        public IUserLoggedContext UserLoggedContext => _serviceProvider.GetRequiredService<IUserLoggedContext>();
     }
 }

@@ -16,46 +16,47 @@ namespace ClockIt.src.Presentation.Presenters
     {
         private readonly IServiceProvider _serviceProvider;
 
-        private readonly ILoginNavigator _loginNavigator;
-        private readonly IRegisterEnterpriseNavigator _registerEnterpriseNavigator;
-
-        private readonly IMainService _mainService;
+        private readonly IMainService _service;
 
         public MainPresenter(
             IServiceProvider serviceProvider,
-            ILoginNavigator loginNavigator, 
-            IRegisterEnterpriseNavigator registerEnterpriseNavigator, 
             IMainService mainService)
         {
             _serviceProvider = serviceProvider;
 
-            _loginNavigator = loginNavigator;
-            _registerEnterpriseNavigator = registerEnterpriseNavigator;
-
-            _mainService = mainService;
+            _service = mainService;
         }
 
         public void Start()
         {
             try
             {
-                bool isMachineRegistered = _mainService.IsMachineRegistered();
-
+                bool isMachineRegistered = _service.IsMachineRegistered();
                 if (!isMachineRegistered)
                 {
-                    var registerPresenter = _serviceProvider.GetRequiredService<IRegisterEnterprisePresenter>();
-                    registerPresenter.ShowForm();
+                    ShowRegistrationForm();
                     return;
                 }
 
-                var loginPresenter = _serviceProvider.GetRequiredService<ILoginPresenter>();
-                loginPresenter.ShowForm();
-
+                _service.SetApplicationContext();
+                ShowLoginForm();
             } catch (Exception ex)
             {
                 MessageBoxHelper.ShowError(ex.Message);
                 Environment.Exit(0);
             }
+        }
+
+        private void ShowRegistrationForm()
+        {
+            var registerPresenter = _serviceProvider.GetRequiredService<IRegisterEnterprisePresenter>();
+            registerPresenter.ShowForm();
+        }
+
+        private void ShowLoginForm()
+        {
+            var loginPresenter = _serviceProvider.GetRequiredService<ILoginPresenter>();
+            loginPresenter.ShowForm();
         }
     }
 }

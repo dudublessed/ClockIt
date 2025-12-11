@@ -10,16 +10,17 @@ namespace ClockIt.src.ApplicationLayer.Navigation
     public class RegisterEnterpriseNavigator : IRegisterEnterpriseNavigator
     {
         private readonly IServiceProvider _serviceProvider;
+        private readonly IRegisterEnterpriseService _registerEnterpriseService;
 
         public RegisterEnterpriseNavigator(IServiceProvider serviceProvider,
             IRegisterEnterpriseService registerEnterpriseService)
         {
             _serviceProvider = serviceProvider;
-            RegisterEnterpriseService = registerEnterpriseService;
+            _registerEnterpriseService = registerEnterpriseService;
         }
 
         public IRegisterEnterpriseForm RegisterEnterpriseForm => _serviceProvider.GetRequiredService<IRegisterEnterpriseForm>();
         public IEmailValidationPresenter EmailValidationPresenter => _serviceProvider.GetRequiredService<IEmailValidationPresenter>();
-        public IRegisterEnterpriseService RegisterEnterpriseService { get; }
+        public IRegisterEnterpriseService RegisterEnterpriseService => _registerEnterpriseService;
     }
 }

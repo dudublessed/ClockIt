@@ -9,7 +9,7 @@ namespace ClockIt.src.Presentation.Forms.Interfaces
     public interface IEmailValidationForm
     {
         string Email { get; }
-        string EnterpriseName { get; }
+        string Name { get; }
         string CodeInput { get; }
 
         event EventHandler FormLoaded;
@@ -17,7 +17,7 @@ namespace ClockIt.src.Presentation.Forms.Interfaces
         event EventHandler NewCodeRequested;
 
         void SetEmail(string email);
-        void SetEnterpriseName(string enterpriseName);
+        void SetName(string name);
 
         void AdjustFieldsOnVisual();
 

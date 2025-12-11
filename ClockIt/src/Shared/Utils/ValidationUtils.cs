@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using ClockIt.src.Core.Constants;
+using ClockIt.src.Shared.Constants;
 
 namespace ClockIt.src.Shared.Utils
 {

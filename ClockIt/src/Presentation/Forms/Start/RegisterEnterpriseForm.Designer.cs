@@ -196,6 +196,7 @@
             Controls.Add(enterpriseCityCombo);
             Controls.Add(registerButton);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "RegisterEnterpriseForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ClockIt";

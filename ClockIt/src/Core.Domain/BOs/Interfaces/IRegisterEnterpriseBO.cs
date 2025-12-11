@@ -13,11 +13,7 @@ namespace ClockIt.src.Core.Domain.BOs.Interfaces
     public interface IRegisterEnterpriseBO
     {
         void CheckIfEnterpriseExists(EnterpriseRegisterDTO enterprise);
-        void CheckIfMachineExists();
-        Guid GetLocalMachineGuid();
         int RegisterEnterprise(EnterpriseRegisterDTO enterprise);
-        void RegisterMachine(MachineRegisterDTO machine);
-        void RegisterAdminUser(UserRegisterDTO admin);
         string GetStatesJsonByCountry(string country);
         string GetCitiesJsonByCountry(string country);
     }

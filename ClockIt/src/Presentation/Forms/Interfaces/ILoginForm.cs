@@ -13,8 +13,8 @@ namespace ClockIt.src.Presentation.Forms.Interfaces
         string InputPassword { get; }
         string EnterpriseName { get; set; }
 
-        void ShowUsers(IEnumerable<ShowUsersDTO> users);
-        void OpenUserMainForm(IUserMainForm form);
+        void ShowUsers(List<ShowUsersDTO> users);
+        void OpenUserMainForm(IEmployeeMainForm form);
 
         event EventHandler FormShown;
         event EventHandler LoginRequested;

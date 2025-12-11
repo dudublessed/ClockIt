@@ -10,11 +10,11 @@ namespace ClockIt.src.Shared.DTOs.EmailDTOs
     public class EmailValidationDTO
     {
         public Email Email { get; }
-        public string EnterpriseName { get; }
+        public string Name { get; }
 
-        public EmailValidationDTO(string email, string enterpriseName) {
+        public EmailValidationDTO(string email, string name) {
             Email = new Email(email);
-            EnterpriseName = enterpriseName;
+            Name = name;
         }
     }
 }

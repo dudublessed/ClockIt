@@ -9,10 +9,6 @@ namespace ClockIt.src.Core.Domain.BOs.Interfaces
 {
     public interface IUserBO
     {
-        void AddUser(UserRegisterDTO user);
-        void UpdateAdminPassword(UpdateAdminPasswordDTO updateAdminPasswordCredentials);
-        IEnumerable<ShowUsersDTO> GetUsersByEnterpriseId(int enterpriseId);
-        string GetAdminPasswordByEnterpriseId(int enterpriseId);
-        string GetUserHashPasswordByLoginAndEnterpriseId(string login, int enterpriseId);
+        bool ValidatePasswordInput(string password, out string errorMessage);
     }
 }

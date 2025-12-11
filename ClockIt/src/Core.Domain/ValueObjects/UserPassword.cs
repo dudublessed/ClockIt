@@ -12,6 +12,7 @@ namespace ClockIt.src.Core.Domain.ValueObjects
     public class UserPassword
     {
         public string Value { get; }
+
         public const string DefaultValue = "mA$p01MlLIO!";
 
         private UserPassword(string value)

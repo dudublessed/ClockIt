@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClockIt.src.Presentation.Forms.Interfaces;
+using ClockIt.src.Shared.Utils;
 
 
 namespace ClockIt.src.Presentation.Forms.Main
@@ -15,9 +16,13 @@ namespace ClockIt.src.Presentation.Forms.Main
     public partial class AdminMainForm : Form, IAdminMainForm
     {
         public event EventHandler FormShown;
-        public event EventHandler UserSectionRequested;
-        public event EventHandler EmployeeSectionRequested;
-        public event EventHandler SettingsSectionRequested;
+
+        public event EventHandler ShowCreateUserForm;
+        public event EventHandler ShowViewUsersForm;
+        public event EventHandler ShowUpdateUserForm;
+        public event EventHandler ShowDeleteUserForm;
+
+        public event EventHandler ShowCreateEmployeeForm;
 
         public AdminMainForm()
         {
@@ -31,58 +36,14 @@ namespace ClockIt.src.Presentation.Forms.Main
 
         }
 
-        private void userButtonClicked(object sender, EventArgs e)
+        private void showCreateUserForm(object sender, EventArgs e)
         {
-            UnselectAllVisually();
-            this.Click += (s, e) => UserSectionRequested?.Invoke(this, EventArgs.Empty);
-            userButton.BackColor = Color.LightGray;
-            topSectionLine.BackColor = Color.FromArgb(220, 220, 220);
+            ShowCreateUserForm?.Invoke(this, EventArgs.Empty);
         }
 
-        private void employeeButtonClicked(object sender, EventArgs e)
+        private void showCreateEmployeeForm(object sender, EventArgs e)
         {
-            UnselectAllVisually();
-            this.Click += (s, e) => EmployeeSectionRequested?.Invoke(this, EventArgs.Empty);
-            employeeButton.BackColor = Color.LightGray;
-            topSectionLine.BackColor = Color.FromArgb(220, 220, 220);
-        }
-
-        private void reportButtonClicked(object sender, EventArgs e)
-        {
-            UnselectAllVisually();
-            this.Click += (s, e) => EmployeeSectionRequested?.Invoke(this, EventArgs.Empty);
-            reportButton.BackColor = Color.LightGray;
-            topSectionLine.BackColor = Color.FromArgb(220, 220, 220);
-        }
-
-        private void settingsButtonClicked(object sender, EventArgs e)
-        {
-            UnselectAllVisually();
-            this.Click += (s, e) => SettingsSectionRequested?.Invoke(this, EventArgs.Empty);
-            settingsButton.BackColor = Color.LightGray;
-            topSectionLine.BackColor = Color.FromArgb(220, 220, 220);
-        }
-
-        private void UnselectAllVisually()
-        {
-            userButton.BackColor = Color.Transparent;
-            employeeButton.BackColor = Color.Transparent;
-            settingsButton.BackColor = Color.Transparent;
-        }
-
-        public void ShowUserTopSection()
-        {
-
-        }
-
-        public void ShowEmployeeTopSection()
-        {
-
-        }
-
-        public void ShowSettingsTopSection()
-        {
-
+            ShowCreateEmployeeForm?.Invoke(this, EventArgs.Empty);
         }
     }
 }

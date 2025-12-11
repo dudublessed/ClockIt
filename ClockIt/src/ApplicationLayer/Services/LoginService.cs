@@ -1,46 +1,54 @@
-﻿using System;
+﻿using ClockIt.src.ApplicationLayer.Services.Interfaces;
+using ClockIt.src.Core.Domain.Entities;
+using ClockIt.src.Core.Domain.ValueObjects;
+using ClockIt.src.Shared.DTOs.UserDTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ClockIt.src.ApplicationLayer.Services.Interfaces;
-using ClockIt.src.Core.Domain.BOs.Interfaces;
-using ClockIt.src.Shared.DTOs.UserDTOs;
 
 namespace ClockIt.src.ApplicationLayer.Services
 {
     public class LoginService : ILoginService
     {
-        private readonly ILoginBO _loginBO;
+        private readonly IUserService _userService;
+        private readonly IEmployeeService _employeeService;
 
-        public LoginService(ILoginBO loginBO)
+        public LoginService(IUserService userService, IEmployeeService employeeService)
         {
-            _loginBO = loginBO;
+            _userService = userService;
+            _employeeService = employeeService;
+
         }
 
-        public int GetEnterpriseId()
+        public EmployeeModel GetEmployeeByUser()
         {
-            return _loginBO.GetEnterpriseIdByLocalMachine();
+            return _employeeService.GetEmployeeByUser();
         }
 
-        public string GetEnterpriseName()
+        public List<ShowUsersDTO> GetEnterpriseEmployeeUsers()
         {
-            return _loginBO.GetEnterpriseNameByLocalMachine();
-        }
-
-        public IEnumerable<ShowUsersDTO> GetUsers(int enterpriseId)
-        {
-            return _loginBO.GetUsersByEnterpriseId(enterpriseId);
+            return _userService.GetEnterpriseEmployeeUsers();
         }
 
         public bool IsAdminPasswordDefault()
-        {
-            return _loginBO.IsAdminPasswordDefault();
+        { 
+            var adminPasswordHash = _userService.GetEnterpriseAdminPassword().Trim();;
+
+            return UserPassword.IsPasswordDefault(adminPasswordHash);
         }
 
         public void VerifyPassword(UserLoginDTO input)
-        {
-            _loginBO.VerifyPassword(input);
+        { 
+            string dbHashUserPassword = _userService.GetUserHashPasswordByLogin(input.Login);
+
+            bool isPasswordCorrect = input.Password.IsPasswordCorrect(dbHashUserPassword);
+
+            if (!isPasswordCorrect)
+            {
+                throw new InvalidOperationException("Senha incorreta.");
+            }
         }
     }
 }

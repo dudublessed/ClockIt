@@ -154,6 +154,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ClockIt";
             Load += EmailValidationForm_Load;
+            this.MaximizeBox = false;
             ResumeLayout(false);
         }
 

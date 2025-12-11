@@ -76,7 +76,7 @@ namespace ClockIt.src.ApplicationLayer.Services
                                                         <tr><td height=""14"" style=""line-height:20px;font-size:0;"">&nbsp;</td></tr>
                                                     </table>
 
-                                                    <p style=""font-size:26px;line-height:1.5;"">Olá, {credentials.EnterpriseName}</p>
+                                                    <p style=""font-size:26px;line-height:1.5;"">Olá, {credentials.Name}</p>
 
                                                     <table role=""presentation"" width=""100%"" cellpadding=""0"" cellspacing=""0"">
                                                         <tr><td height=""12"" style=""line-height:16px;font-size:0;"">&nbsp;</td></tr>
@@ -182,7 +182,7 @@ namespace ClockIt.src.ApplicationLayer.Services
                                                         <tr><td height=""14"" style=""line-height:20px;font-size:0;"">&nbsp;</td></tr>
                                                     </table>
 
-                                                    <p style=""font-size:26px;line-height:1.5;"">Olá, {credentials.EnterpriseName}</p>
+                                                    <p style=""font-size:26px;line-height:1.5;"">Olá, {credentials.Name}</p>
 
                                                     <table role=""presentation"" width=""100%"" cellpadding=""0"" cellspacing=""0"">
                                                         <tr><td height=""12"" style=""line-height:16px;font-size:0;"">&nbsp;</td></tr>

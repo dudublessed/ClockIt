@@ -1,68 +1,44 @@
-﻿using System;
+﻿using ClockIt.src.Core.Domain.BOs.Interfaces;
+using ClockIt.src.Shared.Constants;
+using ClockIt.src.Shared.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ClockIt.src.Core.Domain.BOs.Interfaces;
-using ClockIt.src.Infrastructure.Data.Interfaces;
-using ClockIt.src.Shared.DTOs.UserDTOs;
 
 namespace ClockIt.src.Core.Domain.BOs
 {
     public class UserBO : IUserBO
     {
-        private readonly IUserRepository _userRepository;
-
-        public UserBO(IUserRepository userRepository)
+        public bool ValidatePasswordInput(string password, out string errorMessage)
         {
-            _userRepository = userRepository;
-        }
-
-        public void AddUser(UserRegisterDTO user)
-        {
-            _userRepository.AddUser(user);
-        }
-
-        public void UpdateAdminPassword(UpdateAdminPasswordDTO credentials)
-        {
-            _userRepository.UpdateAdminPassword(credentials);
-        }
-
-        public IEnumerable<ShowUsersDTO> GetUsersByEnterpriseId(int enterpriseId)
-        {
-            var users = _userRepository.GetUsersByEnterpriseId(enterpriseId);
-
-            bool hasUserInList = users.Any();
-            if (!hasUserInList)
+            if (!ValidationUtils.PasswordHasMinimumLength(password))
             {
-                throw new Exception("Não foi possível encontrar os usuários. Por favor, tente novamente.");
+                errorMessage = $"A senha deve ter pelo menos {PasswordConstants.MinimumLength} dígitos";
+                return false;
             }
 
-            return users;
-        }
-
-        public string GetAdminPasswordByEnterpriseId(int enterpriseId)
-        {
-            string adminPassword = _userRepository.GetAdminPasswordByEnterpriseId(enterpriseId);
-
-            if (string.IsNullOrEmpty(adminPassword))
+            if (ValidationUtils.PasswordExceedsMaximumLength(password))
             {
-                throw new Exception("Erro ao acessar informações. 9336");
+                errorMessage = $"A senha não pode exceder {PasswordConstants.MaximumLength} dígitos";
+                return false;
             }
 
-            return adminPassword;
-        }
-
-        public string GetUserHashPasswordByLoginAndEnterpriseId(string login, int enterpriseId)
-        {
-            string dbUserHashPassword = _userRepository.GetPasswordHashByLoginAndEnterpriseId(login, enterpriseId);
-
-            if (string.IsNullOrEmpty(dbUserHashPassword))
+            if (!ValidationUtils.HasSpecialCharacter(password))
             {
-                throw new Exception("Não foi possível validar o processo de login. Por favor, tente novamente.");
+                errorMessage = "A senha deve ter pelo menos um caractere especial";
+                return false;
             }
 
-            return dbUserHashPassword;
+            if (ValidationUtils.HasInvalidCharacter(password))
+            {
+                errorMessage = "A senha possui caracteres inválidos. Tente novamente.";
+                return false;
+            }
+
+            errorMessage = string.Empty;
+            return true;
         }
     }
 }

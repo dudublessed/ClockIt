@@ -31,7 +31,7 @@ namespace ClockIt.src.Presentation.Forms.Start
             companyLabel.Text = EnterpriseName;  
         }
 
-        public void ShowUsers(IEnumerable<ShowUsersDTO> users)
+        public void ShowUsers(List<ShowUsersDTO> users)
         {
             usersContainer.Controls.Clear();
 
@@ -90,7 +90,7 @@ namespace ClockIt.src.Presentation.Forms.Start
             }
         }
 
-        public void OpenUserMainForm(IUserMainForm form)
+        public void OpenUserMainForm(IEmployeeMainForm form)
         {
 
         }

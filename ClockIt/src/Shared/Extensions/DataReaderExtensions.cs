@@ -27,10 +27,16 @@ namespace ClockIt.src.Shared.Extensions
             return reader.IsDBNull(index) ? string.Empty : reader.GetString(index);
         }
 
-        public static DateTime? GetDateTimeSafe(this NpgsqlDataReader reader, string columnName)
+        public static DateTime GetDateTimeSafe(this NpgsqlDataReader reader, string columnName)
         {
             int index = reader.GetOrdinal(columnName);
-            return reader.IsDBNull(index) ? null : reader.GetDateTime(index);
+            return reader.IsDBNull(index) ? DateTime.MinValue : reader.GetDateTime(index);
+        }
+
+        public static TimeSpan GetTimeSpanSafe(this NpgsqlDataReader reader, string columnName)
+        {
+            int index = reader.GetOrdinal(columnName);
+            return reader.IsDBNull(index) ? TimeSpan.MinValue : reader.GetTimeSpan(index);
         }
     }
 }

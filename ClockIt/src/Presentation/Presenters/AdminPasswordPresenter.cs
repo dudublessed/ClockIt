@@ -18,7 +18,7 @@ namespace ClockIt.src.Presentation.Presenters
 
         private IAdminPasswordForm _view;
 
-        private readonly IAdminPasswordService _service;
+        private readonly IAdminService _service;
 
         public AdminPasswordPresenter(IAdminPasswordNavigator navigator)
         {
@@ -151,17 +151,14 @@ namespace ClockIt.src.Presentation.Presenters
         {
             try
             {
-                var passwordsMatchDTO = new PasswordsMatchDTO(_view.Password, _view.ConfirmPassword);
-
-                bool passwordsMatch = _service.DoesPasswordsMatch(passwordsMatchDTO);
-                if (!passwordsMatch)
+                var passwords = new PasswordsMatchDTO(_view.Password, _view.ConfirmPassword);
+                if (!passwords.DoesPasswordsMatch())
                 {
                     MessageBoxHelper.ShowWarning("As senhas não coincidem.");
                     return;
                 }
 
                 var updateAdminPasswordDTO = new UpdateAdminPasswordDTO(_view.Password);
-
                 _service.UpdateAdminPassword(updateAdminPasswordDTO);
 
                 MessageBoxHelper.ShowSucess("Perfeito! A senha do administrador foi definida com sucesso!");

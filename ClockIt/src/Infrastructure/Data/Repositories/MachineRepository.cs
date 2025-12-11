@@ -34,7 +34,7 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
 
                 using (var cmd = new NpgsqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("guid", guid);
+                    cmd.Parameters.Add("guid", NpgsqlDbType.Uuid).Value = guid;
 
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -72,7 +72,7 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             }
         }
 
-        public bool ExistsMachine(Guid guid)
+        public bool IsMachineRegistered(Guid guid)
         {
             using (var conn = new NpgsqlConnection(_connectionString))
             {

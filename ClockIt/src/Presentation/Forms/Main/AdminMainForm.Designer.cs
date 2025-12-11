@@ -28,148 +28,153 @@
         /// </summary>
         private void InitializeComponent()
         {
-            leftSectionLine = new Panel();
-            companyLabel = new Label();
-            userButton = new Button();
-            employeeButton = new Button();
-            reportButton = new Button();
-            settingsButton = new Button();
-            topSectionLine = new Panel();
-            createUserButton = new Button();
-            updateUserButton = new Button();
-            deleteUserButton = new Button();
-            createEmployeeButton = new Button();
-            updateEmployeeButton = new Button();
-            deleteEmployeeButton = new Button();
+            adminActionsMenuStrip = new MenuStrip();
+            userToolStripMenuItem = new ToolStripMenuItem();
+            createUserToolStripMenuItem = new ToolStripMenuItem();
+            viewUsersToolStripMenuItem = new ToolStripMenuItem();
+            updateUserToolStripMenuItem = new ToolStripMenuItem();
+            deleteUserToolStripMenuItem = new ToolStripMenuItem();
+            employeeToolStripMenuItem = new ToolStripMenuItem();
+            createEmployeeToolStripMenuItem = new ToolStripMenuItem();
+            viewEmployeesToolStripMenuItem = new ToolStripMenuItem();
+            updateEmployeeToolStripMenuItem1 = new ToolStripMenuItem();
+            deleteEmployeeToolStripMenuItem = new ToolStripMenuItem();
+            relatorioToolStripMenuItem = new ToolStripMenuItem();
+            positionsToolStripMenuItem = new ToolStripMenuItem();
+            settingsToolStripMenuItem = new ToolStripMenuItem();
+            adminActionsMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
-            // leftSectionLine
+            // adminActionsMenuStrip
             // 
-            leftSectionLine.BackColor = Color.FromArgb(220, 220, 220);
-            leftSectionLine.Location = new Point(210, 0);
-            leftSectionLine.Name = "leftSectionLine";
-            leftSectionLine.Size = new Size(2, 550);
-            leftSectionLine.TabIndex = 0;
+            adminActionsMenuStrip.BackColor = Color.LightGray;
+            adminActionsMenuStrip.Items.AddRange(new ToolStripItem[] { userToolStripMenuItem, employeeToolStripMenuItem, relatorioToolStripMenuItem, positionsToolStripMenuItem, settingsToolStripMenuItem });
+            adminActionsMenuStrip.Location = new Point(0, 0);
+            adminActionsMenuStrip.Name = "adminActionsMenuStrip";
+            adminActionsMenuStrip.Size = new Size(738, 24);
+            adminActionsMenuStrip.TabIndex = 0;
+            adminActionsMenuStrip.Text = "adminActionsMenuStrip";
             // 
-            // companyLabel
+            // userToolStripMenuItem
             // 
-            companyLabel.BackColor = Color.Transparent;
-            companyLabel.Font = new Font("Arial", 13F, FontStyle.Bold);
-            companyLabel.ForeColor = Color.Black;
-            companyLabel.Location = new Point(15, 15);
-            companyLabel.Name = "companyLabel";
-            companyLabel.Size = new Size(176, 45);
-            companyLabel.TabIndex = 0;
-            companyLabel.Text = "TEST / TEST LTDA";
-            companyLabel.TextAlign = ContentAlignment.MiddleCenter;
+            userToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createUserToolStripMenuItem, viewUsersToolStripMenuItem, updateUserToolStripMenuItem, deleteUserToolStripMenuItem });
+            userToolStripMenuItem.Name = "userToolStripMenuItem";
+            userToolStripMenuItem.Size = new Size(64, 20);
+            userToolStripMenuItem.Text = "Usuários";
             // 
-            // userButton
+            // createUserToolStripMenuItem
             // 
-            userButton.BackColor = Color.Transparent;
-            userButton.FlatAppearance.BorderSize = 0;
-            userButton.FlatStyle = FlatStyle.Flat;
-            userButton.Font = new Font("Arial", 10F, FontStyle.Bold);
-            userButton.Location = new Point(15, 200);
-            userButton.Name = "userButton";
-            userButton.Size = new Size(175, 25);
-            userButton.TabIndex = 1;
-            userButton.Text = "Usuário";
-            userButton.UseVisualStyleBackColor = false;
-            userButton.Click += userButtonClicked;
+            createUserToolStripMenuItem.Name = "createUserToolStripMenuItem";
+            createUserToolStripMenuItem.Size = new Size(171, 22);
+            createUserToolStripMenuItem.Text = "Criar Usuário";
+            createUserToolStripMenuItem.Click += showCreateUserForm;
             // 
-            // employeeButton
+            // viewUsersToolStripMenuItem
             // 
-            employeeButton.BackColor = Color.Transparent;
-            employeeButton.FlatAppearance.BorderSize = 0;
-            employeeButton.FlatStyle = FlatStyle.Flat;
-            employeeButton.Font = new Font("Arial", 10F, FontStyle.Bold);
-            employeeButton.Location = new Point(15, 245);
-            employeeButton.Name = "employeeButton";
-            employeeButton.Size = new Size(175, 25);
-            employeeButton.TabIndex = 2;
-            employeeButton.Text = "Funcionário";
-            employeeButton.UseVisualStyleBackColor = false;
-            employeeButton.Click += employeeButtonClicked;
+            viewUsersToolStripMenuItem.Name = "viewUsersToolStripMenuItem";
+            viewUsersToolStripMenuItem.Size = new Size(171, 22);
+            viewUsersToolStripMenuItem.Text = "Visualizar Usuários";
             // 
-            // reportButton
+            // updateUserToolStripMenuItem
             // 
-            reportButton.BackColor = Color.Transparent;
-            reportButton.FlatAppearance.BorderSize = 0;
-            reportButton.FlatStyle = FlatStyle.Flat;
-            reportButton.Font = new Font("Arial", 10F, FontStyle.Bold);
-            reportButton.Location = new Point(15, 290);
-            reportButton.Name = "reportButton";
-            reportButton.Size = new Size(175, 25);
-            reportButton.TabIndex = 3;
-            reportButton.Text = "Relatório";
-            reportButton.UseVisualStyleBackColor = false;
-            reportButton.Click += reportButtonClicked;
+            updateUserToolStripMenuItem.Name = "updateUserToolStripMenuItem";
+            updateUserToolStripMenuItem.Size = new Size(171, 22);
+            updateUserToolStripMenuItem.Text = "Atualizar Usuário";
             // 
-            // settingsButton
+            // deleteUserToolStripMenuItem
             // 
-            settingsButton.BackColor = Color.Transparent;
-            settingsButton.FlatAppearance.BorderSize = 0;
-            settingsButton.FlatStyle = FlatStyle.Flat;
-            settingsButton.Font = new Font("Arial", 10F, FontStyle.Bold);
-            settingsButton.Location = new Point(15, 335);
-            settingsButton.Name = "settingsButton";
-            settingsButton.Size = new Size(175, 25);
-            settingsButton.TabIndex = 3;
-            settingsButton.Text = "Configurações";
-            settingsButton.UseVisualStyleBackColor = false;
-            settingsButton.Click += settingsButtonClicked;
+            deleteUserToolStripMenuItem.Name = "deleteUserToolStripMenuItem";
+            deleteUserToolStripMenuItem.Size = new Size(171, 22);
+            deleteUserToolStripMenuItem.Text = "Deletar Usuário";
             // 
-            // topSectionLine
+            // employeeToolStripMenuItem
             // 
-            topSectionLine.BackColor = Color.Transparent;
-            topSectionLine.Location = new Point(210, 60);
-            topSectionLine.Name = "topSectionLine";
-            topSectionLine.Size = new Size(690, 2);
-            topSectionLine.TabIndex = 0;
+            employeeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createEmployeeToolStripMenuItem, viewEmployeesToolStripMenuItem, updateEmployeeToolStripMenuItem1, deleteEmployeeToolStripMenuItem });
+            employeeToolStripMenuItem.Name = "employeeToolStripMenuItem";
+            employeeToolStripMenuItem.Size = new Size(87, 20);
+            employeeToolStripMenuItem.Text = "Funcionários";
+            // 
+            // createEmployeeToolStripMenuItem
+            // 
+            createEmployeeToolStripMenuItem.Name = "createEmployeeToolStripMenuItem";
+            createEmployeeToolStripMenuItem.Size = new Size(194, 22);
+            createEmployeeToolStripMenuItem.Text = "Criar Funcionário";
+            createEmployeeToolStripMenuItem.Click += showCreateEmployeeForm;
+            // 
+            // viewEmployeesToolStripMenuItem
+            // 
+            viewEmployeesToolStripMenuItem.Name = "viewEmployeesToolStripMenuItem";
+            viewEmployeesToolStripMenuItem.Size = new Size(194, 22);
+            viewEmployeesToolStripMenuItem.Text = "Visualizar Funcionários";
+            // 
+            // updateEmployeeToolStripMenuItem1
+            // 
+            updateEmployeeToolStripMenuItem1.Name = "updateEmployeeToolStripMenuItem1";
+            updateEmployeeToolStripMenuItem1.Size = new Size(194, 22);
+            updateEmployeeToolStripMenuItem1.Text = "Atualizar Funcionário";
+            // 
+            // deleteEmployeeToolStripMenuItem
+            // 
+            deleteEmployeeToolStripMenuItem.Name = "deleteEmployeeToolStripMenuItem";
+            deleteEmployeeToolStripMenuItem.Size = new Size(194, 22);
+            deleteEmployeeToolStripMenuItem.Text = "Deletar Funcionário";
+            // 
+            // relatorioToolStripMenuItem
+            // 
+            relatorioToolStripMenuItem.Name = "relatorioToolStripMenuItem";
+            relatorioToolStripMenuItem.Size = new Size(128, 20);
+            relatorioToolStripMenuItem.Text = "Relatórios Gerenciais";
+            // 
+            // positionsToolStripMenuItem
+            // 
+            positionsToolStripMenuItem.Name = "positionsToolStripMenuItem";
+            positionsToolStripMenuItem.Size = new Size(56, 20);
+            positionsToolStripMenuItem.Text = "Cargos";
+            // 
+            // settingsToolStripMenuItem
+            // 
+            settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            settingsToolStripMenuItem.Size = new Size(96, 20);
+            settingsToolStripMenuItem.Text = "Configurações";
             // 
             // AdminMainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 245, 245);
-            ClientSize = new Size(900, 550);
-            Controls.Add(leftSectionLine);
-            Controls.Add(companyLabel);
-            Controls.Add(userButton);
-            Controls.Add(employeeButton);
-            Controls.Add(reportButton);
-            Controls.Add(settingsButton);
-            Controls.Add(topSectionLine);
+            ClientSize = new Size(738, 201);
+            Controls.Add(adminActionsMenuStrip);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MainMenuStrip = adminActionsMenuStrip;
+            MaximizeBox = false;
             Name = "AdminMainForm";
             SizeGripStyle = SizeGripStyle.Show;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "ClockIt - Admin";
+            Text = "ClockIt - Administrator Panel";
             Load += AdminMainForm_Load;
+            adminActionsMenuStrip.ResumeLayout(false);
+            adminActionsMenuStrip.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-        // Left Section
-        private Panel leftSectionLine;
+        private MenuStrip adminActionsMenuStrip;
+        private ToolStripMenuItem userToolStripMenuItem;
+        private ToolStripMenuItem createUserToolStripMenuItem;
+        private ToolStripMenuItem viewUsersToolStripMenuItem;
+        private ToolStripMenuItem updateUserToolStripMenuItem;
+        private ToolStripMenuItem deleteUserToolStripMenuItem;
 
-        private Label companyLabel;
+        private ToolStripMenuItem employeeToolStripMenuItem;
+        private ToolStripMenuItem createEmployeeToolStripMenuItem;
+        private ToolStripMenuItem viewEmployeesToolStripMenuItem;
+        private ToolStripMenuItem updateEmployeeToolStripMenuItem1;
+        private ToolStripMenuItem deleteEmployeeToolStripMenuItem;
 
-        private Button userButton;
-        private Button employeeButton;
-        private Button reportButton;
-        private Button settingsButton;
+        private ToolStripMenuItem relatorioToolStripMenuItem;
+        private ToolStripMenuItem positionsToolStripMenuItem;
+        private ToolStripMenuItem settingsToolStripMenuItem;
 
-        // Top Section        
-        private Panel topSectionLine;
-
-        private Button createUserButton;
-        private Button updateUserButton;
-        private Button deleteUserButton;
-
-        private Button createEmployeeButton;
-        private Button updateEmployeeButton;
-        private Button deleteEmployeeButton;
-        private Button employeeRecordsButton;
     }
 }

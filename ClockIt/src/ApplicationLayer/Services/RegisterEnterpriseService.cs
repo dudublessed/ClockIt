@@ -18,10 +18,18 @@ namespace ClockIt.src.ApplicationLayer.Services
 {
     public class RegisterEnterpriseService : IRegisterEnterpriseService
     {
+        private readonly IMachineService _machineService;
+        private readonly IEnterpriseService _enterpriseService;
+        private readonly IUserService _userService;
+
         private readonly IRegisterEnterpriseBO _BO;
 
-        public RegisterEnterpriseService(IRegisterEnterpriseBO registerEnterpriseBO)
+        public RegisterEnterpriseService(IMachineService machineService, IEnterpriseService enterpriseService, IUserService userService, IRegisterEnterpriseBO registerEnterpriseBO)
         {
+            _enterpriseService = enterpriseService;
+            _machineService = machineService;
+            _userService = userService;
+
             _BO = registerEnterpriseBO;
         }
 
@@ -32,7 +40,7 @@ namespace ClockIt.src.ApplicationLayer.Services
 
         public void CheckMachineExistance()
         {
-            _BO.CheckIfMachineExists();
+            _machineService.IsMachineRegistered();
         }
 
         public void Register(EnterpriseRegisterDTO enterprise)
@@ -41,15 +49,13 @@ namespace ClockIt.src.ApplicationLayer.Services
             {
                 var registeredEnterpriseId = _BO.RegisterEnterprise(enterprise);
 
-                var localMachineGuid = _BO.GetLocalMachineGuid();
+                var localMachineGuid = _machineService.GetLocalMachineGuid();
                 var machine = new MachineRegisterDTO(localMachineGuid, registeredEnterpriseId);
+                _machineService.RegisterMachine(machine);
 
-                _BO.RegisterMachine(machine);
+                var admin = new UserDTO("Admin", "ADMIN", "mA$p01MlLIO!", UserDTO.UserType.Admin, registeredEnterpriseId);
 
-                UserPassword password = UserPassword.CreateNew(UserPassword.DefaultValue);
-                var admin = new UserRegisterDTO("Admin", "ADMIN", password, UserRegisterDTO.UserType.Admin, registeredEnterpriseId);
-
-                _BO.RegisterAdminUser(admin);
+                _userService.RegisterUser(admin);
 
                 scope.Complete();
             }

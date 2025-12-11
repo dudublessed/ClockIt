@@ -40,7 +40,7 @@ namespace ClockIt.src.Presentation.Presenters
         private void SetEmailViewInfo(EmailValidationDTO credentials)
         {
             _view.SetEmail(credentials.Email.Value);
-            _view.SetEnterpriseName(credentials.EnterpriseName);
+            _view.SetName(credentials.Name);
         }
 
         public DialogResult ShowDialog(EmailValidationDTO credentials)
@@ -64,7 +64,7 @@ namespace ClockIt.src.Presentation.Presenters
         private void OnFormLoaded(object? sender, EventArgs e) {
             try
             {
-                var credentials = new EmailValidationDTO(_view.Email, _view.EnterpriseName);
+                var credentials = new EmailValidationDTO(_view.Email, _view.Name);
                 _service.SendVerificationCode(credentials);
 
                 _view.StartCodeExpirationTimer();
@@ -99,7 +99,7 @@ namespace ClockIt.src.Presentation.Presenters
         private void OnNewCodeRequested(object? sender, EventArgs e) {
             try
             {
-                var credentials = new EmailValidationDTO(_view.Email, _view.EnterpriseName);
+                var credentials = new EmailValidationDTO(_view.Email, _view.Name);
 
                 _service.ReSendVerificationCode(credentials);
 

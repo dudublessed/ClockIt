@@ -10,9 +10,6 @@ namespace ClockIt.src.Core.Domain.BOs.Interfaces
 {
     public interface IMachineBO
     {
-        void AddMachine(MachineRegisterDTO machine);
-        Guid GetLocalMachineGuid();
-        MachineModel GetMachineByGuid(Guid guid);
-        bool ExistsMachine();
+        void ValidateMachineGuid(Guid guid);
     }
 }

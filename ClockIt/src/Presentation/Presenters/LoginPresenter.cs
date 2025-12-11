@@ -10,6 +10,8 @@ using ClockIt.src.Shared.DTOs.UserDTOs;
 using ClockIt.src.Presentation.Forms.Interfaces;
 using ClockIt.src.Presentation.Presenters.Interfaces;
 using ClockIt.src.Shared.Utils;
+using ClockIt.src.ApplicationLayer.Context.Interfaces;
+using ClockIt.src.Core.Domain.Entities;
 
 namespace ClockIt.src.Presentation.Presenters
 {
@@ -21,13 +23,21 @@ namespace ClockIt.src.Presentation.Presenters
 
         private readonly ILoginService _service;
 
-        private int _enterpriseId;
+        private readonly IMainContext _context;
+        private readonly IUserLoggedContext _userContext;
+        private readonly IEmployeeLoggedContext _employeeContext;
+
+        private List<ShowUsersDTO> Users;
 
         public LoginPresenter(ILoginNavigator navigator)
         {
             _navigator = navigator;
 
             _service = navigator.LoginService;
+
+            _context = navigator.MainContext;
+            _userContext = navigator.UserLoggedContext;
+            _employeeContext = navigator.EmployeeLoggedContext;
         }
 
         private void PrepareEventHandlers()
@@ -51,15 +61,13 @@ namespace ClockIt.src.Presentation.Presenters
         {
             try
             {
-                _view.EnterpriseName = _service.GetEnterpriseName();
+                _view.EnterpriseName = _context.Enterprise.Name;
 
-                _enterpriseId = _service.GetEnterpriseId();
+                Users = _service.GetEnterpriseEmployeeUsers();
 
-                var users = _service.GetUsers(_enterpriseId).ToList();
+                _view.ShowUsers(Users);
 
-                _view.ShowUsers(users);
-
-                bool hasOnlyAdmin = (users.Count == 1);
+                bool hasOnlyAdmin = (Users.Count == 1);
                 bool isAdminPasswordDefault = _service.IsAdminPasswordDefault();
 
                 if (hasOnlyAdmin && isAdminPasswordDefault)
@@ -82,19 +90,54 @@ namespace ClockIt.src.Presentation.Presenters
                     MessageBoxHelper.ShowWarning("Por favor, preencha os campos.");
                 }
 
-                var inputDTO = new UserLoginDTO(_view.Login, _view.InputPassword, _enterpriseId);
+                var inputDTO = new UserLoginDTO(_view.Login, _view.InputPassword, _context.Enterprise.Id);
 
                 _service.VerifyPassword(inputDTO);
 
-                bool isUserAdmin = _view.Login == "ADMIN";
-                if (isUserAdmin)
+                SetUserLogged();
+
+                bool isAdmin = _view.Login == "ADMIN";
+                if (isAdmin)
                 {
                     _navigator.AdminMainPresenter.ShowForm((Form)_view);
                     return;
                 }
 
-                _view.OpenUserMainForm(_navigator.UserMainForm);
+                SetEmployeeLogged();
+
+                _navigator.EmployeeMainPresenter.ShowForm((Form)_view);
             } catch (Exception ex)
+            {
+                MessageBoxHelper.ShowError(ex.Message);
+            }
+        }
+
+        private void SetUserLogged()
+        {
+            try
+            {
+                UserLoggedDTO userLogged = Users
+                    .Where(u => u.Login == _view.Login)
+                    .Select(u => new UserLoggedDTO(u.Id, u.UserName, u.Login))
+                    .First();
+
+                _userContext.SetUserLoggedContext(userLogged);
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ShowError(ex.Message);
+            }
+        }
+
+        private void SetEmployeeLogged()
+        {
+            try
+            {
+                EmployeeModel employeeLogged = _service.GetEmployeeByUser();
+
+                _employeeContext.SetEmployeeLoggedContext(employeeLogged);
+            }
+            catch (Exception ex)
             {
                 MessageBoxHelper.ShowError(ex.Message);
             }

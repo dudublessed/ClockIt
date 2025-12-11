@@ -9,5 +9,6 @@ namespace ClockIt.src.ApplicationLayer.Services.Interfaces
     public interface IMainService
     {
         bool IsMachineRegistered();
+        void SetApplicationContext();
     }
 }

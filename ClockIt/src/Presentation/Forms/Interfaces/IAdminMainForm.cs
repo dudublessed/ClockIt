@@ -8,14 +8,13 @@ namespace ClockIt.src.Presentation.Forms.Interfaces
 {
     public interface IAdminMainForm
     {
-
         event EventHandler FormShown;
-        event EventHandler UserSectionRequested;
-        event EventHandler EmployeeSectionRequested;
-        event EventHandler SettingsSectionRequested;
 
-        void ShowUserTopSection();
-        void ShowEmployeeTopSection();
-        void ShowSettingsTopSection();
+        event EventHandler ShowCreateUserForm;
+        event EventHandler ShowViewUsersForm;
+        event EventHandler ShowUpdateUserForm;
+        event EventHandler ShowDeleteUserForm;
+
+        event EventHandler ShowCreateEmployeeForm;
     }
 }

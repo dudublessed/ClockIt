@@ -15,45 +15,46 @@ namespace ClockIt.src.Shared.DTOs.EnterpriseDTOs
 
         public EnterpriseRegisterDTO(string name, Email email, Location location)
         {
-            ValidateInputData(name, email, location);
+            ValidateNameInput(name);
+            ValidateEmailInput(email);
+            ValidateLocationInput(location);
 
             Name = name;
             Email = email;
             Location = location;
         }
 
-        private void ValidateInputData(string name, Email email, Location location)
+        private void ValidateNameInput(string name)
         {
-            string errorMessage = string.Empty;
-
             if (string.IsNullOrEmpty(name))
             {
-                errorMessage = "Por favor, preencha o nome da empresa.";
+                throw new ArgumentException("Por favor, preencha o nome da empresa.");
             }
+        }
 
+        private void ValidateEmailInput(Email email)
+        {
             if (string.IsNullOrEmpty(email.Value))
             {
-                errorMessage = "Por favor, preencha o campo de email.";
+                throw new ArgumentException("Por favor, preencha o campo de email.");
             }
+        }
 
+        private void ValidateLocationInput(Location location)
+        {
             if (string.IsNullOrEmpty(location.Country))
             {
-                errorMessage = "Por favor, selecione um país.";
+                throw new ArgumentException("Por favor, selecione um país.");
             }
 
             if (string.IsNullOrEmpty(location.State))
             {
-                errorMessage = "Por favor, selecione um estado.";
+                throw new ArgumentException("Por favor, selecione um estado.");
             }
 
             if (string.IsNullOrEmpty(location.City))
             {
-                errorMessage = "Por favor, selecione uma cidade.";
-            }
-
-            if (!string.IsNullOrEmpty(errorMessage))
-            {
-                throw new ArgumentException(errorMessage);
+                throw new ArgumentException("Por favor, selecione uma cidade.");
             }
         }
     }

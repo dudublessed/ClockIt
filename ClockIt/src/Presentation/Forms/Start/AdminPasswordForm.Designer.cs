@@ -211,6 +211,7 @@ namespace ClockIt.src.Presentation.Forms.Start
             Text = "ClockIt";
             Load += AdminPasswordForm_Load;
             FormClosing += AdminPasswordForm_FormClosing;
+            this.MaximizeBox = false;
             ResumeLayout(false);
             PerformLayout();
         }

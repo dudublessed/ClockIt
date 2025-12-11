@@ -13,9 +13,9 @@ namespace ClockIt.src.ApplicationLayer.Navigation
     public class AdminPasswordNavigator : IAdminPasswordNavigator
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly IAdminPasswordService _adminPasswordService;
+        private readonly IAdminService _adminPasswordService;
 
-        public AdminPasswordNavigator(IServiceProvider serviceProvider, IAdminPasswordService adminPasswordService)
+        public AdminPasswordNavigator(IServiceProvider serviceProvider, IAdminService adminPasswordService)
         {
             _serviceProvider = serviceProvider;
             _adminPasswordService = adminPasswordService;
@@ -23,6 +23,6 @@ namespace ClockIt.src.ApplicationLayer.Navigation
 
         public IAdminPasswordForm AdminPasswordForm => _serviceProvider.GetRequiredService<IAdminPasswordForm>();
 
-        public IAdminPasswordService AdminPasswordService => _adminPasswordService;
+        public IAdminService AdminPasswordService => _adminPasswordService;
     }
 }

@@ -21,7 +21,7 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             _connectionString = connectionString;
         }
 
-        public int AddEnterprise(EnterpriseRegisterDTO enterprise)
+        public int RegisterEnterprise(EnterpriseRegisterDTO enterprise)
         {
             using (var conn = new NpgsqlConnection(_connectionString))
             {

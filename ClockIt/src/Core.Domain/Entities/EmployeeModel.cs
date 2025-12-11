@@ -10,15 +10,21 @@ namespace ClockIt.src.Core.Domain.Entities
     {
         public int Id { get; }
         public int UserId { get; }
-        public DateTime EntryTime { get; }
-        public DateTime ExitTime { get; }
+        public string FullName { get; }
+        public string CPF { get; }
+        public DateTime BirthDate { get; }
+        public string Email { get; }
+        public int PositionId { get; }
 
-        public EmployeeModel(int id, int userId, DateTime entryTime, DateTime exitTime)
+        public EmployeeModel(int id, int userId, string fullname, string cpf, DateTime birthDate, string email, int positionId)
         {
             Id = id;
             UserId = userId;
-            EntryTime = entryTime;
-            ExitTime = exitTime;
+            FullName = fullname;
+            CPF = cpf;
+            BirthDate = birthDate;
+            Email = email;
+            PositionId = positionId;
         }
 
     }

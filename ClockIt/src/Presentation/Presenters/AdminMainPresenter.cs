@@ -17,26 +17,18 @@ namespace ClockIt.src.Presentation.Presenters
 
         private IAdminMainForm _view;
 
-        private IAdminMainService _service;
-
         public AdminMainPresenter(IAdminMainNavigator navigator)
         {
             _navigator = navigator;
-
-            _service = navigator.AdminMainService;
         }
 
         private void PrepareEventHandlers()
         {
-            _view.FormShown -= OnFormLoadedAndDisplayn;
-            _view.UserSectionRequested -= DisplayUserTopSection;
-            _view.EmployeeSectionRequested -= DisplayEmployeeTopSection;
-            _view.SettingsSectionRequested -= DisplaySettingsTopSection;
+            _view.ShowCreateUserForm -= ShowCreateUserForm;
+            _view.ShowCreateEmployeeForm -= ShowCreateEmployeeForm;
 
-            _view.FormShown += OnFormLoadedAndDisplayn;
-            _view.UserSectionRequested += DisplayUserTopSection;
-            _view.EmployeeSectionRequested += DisplayEmployeeTopSection;
-            _view.SettingsSectionRequested += DisplaySettingsTopSection;
+            _view.ShowCreateUserForm += ShowCreateUserForm;
+            _view.ShowCreateEmployeeForm += ShowCreateEmployeeForm;
         }
 
         public void ShowForm(Form loginForm)
@@ -48,7 +40,7 @@ namespace ClockIt.src.Presentation.Presenters
             FormHelper.OpenFormAndShow(loginForm, (Form)_view);
         }
 
-        private void OnFormLoadedAndDisplayn(object? sender, EventArgs e)
+        private void OnFormLoadedAndShown(object? sender, EventArgs e)
         {
             try
             {
@@ -59,19 +51,14 @@ namespace ClockIt.src.Presentation.Presenters
             }
         }
 
-        private void DisplayUserTopSection(object? sender, EventArgs e)
+        private void ShowCreateUserForm(object? sender, EventArgs e)
         {
-            _view.ShowUserTopSection();
+            _navigator.CreateUserPresenter.ShowDialog();
         }
 
-        private void DisplayEmployeeTopSection(object? sender, EventArgs e)
+        private void ShowCreateEmployeeForm(object? sender, EventArgs e)
         {
-            _view.ShowEmployeeTopSection();
-        }
-
-        private void DisplaySettingsTopSection(object? sender, EventArgs e)
-        {
-            _view.ShowSettingsTopSection();
+            _navigator.CreateEmployeePresenter.ShowDialog();
         }
     }
 }

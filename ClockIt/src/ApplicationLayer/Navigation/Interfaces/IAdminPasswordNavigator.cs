@@ -14,6 +14,6 @@ namespace ClockIt.src.ApplicationLayer.Navigation.Interfaces
         IAdminPasswordForm AdminPasswordForm { get; }
 
         // Service
-        IAdminPasswordService AdminPasswordService { get; }
+        IAdminService AdminPasswordService { get; }
     }
 }

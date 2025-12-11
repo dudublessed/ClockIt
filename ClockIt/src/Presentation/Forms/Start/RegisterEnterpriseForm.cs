@@ -30,13 +30,11 @@ namespace ClockIt.src.Presentation.Forms.Start
         public RegisterEnterpriseForm()
         {
             InitializeComponent();
-
-            this.Load += (s, e) => FormLoaded?.Invoke(this, EventArgs.Empty);
         }
 
         private void RegisterEnterpriseForm_Load(object sender, EventArgs e)
         {
-
+            this.Load += (s, e) => FormLoaded?.Invoke(this, EventArgs.Empty);
         }
 
         public void ShowCountries()

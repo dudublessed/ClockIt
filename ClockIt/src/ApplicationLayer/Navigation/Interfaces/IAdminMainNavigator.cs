@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ClockIt.src.ApplicationLayer.Services.Interfaces;
 using ClockIt.src.Presentation.Forms.Interfaces;
+using ClockIt.src.Presentation.Presenters.Interfaces;
 
 namespace ClockIt.src.ApplicationLayer.Navigation.Interfaces
 {
@@ -12,8 +12,7 @@ namespace ClockIt.src.ApplicationLayer.Navigation.Interfaces
     {
         // Forms
         IAdminMainForm AdminMainForm { get; }
-
-        // Services
-        IAdminMainService AdminMainService { get; }
+        ICreateEmployeePresenter CreateEmployeePresenter{ get; }
+        ICreateUserPresenter CreateUserPresenter { get; }
     }
 }

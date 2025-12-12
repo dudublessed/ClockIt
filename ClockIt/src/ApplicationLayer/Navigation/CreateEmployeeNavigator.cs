@@ -17,12 +17,17 @@ namespace ClockIt.src.ApplicationLayer.Navigation
         private readonly IServiceProvider _serviceProvider;
         private readonly IEmployeeService _employeeService;
         private readonly IUserService _userService;
+        private readonly IScheduleService _scheduleService;
 
-        public CreateEmployeeNavigator(IServiceProvider serviceProvider, IEmployeeService employeeService, IUserService userService)
+        public CreateEmployeeNavigator(IServiceProvider serviceProvider, 
+            IEmployeeService employeeService, 
+            IUserService userService,
+            IScheduleService scheduleService)
         {
             _serviceProvider = serviceProvider;
             _employeeService = employeeService;
             _userService = userService;
+            _scheduleService = scheduleService;
         }
 
         public ICreateEmployeeForm CreateEmployeeForm => _serviceProvider.GetRequiredService<ICreateEmployeeForm>();
@@ -30,6 +35,7 @@ namespace ClockIt.src.ApplicationLayer.Navigation
         public IEmailValidationPresenter EmailValidationPresenter => _serviceProvider.GetRequiredService<IEmailValidationPresenter>();
         public IEmployeeService EmployeeService => _employeeService;
         public IUserService UserService => _userService;
+        public IScheduleService ScheduleService => _scheduleService;
 
         public IMainContext MainContext => _serviceProvider.GetRequiredService<IMainContext>();
     }

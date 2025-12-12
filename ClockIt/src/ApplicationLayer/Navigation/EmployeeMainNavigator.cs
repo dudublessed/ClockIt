@@ -15,16 +15,26 @@ namespace ClockIt.src.ApplicationLayer.Navigation
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly IEmployeeService _employeeService;
+        private readonly IAttendanceService _attendanceService;
+        private readonly IRecordService _recordService;
 
-        public EmployeeMainNavigator(IServiceProvider serviceProvider, IEmployeeService employeeService)
+        public EmployeeMainNavigator(IServiceProvider serviceProvider, 
+            IEmployeeService employeeService, 
+            IAttendanceService attendanceService,
+            IRecordService recordService)
         {
             _serviceProvider = serviceProvider;
             _employeeService = employeeService;
+            _attendanceService = attendanceService;
+            _recordService = recordService;
+
         }
 
         public IEmployeeMainForm EmployeeMainForm => _serviceProvider.GetRequiredService<IEmployeeMainForm>();
 
         public IEmployeeService EmployeeService => _employeeService;
+        public IAttendanceService AttendanceService => _attendanceService;
+        public IRecordService RecordService => _recordService;
 
         public IEmployeeLoggedContext EmployeeLoggedContext => _serviceProvider.GetRequiredService<IEmployeeLoggedContext>();
     }

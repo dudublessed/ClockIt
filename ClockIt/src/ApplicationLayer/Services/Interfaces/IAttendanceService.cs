@@ -10,7 +10,7 @@ namespace ClockIt.src.ApplicationLayer.Services.Interfaces
 {
     public interface IAttendanceService
     {
-        void RegisterDailyAttendance(DailyAttendanceDTO dailyAttendance);
+        void RegisterTodayAttendance(DailyAttendanceDTO dailyAttendance);
         AttendanceModel GetEmployeeTodayAttendance();
         bool EmployeeHasRegisteredTodayAttendance();
     }

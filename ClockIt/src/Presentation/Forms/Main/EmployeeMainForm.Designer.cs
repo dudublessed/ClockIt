@@ -174,7 +174,7 @@
             clockInButton.TabIndex = 12;
             clockInButton.Text = "Marcar ponto";
             clockInButton.UseVisualStyleBackColor = false;
-            clockInButton.Click += RegisterTime;
+            clockInButton.Click += RegisterRecord;
             // 
             // UserMainForm
             // 

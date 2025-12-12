@@ -10,7 +10,7 @@ namespace ClockIt.src.Infrastructure.Data.Interfaces
 {
     public interface IAttendanceRepository
     {
-        void RegisterDailyAttendance(DailyAttendanceDTO dailyAttendance);
+        void RegisterTodayAttendance(DailyAttendanceDTO dailyAttendance);
         AttendanceModel GetEmployeeTodayAttendance();
         bool EmployeeHasRegisteredTodayAttendance();
     }

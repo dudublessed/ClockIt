@@ -17,6 +17,7 @@ namespace ClockIt.src.ApplicationLayer.Navigation.Interfaces
 
         IEmployeeService EmployeeService { get; }
         IUserService UserService { get; }
+        IScheduleService ScheduleService { get; }
 
         IMainContext MainContext { get; }
     }

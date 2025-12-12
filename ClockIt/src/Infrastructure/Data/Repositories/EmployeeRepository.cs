@@ -63,6 +63,47 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             }
         }
 
+        public EmployeeModel GetEmployeeByUserId(int userId)
+        {
+            EmployeeModel employee = null;
+
+            using (var conn = new NpgsqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                string query = @"SELECT 
+                                     te.*
+                                FROM
+                                    tb_employees AS te
+                                WHERE
+                                    te.user_id = @user_id";
+
+                using (var cmd = new NpgsqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@user_id", NpgsqlDbType.Integer).Value = userId;
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            employee = new EmployeeModel(
+                                reader.GetInt32Safe("id"),
+                                reader.GetInt32Safe("user_id"),
+                                reader.GetStringSafe("full_name"),
+                                reader.GetStringSafe("cpf"),
+                                reader.GetDateTimeSafe("birth_date"),
+                                reader.GetStringSafe("email"),
+                                reader.GetInt32Safe("position_id")
+                            );
+                        }
+                    }
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            return employee;
+        }
+
         public EmployeeModel GetEmployeeByUserContext()
         {
             EmployeeModel employee = null;
@@ -100,7 +141,8 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
                     cmd.ExecuteNonQuery();
                 }
             }
-            throw new NotImplementedException();
+
+            return employee;
         }
     }
 }

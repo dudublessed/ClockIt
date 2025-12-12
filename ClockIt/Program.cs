@@ -207,7 +207,7 @@ namespace ClockIt
             services.AddSingleton<IEmployeeService, EmployeeService>();
             services.AddSingleton<IPositionsService, PositionsService>();
             services.AddSingleton<IAttendanceService, AttendanceService>();
-            services.AddSingleton<IRecordService>();
+            services.AddSingleton<IRecordService, RecordService>();
         }
 
         private static void AddSingletonContexts(IServiceCollection services)
@@ -245,7 +245,7 @@ namespace ClockIt
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
             services.AddTransient<IPositionsRepository, PositionsRepository>();
             services.AddTransient<IAttendanceRepository, AttendanceRepository>();
-            // services.AddTransient<IRecordRepository, RecordRepository>();
+            services.AddTransient<IRecordRepository, RecordRepository>();
         }
 
 

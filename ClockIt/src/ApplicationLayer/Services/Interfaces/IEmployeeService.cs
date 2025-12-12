@@ -16,13 +16,5 @@ namespace ClockIt.src.ApplicationLayer.Services.Interfaces
         EmployeeModel GetEmployeeByUserId(int userId);
         EmployeeModel GetEmployeeByUserContext();
         List<PositionsModel> GetEnterprisePositions();
-        void RegisterDailyAttendance(DailyAttendanceDTO dailyAttendance);
-        AttendanceModel GetEmployeeTodayAttendance();
-        bool EmployeeHasRegisteredTodayAttendance();
-        void RegisterEntryRecord();
-        void RegisterLunchEntryRecord();
-        void RegisterLunchExitRecord();
-        void RegisterExitRecord();
-        //List<RecordDTO> GetEmployeeTodayRecords();
     }
 }

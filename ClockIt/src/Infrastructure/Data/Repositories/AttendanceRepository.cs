@@ -25,7 +25,7 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             _connectionString = connectionString;
         }
 
-        public void RegisterDailyAttendance(DailyAttendanceDTO dailyAttendance)
+        public void RegisterTodayAttendance(DailyAttendanceDTO dailyAttendance)
         {
             using (var conn = new NpgsqlConnection(_connectionString))
             {

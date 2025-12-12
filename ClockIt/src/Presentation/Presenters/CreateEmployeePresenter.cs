@@ -22,6 +22,7 @@ namespace ClockIt.src.Presentation.Presenters
         private ICreateEmployeeForm _view;
         private readonly IEmployeeService _employeeService;
         private readonly IUserService _userService;
+        private readonly IScheduleService _scheduleService;
         private readonly IMainContext _context;
 
         public CreateEmployeePresenter(ICreateEmployeeNavigator navigator)
@@ -29,6 +30,9 @@ namespace ClockIt.src.Presentation.Presenters
             _navigator = navigator;
 
             _employeeService = navigator.EmployeeService;
+            _userService = navigator.UserService;
+            _scheduleService = navigator.ScheduleService;
+
             _context = navigator.MainContext;
         }
 
@@ -91,6 +95,14 @@ namespace ClockIt.src.Presentation.Presenters
         {
             try
             {
+                var emailValidationCredentials = new EmailValidationDTO(_view.Email, _view.UserName);
+                var result = _navigator.EmailValidationPresenter.ShowDialog(emailValidationCredentials);
+
+                if (result != DialogResult.OK)
+                {
+                    return;
+                }
+
                 var userId = _view.EnterpriseUsers
                     .Where(s => s.UserName == _view.UserName)
                     .Select(s => s.Id)
@@ -110,14 +122,6 @@ namespace ClockIt.src.Presentation.Presenters
                     positionId
                 );
 
-                var emailValidationCredentials = new EmailValidationDTO(_view.Email, _view.UserName);
-                var result = _navigator.EmailValidationPresenter.ShowDialog(emailValidationCredentials);
-
-                if (result != DialogResult.OK)
-                {
-                    return;
-                }
-
                 _employeeService.RegisterEmployee(employee);
 
                 int newEmployeeId = _employeeService.GetEmployeeByUserId(userId).Id;
@@ -132,7 +136,7 @@ namespace ClockIt.src.Presentation.Presenters
                     true
                 );
 
-                // _scheduleService.RegisterEmployeeSchedule(employeeSchedule);
+                _scheduleService.RegisterEmployeeSchedule(employeeSchedule);
 
                 MessageBoxHelper.ShowSucess("Funcionário cadastrado com sucesso!");
 

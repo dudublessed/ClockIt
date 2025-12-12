@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ClockIt.src.Presentation.Forms.Interfaces;
+using ClockIt.src.Shared.DTOs.AttendanceDTOs.RecordDTOs;
+using ClockIt.src.Shared.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,17 +10,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ClockIt.src.Presentation.Forms.Interfaces;
-using ClockIt.src.Shared.Utils;
 
 namespace ClockIt.src.Presentation.Forms.Main
 {
     public partial class EmployeeMainForm : Form, IEmployeeMainForm
     {
-        public TimeSpan EntryRecord { get; private set; }
-        public TimeSpan LunchEntryRecord { get; private set; }
-        public TimeSpan LunchExitRecord { get; private set; }
-        public TimeSpan ExitRecord { get; private set; }
+        public DateTime EntryRecord { get; private set; }
+        public DateTime LunchEntryRecord { get; private set; }
+        public DateTime LunchExitRecord { get; private set; }
+        public DateTime ExitRecord { get; private set; }
 
         private System.Windows.Forms.Timer hourTimer;
 
@@ -38,10 +39,10 @@ namespace ClockIt.src.Presentation.Forms.Main
 
         private void ResetTodayRecords()
         {
-            EntryRecord = TimeSpan.Zero;
-            LunchEntryRecord = TimeSpan.Zero;
-            LunchExitRecord = TimeSpan.Zero;
-            ExitRecord = TimeSpan.Zero;
+            EntryRecord = DateTime.MinValue;
+            LunchEntryRecord = DateTime.MinValue;
+            LunchExitRecord = DateTime.MinValue;
+            ExitRecord = DateTime.MinValue;
 
             entryRecordLabel.Text = "00:00:00";
             entryRecordLabel.Visible = false;
@@ -80,9 +81,21 @@ namespace ClockIt.src.Presentation.Forms.Main
             actualHourLabel.Text = DateTime.Now.ToString("HH:mm:ss");
         }
 
-        private void RegisterTime(object sender, EventArgs e)
+        private void RegisterRecord(object sender, EventArgs e)
         {
             ClockIn?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void ShowEmployeeTodayRecords(List<RecordDTO> employeeTodayRecords)
+        {
+            entryRecordLabel.Text = EntryRecord.ToString(@"hh\:mm\:ss");
+            lunchEntryRecordLabel.Text = LunchEntryRecord.ToString(@"hh\:mm\:ss");
+            lunchExitRecordLabel.Text = LunchExitRecord.ToString(@"hh\:mm\:ss");
+            exitRecordLabel.Text = ExitRecord.ToString(@"hh\:mm\:ss");
+            entryRecordLabel.Visible = true;
+            lunchEntryRecordLabel.Visible = true;
+            lunchExitRecordLabel.Visible = true;
+            exitRecordLabel.Visible = true;
         }
 
         public void ShowEntryRecord()

@@ -11,6 +11,7 @@ namespace ClockIt.src.Infrastructure.Data.Interfaces
     public interface IEmployeeRepository
     {
         void RegisterEmployee(EmployeeDTO employee);
+        EmployeeModel GetEmployeeByUserId(int userId);
         EmployeeModel GetEmployeeByUserContext();
     }
 }

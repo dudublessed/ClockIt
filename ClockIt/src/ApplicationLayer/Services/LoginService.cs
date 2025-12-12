@@ -22,9 +22,9 @@ namespace ClockIt.src.ApplicationLayer.Services
 
         }
 
-        public EmployeeModel GetEmployeeByUser()
+        public EmployeeModel GetEmployeeByUserContext()
         {
-            return _employeeService.GetEmployeeByUser();
+            return _employeeService.GetEmployeeByUserContext();
         }
 
         public List<ShowUsersDTO> GetEnterpriseEmployeeUsers()

@@ -1,13 +1,13 @@
-﻿using System;
+﻿using ClockIt.src.Shared.DTOs.EmployeeDTOs.ScheduleDTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ClockIt.src.Shared.DTOs.EmployeeDTOs.ScheduleDTOs;
 
-namespace ClockIt.src.Infrastructure.Data.Interfaces
+namespace ClockIt.src.ApplicationLayer.Services.Interfaces
 {
-    public interface IScheduleRepository
+    public interface IScheduleService
     {
         void RegisterEmployeeSchedule(ScheduleDTO schedule);
     }

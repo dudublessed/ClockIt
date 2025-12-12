@@ -16,6 +16,8 @@ namespace ClockIt.src.ApplicationLayer.Navigation.Interfaces
 
         // Services
         IEmployeeService EmployeeService { get; }
+        IAttendanceService AttendanceService { get; }
+        IRecordService RecordService { get; }
 
         // Context
         IEmployeeLoggedContext EmployeeLoggedContext { get; }

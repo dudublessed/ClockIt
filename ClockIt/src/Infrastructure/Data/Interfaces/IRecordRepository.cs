@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClockIt.src.ApplicationLayer.Services.Interfaces
+namespace ClockIt.src.Infrastructure.Data.Interfaces
 {
-    public interface IRecordService
+    public interface IRecordRepository
     {
         void RegisterRecord(RecordDTO record);
         List<RecordDTO> GetEmployeeTodayRecords();

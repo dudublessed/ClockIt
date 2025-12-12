@@ -133,7 +133,7 @@ namespace ClockIt.src.Presentation.Presenters
         {
             try
             {
-                EmployeeModel employeeLogged = _service.GetEmployeeByUser();
+                EmployeeModel employeeLogged = _service.GetEmployeeByUserContext();
 
                 _employeeContext.SetEmployeeLoggedContext(employeeLogged);
             }

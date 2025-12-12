@@ -20,11 +20,11 @@ namespace ClockIt.src.ApplicationLayer.Services
             _repository = repository;
         }
 
-        public void RegisterDailyAttendance(DailyAttendanceDTO dailyAttendance)
+        public void RegisterTodayAttendance(DailyAttendanceDTO dailyAttendance)
         {
             using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
-                _repository.RegisterDailyAttendance(dailyAttendance);
+                _repository.RegisterTodayAttendance(dailyAttendance);
 
                 scope.Complete();
             }

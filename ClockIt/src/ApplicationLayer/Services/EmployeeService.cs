@@ -18,6 +18,7 @@ namespace ClockIt.src.ApplicationLayer.Services
         private readonly IPositionsService _positionsService;
         private readonly IAttendanceService _attendanceService;
         private readonly IRecordService _recordService;
+
         private readonly IEmployeeRepository _repository;
 
         public EmployeeService(IPositionsService positionsService, 
@@ -27,6 +28,7 @@ namespace ClockIt.src.ApplicationLayer.Services
         {
             _positionsService = positionsService;
             _attendanceService = attendanceService;
+
             _repository = repository;
         }
 
@@ -53,46 +55,6 @@ namespace ClockIt.src.ApplicationLayer.Services
         public List<PositionsModel> GetEnterprisePositions()
         {
             return _positionsService.GetEnterprisePositions();
-        }
-
-        public void RegisterDailyAttendance(DailyAttendanceDTO dailyAttendance)
-        {
-            _attendanceService.RegisterDailyAttendance(dailyAttendance);
-        }
-
-        public AttendanceModel GetEmployeeTodayAttendance()
-        {
-            return _attendanceService.GetEmployeeTodayAttendance();
-        }
-
-        //public List<RecordDTO> GetEmployeeTodayRecords()
-        //{
-        //    return _recordService.GetEmployeeTodayRecords();
-        //}
-
-        public bool EmployeeHasRegisteredTodayAttendance()
-        {
-            return _attendanceService.EmployeeHasRegisteredTodayAttendance();
-        }
-
-        public void RegisterEntryRecord()
-        {
-            _recordService.RegisterEntryRecord();
-        }
-
-        public void RegisterLunchEntryRecord()
-        {
-            _recordService.RegisterLunchEntryRecord();
-        }
-
-        public void RegisterLunchExitRecord()
-        {
-            _recordService.RegisterLunchExitRecord();
-        }
-
-        public void RegisterExitRecord()
-        {
-            _recordService.RegisterExitRecord();
         }
     }
 }

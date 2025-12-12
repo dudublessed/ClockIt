@@ -21,15 +21,25 @@ namespace ClockIt.src.Presentation.Presenters
 
         private IEmployeeMainForm _view;
 
-        private IEmployeeService _service;
+        private readonly IEmployeeService _service;
+        private readonly IAttendanceService _attendanceService;
+        private readonly IRecordService _recordService;
+
 
         private readonly IEmployeeLoggedContext _employeeContext;
+
+        private bool EmployeeHasRegisteredTodayAttendance = false;
+        private bool EmployeeHasRegisteredAllTodayRecords = false;
+
+        private AttendanceModel? EmployeeTodayAttendance = null;
 
         public EmployeeMainPresenter(IEmployeeMainNavigator navigator)
         {
             _navigator = navigator;
 
             _service = navigator.EmployeeService;
+            _attendanceService = navigator.AttendanceService;
+            _recordService = navigator.RecordService;
 
             _employeeContext = navigator.EmployeeLoggedContext;
         }
@@ -55,72 +65,107 @@ namespace ClockIt.src.Presentation.Presenters
         private void OnFormLoadedAndShown(object? sender, EventArgs e)
         {
             _view.StartHourTimer();
-            // Verificar se o usuário efetuou registros no respectivo dia
-            //
-            // Se sim, carregar os registros na tela && desabilitar o botão de registro
+
+            EmployeeHasRegisteredTodayAttendance = _attendanceService.EmployeeHasRegisteredTodayAttendance();
+            if (EmployeeHasRegisteredTodayAttendance)
+            {
+                EmployeeTodayAttendance = _attendanceService.GetEmployeeTodayAttendance();
+            }
+
+            if (EmployeeTodayAttendance != null)
+            {
+                EmployeeHasRegisteredAllTodayRecords = _recordService.EmployeeHasRegisteredAllTodayRecords(EmployeeTodayAttendance.Id);
+            }
+
+            if (EmployeeHasRegisteredTodayAttendance == true && EmployeeHasRegisteredAllTodayRecords == true)
+            {
+                List<RecordDTO> employeeTodayRecords = _recordService.GetEmployeeTodayRecords();
+                _view.ShowEmployeeTodayRecords(employeeTodayRecords);
+                _view.DisableRecordButton();
+            }
         }
 
         private void RegisterRecord(object? sender, EventArgs e)
         {
             try
             {
-                if (_service.EmployeeHasRegisteredTodayAttendance() == false)
+                if (EmployeeHasRegisteredTodayAttendance == false)
                 {
                     DailyAttendanceDTO todayAttendance = new DailyAttendanceDTO(_employeeContext.Employee.Id, DateTime.Now.Date);
 
-                    _service.RegisterDailyAttendance(todayAttendance);
+                    _attendanceService.RegisterTodayAttendance(todayAttendance);
                 }
 
-                AttendanceModel employeeTodayAttendance = _service.GetEmployeeTodayAttendance();
+                if (EmployeeTodayAttendance == null)
+                {
+                    EmployeeTodayAttendance = _attendanceService.GetEmployeeTodayAttendance();
+                }
 
                 DateTimeOffset recordedAt = DateTimeOffset.Now;
-                TimeSpan recordHour = DateTime.Now.TimeOfDay;
+                DateTime recordHour = DateTime.Now;
 
-                if (_view.EntryRecord == TimeSpan.Zero)
+                if (_view.EntryRecord == DateTime.MinValue)
                 {
                      RecordDTO employeeEntryRecord = new RecordDTO(
-                          employeeTodayAttendance.Id,
+                          EmployeeTodayAttendance.Id,
                           _employeeContext.Employee.Id,
                           "entry",
                           recordedAt,
                           recordHour
                      );
 
-                    _service.RegisterEntryRecord();
+                    _recordService.RegisterRecord(employeeEntryRecord);
                     _view.ShowEntryRecord();
                     return;
                 }
 
-                if (_view.LunchEntryRecord == TimeSpan.Zero)
+                if (_view.LunchEntryRecord == DateTime.MinValue)
                 {
-                    RecordDTO employeeEntryRecord = new RecordDTO(
-                         employeeTodayAttendance.Id,
+                    RecordDTO employeeLunchEntryRecord = new RecordDTO(
+                         EmployeeTodayAttendance.Id,
                          _employeeContext.Employee.Id,
-                         "entry",
+                         "lunch_entry",
                          recordedAt,
                          recordHour
                     );
 
-                    _service.RegisterLunchEntryRecord();
+                    _recordService.RegisterRecord(employeeLunchEntryRecord);
                     _view.ShowLunchEntryRecord();
                     return;
                 }
 
-                if (_view.LunchExitRecord == TimeSpan.Zero)
+                if (_view.LunchExitRecord == DateTime.MinValue)
                 {
-                    _service.RegisterLunchExitRecord();
+                    RecordDTO employeeLunchExitRecord = new RecordDTO(
+                         EmployeeTodayAttendance.Id,
+                         _employeeContext.Employee.Id,
+                         "lunch_exit",
+                         recordedAt,
+                         recordHour
+                    );
+
+                    _recordService.RegisterRecord(employeeLunchExitRecord);
                     _view.ShowLunchExitRecord();
                     return;
                 }
 
-                if (_view.ExitRecord == TimeSpan.Zero)
+                if (_view.ExitRecord == DateTime.MinValue)
                 {
-                    _service.RegisterExitRecord();
+                    RecordDTO employeeExitRecord = new RecordDTO(
+                         EmployeeTodayAttendance.Id,
+                         _employeeContext.Employee.Id,
+                         "exit",
+                         recordedAt,
+                         recordHour
+                    );
+
+                    _recordService.RegisterRecord(employeeExitRecord);
                     _view.ShowExitRecord();
                     return;
                 }
 
-                //List<RecordDTO> employeeTodayRecords = _service.GetEmployeeTodayRecords();
+                List<RecordDTO> employeeTodayRecords = _recordService.GetEmployeeTodayRecords();
+                _view.ShowEmployeeTodayRecords(employeeTodayRecords);
                 _view.DisableRecordButton();
             }
             catch (Exception ex)

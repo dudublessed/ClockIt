@@ -33,6 +33,12 @@ namespace ClockIt.src.Shared.Extensions
             return reader.IsDBNull(index) ? DateTime.MinValue : reader.GetDateTime(index);
         }
 
+        public static DateTimeOffset GetDateTimeOffsetSafe(this NpgsqlDataReader reader, string columnName)
+        {
+            int index = reader.GetOrdinal(columnName);
+            return reader.IsDBNull(index) ? DateTimeOffset.MinValue : reader.GetDateTime(index);
+        }
+
         public static TimeSpan GetTimeSpanSafe(this NpgsqlDataReader reader, string columnName)
         {
             int index = reader.GetOrdinal(columnName);

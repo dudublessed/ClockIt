@@ -9,20 +9,20 @@ namespace ClockIt.src.Presentation.Forms.Interfaces
 {
     public interface IEmployeeMainForm
     {
-        DateTime EntryRecord { get; }
-        DateTime LunchEntryRecord { get; }
-        DateTime LunchExitRecord { get; }
-        DateTime ExitRecord { get; }
+        TimeSpan EntryRecord { get; }
+        TimeSpan LunchEntryRecord { get; }
+        TimeSpan LunchExitRecord { get; }
+        TimeSpan ExitRecord { get; }
 
         event EventHandler FormShown;
         event EventHandler ClockIn;
 
         void StartHourTimer();
-        void ShowEmployeeTodayRecords(List<RecordDTO> employeeTodayRecords);
-        void ShowEntryRecord();
-        void ShowLunchEntryRecord();
-        void ShowLunchExitRecord();
-        void ShowExitRecord();
+        void UpdateEmployeeNameLabel(string employeeName);
+        void ShowEntryRecord(TimeSpan recordHour);
+        void ShowLunchEntryRecord(TimeSpan recordHour);
+        void ShowLunchExitRecord(TimeSpan recordHour);
+        void ShowExitRecord(TimeSpan recordHour);
         void DisableRecordButton();
 
     }

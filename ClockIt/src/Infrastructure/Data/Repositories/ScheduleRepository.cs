@@ -49,7 +49,7 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
                     cmd.Parameters.Add("@lunch_entry_time", NpgsqlDbType.Time).Value = schedule.LunchEntryTime.TimeOfDay;
                     cmd.Parameters.Add("@lunch_exit_time", NpgsqlDbType.Time).Value = schedule.LunchExitTime.TimeOfDay;
                     cmd.Parameters.Add("@exit_time", NpgsqlDbType.Time).Value = schedule.ExitTime.TimeOfDay;
-                    cmd.Parameters.Add("@created_at", NpgsqlDbType.TimestampTz).Value = schedule.CreatedAt.DateTime;
+                    cmd.Parameters.Add("@created_at", NpgsqlDbType.TimestampTz).Value = schedule.CreatedAt.UtcDateTime;
                     cmd.Parameters.Add("@active", NpgsqlDbType.Boolean).Value = schedule.Active;
 
                     cmd.ExecuteNonQuery();

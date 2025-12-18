@@ -29,7 +29,6 @@ namespace ClockIt.src.Presentation.Presenters
         private readonly IEmployeeLoggedContext _employeeContext;
 
         private bool EmployeeHasRegisteredTodayAttendance = false;
-        private bool EmployeeHasRegisteredAllTodayRecords = false;
 
         private AttendanceModel? EmployeeTodayAttendance = null;
 
@@ -65,34 +64,23 @@ namespace ClockIt.src.Presentation.Presenters
         private void OnFormLoadedAndShown(object? sender, EventArgs e)
         {
             _view.StartHourTimer();
+            _view.UpdateEmployeeNameLabel(_employeeContext.Employee.FullName);
 
-            EmployeeHasRegisteredTodayAttendance = _attendanceService.EmployeeHasRegisteredTodayAttendance();
-            if (EmployeeHasRegisteredTodayAttendance)
-            {
-                EmployeeTodayAttendance = _attendanceService.GetEmployeeTodayAttendance();
-            }
-
-            if (EmployeeTodayAttendance != null)
-            {
-                EmployeeHasRegisteredAllTodayRecords = _recordService.EmployeeHasRegisteredAllTodayRecords(EmployeeTodayAttendance.Id);
-            }
-
-            if (EmployeeHasRegisteredTodayAttendance == true && EmployeeHasRegisteredAllTodayRecords == true)
-            {
-                List<RecordDTO> employeeTodayRecords = _recordService.GetEmployeeTodayRecords();
-                _view.ShowEmployeeTodayRecords(employeeTodayRecords);
-                _view.DisableRecordButton();
-            }
+            VerifyEmployeeTodayAttendance();
         }
 
         private void RegisterRecord(object? sender, EventArgs e)
         {
             try
             {
+                VerifyEmployeeTodayAttendance();
+
+                MessageBoxHelper.ShowInfo(EmployeeHasRegisteredTodayAttendance.ToString());
                 if (EmployeeHasRegisteredTodayAttendance == false)
                 {
                     DailyAttendanceDTO todayAttendance = new DailyAttendanceDTO(_employeeContext.Employee.Id, DateTime.Now.Date);
 
+                    MessageBoxHelper.ShowInfo("RegisterTodayAttendance!");
                     _attendanceService.RegisterTodayAttendance(todayAttendance);
                 }
 
@@ -102,9 +90,9 @@ namespace ClockIt.src.Presentation.Presenters
                 }
 
                 DateTimeOffset recordedAt = DateTimeOffset.Now;
-                DateTime recordHour = DateTime.Now;
+                TimeSpan recordHour = DateTime.Now.TimeOfDay;
 
-                if (_view.EntryRecord == DateTime.MinValue)
+                if (_view.EntryRecord == TimeSpan.MinValue)
                 {
                      RecordDTO employeeEntryRecord = new RecordDTO(
                           EmployeeTodayAttendance.Id,
@@ -115,11 +103,12 @@ namespace ClockIt.src.Presentation.Presenters
                      );
 
                     _recordService.RegisterRecord(employeeEntryRecord);
-                    _view.ShowEntryRecord();
+                    _view.StartHourTimer();
+                    _view.ShowEntryRecord(recordHour);
                     return;
                 }
 
-                if (_view.LunchEntryRecord == DateTime.MinValue)
+                if (_view.LunchEntryRecord == TimeSpan.MinValue)
                 {
                     RecordDTO employeeLunchEntryRecord = new RecordDTO(
                          EmployeeTodayAttendance.Id,
@@ -130,11 +119,12 @@ namespace ClockIt.src.Presentation.Presenters
                     );
 
                     _recordService.RegisterRecord(employeeLunchEntryRecord);
-                    _view.ShowLunchEntryRecord();
+                    _view.StartHourTimer();
+                    _view.ShowLunchEntryRecord(recordHour);
                     return;
                 }
 
-                if (_view.LunchExitRecord == DateTime.MinValue)
+                if (_view.LunchExitRecord == TimeSpan.MinValue)
                 {
                     RecordDTO employeeLunchExitRecord = new RecordDTO(
                          EmployeeTodayAttendance.Id,
@@ -145,11 +135,12 @@ namespace ClockIt.src.Presentation.Presenters
                     );
 
                     _recordService.RegisterRecord(employeeLunchExitRecord);
-                    _view.ShowLunchExitRecord();
+                    _view.StartHourTimer();
+                    _view.ShowLunchExitRecord(recordHour);
                     return;
                 }
 
-                if (_view.ExitRecord == DateTime.MinValue)
+                if (_view.ExitRecord == TimeSpan.MinValue)
                 {
                     RecordDTO employeeExitRecord = new RecordDTO(
                          EmployeeTodayAttendance.Id,
@@ -160,18 +151,64 @@ namespace ClockIt.src.Presentation.Presenters
                     );
 
                     _recordService.RegisterRecord(employeeExitRecord);
-                    _view.ShowExitRecord();
-                    return;
+                    _view.StartHourTimer();
+                    _view.ShowExitRecord(recordHour);
                 }
 
-                List<RecordDTO> employeeTodayRecords = _recordService.GetEmployeeTodayRecords();
-                _view.ShowEmployeeTodayRecords(employeeTodayRecords);
                 _view.DisableRecordButton();
             }
             catch (Exception ex)
             {
                 MessageBoxHelper.ShowError(ex.Message);
                 return;
+            }
+        }
+
+        private void VerifyEmployeeTodayAttendance()
+        {
+            EmployeeHasRegisteredTodayAttendance = _attendanceService.EmployeeHasRegisteredTodayAttendance();
+            if (EmployeeHasRegisteredTodayAttendance)
+            {
+                EmployeeTodayAttendance = _attendanceService.GetEmployeeTodayAttendance();
+            }
+
+            if (EmployeeHasRegisteredTodayAttendance == true)
+            {
+                ShowEmployeeTodayRegisteredRecords();
+
+                if (_recordService.EmployeeHasRegisteredAllTodayRecords(EmployeeTodayAttendance.Id) == true)
+                {
+                    _view.DisableRecordButton();
+                }
+            }
+        }
+
+        private void ShowEmployeeTodayRegisteredRecords()
+        {
+            List<RecordDTO> employeeTodayRecords = _recordService.GetEmployeeTodayRecords(EmployeeTodayAttendance.Id);
+
+            foreach (var record in employeeTodayRecords)
+            {
+                if (record.RecordHour == TimeSpan.MinValue)
+                {
+                    continue;
+                }
+
+                switch (record.RecordType.ToLower())
+                {
+                    case "entry":
+                        _view.ShowEntryRecord(record.RecordHour);
+                        break;
+                    case "lunch_entry":
+                        _view.ShowLunchEntryRecord(record.RecordHour);
+                        break;
+                    case "lunch_exit":
+                        _view.ShowLunchExitRecord(record.RecordHour);
+                        break;
+                    case "exit":
+                        _view.ShowExitRecord(record.RecordHour);
+                        break;
+                }
             }
         }
     }

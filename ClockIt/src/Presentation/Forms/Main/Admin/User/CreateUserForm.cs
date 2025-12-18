@@ -52,5 +52,11 @@ namespace ClockIt.src.Presentation.Forms.Main.Admin.User
         {
             CreateUserRequested?.Invoke(this, EventArgs.Empty);
         }
+
+        public void CleanUserInputFields()
+        {
+            userNameTextBox.Text = "";
+            userPasswordTextBox.Text = "";
+        }
     }
 }

@@ -18,5 +18,6 @@ namespace ClockIt.src.Presentation.Forms.Interfaces
 
         event EventHandler CreateUserRequested;
 
+        void CleanUserInputFields();
     }
 }

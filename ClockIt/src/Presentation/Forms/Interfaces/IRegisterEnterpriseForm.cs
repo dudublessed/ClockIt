@@ -23,7 +23,7 @@ namespace ClockIt.src.Presentation.Forms.Interfaces
 
         void RestartApplication();
 
-        event EventHandler FormLoaded;
+        event EventHandler FormShown;
         event EventHandler RegistrationRequested;
 
         event EventHandler LoadStatesByCountry;

@@ -10,7 +10,7 @@ namespace ClockIt.src.ApplicationLayer.Services.Interfaces
     public interface IRecordService
     {
         void RegisterRecord(RecordDTO record);
-        List<RecordDTO> GetEmployeeTodayRecords();
+        List<RecordDTO> GetEmployeeTodayRecords(int attendanceId);
         bool EmployeeHasRegisteredAllTodayRecords(int attendanceId);
     }
 }

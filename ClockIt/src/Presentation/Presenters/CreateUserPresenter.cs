@@ -83,7 +83,7 @@ namespace ClockIt.src.Presentation.Presenters
             {
                 var user = new UserDTO(
                     _view.UserName,
-                    _view.Login, 
+                    _view.Login,
                     _view.UserPassword,
                     UserDTO.UserType.User,
                     _context.Enterprise.Id);
@@ -91,7 +91,10 @@ namespace ClockIt.src.Presentation.Presenters
                 _service.RegisterUser(user);
 
                 MessageBoxHelper.ShowSucess("Usuário cadastrado com sucesso!");
-            } catch (Exception ex)
+
+                _view.CleanUserInputFields();
+            }
+            catch (Exception ex)
             {
                 MessageBoxHelper.ShowError(ex.Message);
             }

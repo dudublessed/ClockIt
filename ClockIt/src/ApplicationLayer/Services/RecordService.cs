@@ -29,9 +29,9 @@ namespace ClockIt.src.ApplicationLayer.Services
             }
         }
 
-        public List<RecordDTO> GetEmployeeTodayRecords()
+        public List<RecordDTO> GetEmployeeTodayRecords(int attendanceId)
         {
-            return _repository.GetEmployeeTodayRecords();
+            return _repository.GetEmployeeTodayRecords(attendanceId);
         }
 
         public bool EmployeeHasRegisteredAllTodayRecords(int attendanceId)

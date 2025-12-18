@@ -48,12 +48,6 @@ namespace ClockIt
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            bool isThereUpdates = await CheckForUpdates();
-            if (isThereUpdates)
-            {
-                MessageBoxHelper.ShowInfo("Há atualizações disponíveis!");
-            }
-
             TestDatabaseConnection();
 
             var services = ConfigureServices();
@@ -206,6 +200,7 @@ namespace ClockIt
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IEmployeeService, EmployeeService>();
             services.AddSingleton<IPositionsService, PositionsService>();
+            services.AddSingleton<IScheduleService, ScheduleService>();
             services.AddSingleton<IAttendanceService, AttendanceService>();
             services.AddSingleton<IRecordService, RecordService>();
         }
@@ -244,6 +239,7 @@ namespace ClockIt
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
             services.AddTransient<IPositionsRepository, PositionsRepository>();
+            services.AddTransient<IScheduleRepository, ScheduleRepository>();
             services.AddTransient<IAttendanceRepository, AttendanceRepository>();
             services.AddTransient<IRecordRepository, RecordRepository>();
         }

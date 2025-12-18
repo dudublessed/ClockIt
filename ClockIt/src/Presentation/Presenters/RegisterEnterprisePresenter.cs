@@ -33,13 +33,13 @@ namespace ClockIt.src.Presentation.Presenters
 
         private void PrepareEventHandlers()
         {
-            _view.FormLoaded -= OnFormLoaded;
+            _view.FormShown -= OnFormShown;
             _view.RegistrationRequested -= HandleRegistrationRequest;
 
             _view.LoadStatesByCountry -= LoadStates;
             _view.LoadCitiesByState -= LoadCities;
 
-            _view.FormLoaded += OnFormLoaded;
+            _view.FormShown += OnFormShown;
             _view.RegistrationRequested += HandleRegistrationRequest;
 
             _view.LoadStatesByCountry += LoadStates;
@@ -54,7 +54,7 @@ namespace ClockIt.src.Presentation.Presenters
             FormHelper.OpenFormAndExit((Form)_view);
         }
 
-        private void OnFormLoaded(object? sender, EventArgs e)
+        private void OnFormShown(object? sender, EventArgs e)
         {
             try
             {
@@ -131,6 +131,7 @@ namespace ClockIt.src.Presentation.Presenters
                 _service.Register(enterpriseToRegister);
 
                 MessageBoxHelper.ShowSucess("Perfeito! Sua empresa foi cadastrada!");
+                MessageBoxHelper.ShowSucess("O programa será encerrado para que seja iniciado com a sua empresa.");
 
                 _view.RestartApplication();
             } catch (Exception ex)

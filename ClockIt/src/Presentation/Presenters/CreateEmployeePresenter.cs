@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ClockIt.src.ApplicationLayer.Context.Interfaces;
+﻿using ClockIt.src.ApplicationLayer.Context.Interfaces;
 using ClockIt.src.ApplicationLayer.Navigation.Interfaces;
 using ClockIt.src.ApplicationLayer.Services.Interfaces;
 using ClockIt.src.Presentation.Forms.Interfaces;
@@ -12,6 +7,12 @@ using ClockIt.src.Shared.DTOs.EmailDTOs;
 using ClockIt.src.Shared.DTOs.EmployeeDTOs;
 using ClockIt.src.Shared.DTOs.EmployeeDTOs.ScheduleDTOs;
 using ClockIt.src.Shared.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Transactions;
 
 namespace ClockIt.src.Presentation.Presenters
 {
@@ -122,21 +123,26 @@ namespace ClockIt.src.Presentation.Presenters
                     positionId
                 );
 
-                _employeeService.RegisterEmployee(employee);
+                using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    _employeeService.RegisterEmployee(employee);
 
-                int newEmployeeId = _employeeService.GetEmployeeByUserId(userId).Id;
+                    int newEmployeeId = _employeeService.GetEmployeeByUserId(userId).Id;
 
-                var employeeSchedule = new ScheduleDTO(
-                    newEmployeeId,
-                    _view.EntryTime,
-                    _view.LunchEntryTime,
-                    _view.LunchExitTime,
-                    _view.ExitTime,
-                    DateTimeOffset.Now,
-                    true
-                );
+                    var employeeSchedule = new ScheduleDTO(
+                        newEmployeeId,
+                        _view.EntryTime,
+                        _view.LunchEntryTime,
+                        _view.LunchExitTime,
+                        _view.ExitTime,
+                        DateTimeOffset.Now,
+                        true
+                    );
 
-                _scheduleService.RegisterEmployeeSchedule(employeeSchedule);
+                    _scheduleService.RegisterEmployeeSchedule(employeeSchedule);
+
+                    scope.Complete();
+                }
 
                 MessageBoxHelper.ShowSucess("Funcionário cadastrado com sucesso!");
 

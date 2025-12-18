@@ -15,10 +15,10 @@ namespace ClockIt.src.Presentation.Forms.Main
 {
     public partial class EmployeeMainForm : Form, IEmployeeMainForm
     {
-        public DateTime EntryRecord { get; private set; }
-        public DateTime LunchEntryRecord { get; private set; }
-        public DateTime LunchExitRecord { get; private set; }
-        public DateTime ExitRecord { get; private set; }
+        public TimeSpan EntryRecord { get; private set; }
+        public TimeSpan LunchEntryRecord { get; private set; }
+        public TimeSpan LunchExitRecord { get; private set; }
+        public TimeSpan ExitRecord { get; private set; }
 
         private System.Windows.Forms.Timer hourTimer;
 
@@ -39,10 +39,10 @@ namespace ClockIt.src.Presentation.Forms.Main
 
         private void ResetTodayRecords()
         {
-            EntryRecord = DateTime.MinValue;
-            LunchEntryRecord = DateTime.MinValue;
-            LunchExitRecord = DateTime.MinValue;
-            ExitRecord = DateTime.MinValue;
+            EntryRecord = TimeSpan.MinValue;
+            LunchEntryRecord = TimeSpan.MinValue;
+            LunchExitRecord = TimeSpan.MinValue;
+            ExitRecord = TimeSpan.MinValue;
 
             entryRecordLabel.Text = "00:00:00";
             entryRecordLabel.Visible = false;
@@ -67,6 +67,8 @@ namespace ClockIt.src.Presentation.Forms.Main
             hourTimer.Tick += (s, e) => UpdateDateTimeLabels();
             hourTimer.Start();
 
+            UpdateDateTimeLabels();
+
             this.FormClosed += (s, e) =>
             {
                 hourTimer?.Stop();
@@ -81,50 +83,49 @@ namespace ClockIt.src.Presentation.Forms.Main
             actualHourLabel.Text = DateTime.Now.ToString("HH:mm:ss");
         }
 
+        public void UpdateEmployeeNameLabel(string employeeName)
+        {
+            userPanelLabel.Text = employeeName;
+        }
+
         private void RegisterRecord(object sender, EventArgs e)
         {
             ClockIn?.Invoke(this, EventArgs.Empty);
         }
 
-        public void ShowEmployeeTodayRecords(List<RecordDTO> employeeTodayRecords)
+        public void ShowEntryRecord(TimeSpan recordHour)
         {
+            EntryRecord = recordHour;
             entryRecordLabel.Text = EntryRecord.ToString(@"hh\:mm\:ss");
+            entryRecordLabel.Visible = true;
+        }
+
+        public void ShowLunchEntryRecord(TimeSpan recordHour)
+        {
+            LunchEntryRecord = recordHour;
             lunchEntryRecordLabel.Text = LunchEntryRecord.ToString(@"hh\:mm\:ss");
+            lunchEntryRecordLabel.Visible = true;
+        }
+
+        public void ShowLunchExitRecord(TimeSpan recordHour)
+        {
+            LunchExitRecord = recordHour;
             lunchExitRecordLabel.Text = LunchExitRecord.ToString(@"hh\:mm\:ss");
+            lunchExitRecordLabel.Visible = true;
+        }
+
+        public void ShowExitRecord(TimeSpan recordHour)
+        {
+            ExitRecord = recordHour;
             exitRecordLabel.Text = ExitRecord.ToString(@"hh\:mm\:ss");
-            entryRecordLabel.Visible = true;
-            lunchEntryRecordLabel.Visible = true;
-            lunchExitRecordLabel.Visible = true;
-            exitRecordLabel.Visible = true;
-        }
-
-        public void ShowEntryRecord()
-        {
-            entryRecordLabel.Text = EntryRecord.ToString(@"hh\:mm\:ss");
-            entryRecordLabel.Visible = true;
-        }
-
-        public void ShowLunchEntryRecord()
-        {
-            lunchEntryRecordLabel.Text = LunchEntryRecord.ToString(@"hh\:mm\:ss");
-            lunchEntryRecordLabel.Visible = true;
-        }
-
-        public void ShowLunchExitRecord()
-        {
-            lunchExitRecordLabel.Text = LunchEntryRecord.ToString(@"hh\:mm\:ss");
-            lunchExitRecordLabel.Visible = true;
-        }
-
-        public void ShowExitRecord()
-        {
-            exitRecordLabel.Text = LunchExitRecord.ToString(@"hh\:mm\:ss");
             exitRecordLabel.Visible = true;
         }
 
         public void DisableRecordButton()
         {
             clockInButton.Enabled = false;
+            clockInButton.BackColor = Color.Gray;
+
             MessageBoxHelper.ShowInfo("Todos os registros do dia já foram efetuados");
         }
     }

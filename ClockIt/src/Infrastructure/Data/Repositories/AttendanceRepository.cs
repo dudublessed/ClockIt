@@ -23,6 +23,7 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
         public AttendanceRepository(string connectionString, IEmployeeLoggedContext employeeContext) 
         { 
             _connectionString = connectionString;
+            _employeeContext = employeeContext;
         }
 
         public void RegisterTodayAttendance(DailyAttendanceDTO dailyAttendance)

@@ -21,7 +21,7 @@ namespace ClockIt.src.Presentation.Forms.Start
         public List<StateModel> States { get; set; }
         public List<CityModel> Cities { get; set; }
 
-        public event EventHandler FormLoaded;
+        public event EventHandler FormShown;
         public event EventHandler RegistrationRequested;
 
         public event EventHandler LoadStatesByCountry;
@@ -34,7 +34,7 @@ namespace ClockIt.src.Presentation.Forms.Start
 
         private void RegisterEnterpriseForm_Load(object sender, EventArgs e)
         {
-            this.Load += (s, e) => FormLoaded?.Invoke(this, EventArgs.Empty);
+            this.Shown += (s, e) => FormShown?.Invoke(this, EventArgs.Empty);
         }
 
         public void ShowCountries()

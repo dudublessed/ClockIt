@@ -12,9 +12,9 @@ namespace ClockIt.src.Shared.DTOs.AttendanceDTOs.RecordDTOs
         public int EmployeeId { get; }
         public string RecordType { get; }
         public DateTimeOffset RecordedAt { get; }
-        public DateTime RecordHour { get; }
+        public TimeSpan RecordHour { get; }
 
-        public RecordDTO(int attendanceId, int employeeId, string recordType, DateTimeOffset recordedAt, DateTime recordHour)
+        public RecordDTO(int attendanceId, int employeeId, string recordType, DateTimeOffset recordedAt, TimeSpan recordHour)
         {
             AttendanceId = attendanceId;
             EmployeeId = employeeId;

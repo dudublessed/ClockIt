@@ -35,6 +35,8 @@ using ClockIt.src.Presentation.Forms.Main.Admin.Employee;
 using ClockIt.src.ApplicationLayer.Context.Interfaces;
 using ClockIt.src.ApplicationLayer.Context;
 
+using AutoUpdaterDotNET;
+
 
 namespace ClockIt
 {
@@ -49,6 +51,7 @@ namespace ClockIt
             Application.SetCompatibleTextRenderingDefault(false);
 
             TestDatabaseConnection();
+            CheckForUpdates();
 
             var services = ConfigureServices();
 
@@ -60,33 +63,13 @@ namespace ClockIt
             Application.Run();
         }
 
-        static async Task<bool> CheckForUpdates()
+        static void CheckForUpdates()
         {
-            string localVersion = ConfigurationManager.AppSettings["AppVersion"];
+            AutoUpdater.Mandatory = false; 
+            AutoUpdater.ShowRemindLaterButton = true; 
+            AutoUpdater.ReportErrors = true; 
 
-            string versionUrl = "https://raw.githubusercontent.com/dudublessed/ClockIt/release/.version";
-
-            if (!await IsInternetAvailable())
-            {
-                MessageBoxHelper.ShowError("Could not connect to the internet. The application will be closed.");
-                Environment.Exit(0);
-            }
-
-            using (HttpClient client = new HttpClient())
-            {
-                try
-                {
-                    string remoteVersion = await client.GetStringAsync(versionUrl);
-                    remoteVersion = remoteVersion.Trim();
-
-                    return localVersion != remoteVersion;
-                }
-                catch (Exception ex)
-                {
-                    MessageBoxHelper.ShowError("Não foi possível verificar se existem atualizações disponíveis.");
-                    return false;
-                }
-            }
+            AutoUpdater.Start("https://raw.githubusercontent.com/dudublessed/ClockIt/release/update.xml");
         }
 
         static async Task<bool> IsInternetAvailable()

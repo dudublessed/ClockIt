@@ -9,8 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="docs\**" />
+    <EmbeddedResource Remove="docs\**" />
+    <None Remove="docs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="config\logging\debug\" />
-    <Folder Include="docs\" />
     <Folder Include="src\Assets\backgrounds\" />
   </ItemGroup>
 

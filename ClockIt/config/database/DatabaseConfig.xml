@@ -1,4 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <DatabaseConfig>
-	<DBConnectionString>Host=db.trlntotdfpcsscwpvlzy.supabase.co;Port=5432;Database=postgres;Username=postgres;Password=L!$3NhO5m1nH@R0ChA!;SSL Mode=Require;Trust Server Certificate=true</DBConnectionString>
+	<DBConnectionString>User Id=postgres.trlntotdfpcsscwpvlzy;Password=L!$3NhO5m1nH@R0ChA!;Server=aws-1-us-east-2.pooler.supabase.com;Port=5432;Database=postgres</DBConnectionString>
 </DatabaseConfig>

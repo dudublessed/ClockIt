@@ -1,4 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <DatabaseConfig>
-	<DBConnectionString>Host=localhost;Port=5432;Database=db_testclockit;Username=postgres;Password=admin;Timeout=30;Pooling=true;</DBConnectionString>
+	<DBConnectionString>Host=db.trlntotdfpcsscwpvlzy.supabase.co;Port=5432;Database=postgres;Username=postgres;Password=L!$3NhO5m1nH@R0ChA!;SSL Mode=Require;Trust Server Certificate=true</DBConnectionString>
 </DatabaseConfig>

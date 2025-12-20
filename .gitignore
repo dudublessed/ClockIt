@@ -367,3 +367,5 @@ FodyWeavers.xsd
 ILLink/
 
 Properties/
+
+ClockIt/config/

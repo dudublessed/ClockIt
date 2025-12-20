@@ -42,10 +42,12 @@ namespace ClockIt.src.Presentation.Presenters
 
         private void PrepareEventHandlers()
         {
-            _view.FormShown -= OnFormLoadedAndShown;
+            _view.FormShown -= LoadForm;
+            _view.FormActivated -= LoadForm;
             _view.LoginRequested -= HandleLoginRequest;
 
-            _view.FormShown += OnFormLoadedAndShown;
+            _view.FormShown += LoadForm;
+            _view.FormActivated += LoadForm;
             _view.LoginRequested += HandleLoginRequest;
         }
 
@@ -57,7 +59,7 @@ namespace ClockIt.src.Presentation.Presenters
             FormHelper.OpenFormAndExit((Form)_view);
         }
 
-        private void OnFormLoadedAndShown(object? sender, EventArgs e)
+        private void LoadForm(object? sender, EventArgs e)
         {
             try
             {
@@ -65,6 +67,7 @@ namespace ClockIt.src.Presentation.Presenters
 
                 Users = _service.GetEnterpriseEmployeeUsers();
 
+                _view.ClearInputFields();
                 _view.ShowUsers(Users);
 
                 bool hasOnlyAdmin = (Users.Count == 1);

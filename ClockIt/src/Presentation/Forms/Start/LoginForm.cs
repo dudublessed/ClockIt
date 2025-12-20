@@ -17,6 +17,7 @@ namespace ClockIt.src.Presentation.Forms.Start
         }
 
         public event EventHandler FormShown;
+        public event EventHandler FormActivated;
         public event EventHandler LoginRequested;
 
         public LoginForm()
@@ -24,6 +25,7 @@ namespace ClockIt.src.Presentation.Forms.Start
             InitializeComponent();
 
             this.Shown += (s, e) => FormShown?.Invoke(this, EventArgs.Empty);
+            this.Activated += (s, e) => FormActivated?.Invoke(this, EventArgs.Empty);
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
@@ -90,14 +92,10 @@ namespace ClockIt.src.Presentation.Forms.Start
             }
         }
 
-        public void OpenUserMainForm(IEmployeeMainForm form)
-        {
-
-        }
-
         private void SelectUser(string userLogin)
         {
             nameBox.Text = userLogin;
+            passwordBox.Text = "";
         }
 
         private void ApplyHoverEffect(Control container, int[] argb)
@@ -130,6 +128,12 @@ namespace ClockIt.src.Presentation.Forms.Start
                 LoginRequested?.Invoke(this, EventArgs.Empty);
                 e.SuppressKeyPress = true;
             }
+        }
+
+        public void ClearInputFields()
+        {
+            nameBox.Text = "";
+            passwordBox.Text = "";
         }
     }
 }

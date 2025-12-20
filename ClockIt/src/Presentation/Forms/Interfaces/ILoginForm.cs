@@ -14,9 +14,10 @@ namespace ClockIt.src.Presentation.Forms.Interfaces
         string EnterpriseName { get; set; }
 
         void ShowUsers(List<ShowUsersDTO> users);
-        void OpenUserMainForm(IEmployeeMainForm form);
+        void ClearInputFields();
 
         event EventHandler FormShown;
+        event EventHandler FormActivated;
         event EventHandler LoginRequested;
     }
 }

@@ -75,12 +75,10 @@ namespace ClockIt.src.Presentation.Presenters
             {
                 VerifyEmployeeTodayAttendance();
 
-                MessageBoxHelper.ShowInfo(EmployeeHasRegisteredTodayAttendance.ToString());
                 if (EmployeeHasRegisteredTodayAttendance == false)
                 {
                     DailyAttendanceDTO todayAttendance = new DailyAttendanceDTO(_employeeContext.Employee.Id, DateTime.Now.Date);
 
-                    MessageBoxHelper.ShowInfo("RegisterTodayAttendance!");
                     _attendanceService.RegisterTodayAttendance(todayAttendance);
                 }
 

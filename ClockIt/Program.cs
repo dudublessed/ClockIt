@@ -66,8 +66,9 @@ namespace ClockIt
         static void CheckForUpdates()
         {
             AutoUpdater.Mandatory = false; 
-            AutoUpdater.ShowRemindLaterButton = true; 
-            AutoUpdater.ReportErrors = true; 
+            AutoUpdater.ShowRemindLaterButton = true;
+            AutoUpdater.ShowSkipButton = true;
+            AutoUpdater.ReportErrors = false; 
 
             AutoUpdater.Start("https://raw.githubusercontent.com/dudublessed/ClockIt/release/update.xml");
         }

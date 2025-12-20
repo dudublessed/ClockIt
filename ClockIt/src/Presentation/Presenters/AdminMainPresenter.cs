@@ -25,9 +25,11 @@ namespace ClockIt.src.Presentation.Presenters
         private void PrepareEventHandlers()
         {
             _view.ShowCreateUserForm -= ShowCreateUserForm;
+            _view.ShowCreatePositionForm -= ShowCreatePositionForm;
             _view.ShowCreateEmployeeForm -= ShowCreateEmployeeForm;
 
             _view.ShowCreateUserForm += ShowCreateUserForm;
+            _view.ShowCreatePositionForm += ShowCreatePositionForm;
             _view.ShowCreateEmployeeForm += ShowCreateEmployeeForm;
         }
 
@@ -54,6 +56,11 @@ namespace ClockIt.src.Presentation.Presenters
         private void ShowCreateUserForm(object? sender, EventArgs e)
         {
             _navigator.CreateUserPresenter.ShowDialog();
+        }
+
+        private void ShowCreatePositionForm(object? sender, EventArgs e)
+        {
+            _navigator.CreatePositionPresenter.ShowDialog();
         }
 
         private void ShowCreateEmployeeForm(object? sender, EventArgs e)

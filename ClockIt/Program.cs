@@ -17,7 +17,6 @@ using ClockIt.src.Core.Domain.BOs;
 using ClockIt.src.Infrastructure.Data.Repositories;
 using ClockIt.src.Infrastructure.Data.Interfaces;
 
-using ClockIt.src.Presentation.Forms.Debugging;
 using ClockIt.src.Presentation.Forms.Main;
 using ClockIt.src.Presentation.Forms.Start;
 using ClockIt.src.Presentation.Forms.Validation;
@@ -31,6 +30,7 @@ using ClockIt.src.ApplicationLayer.Navigation;
 using ClockIt.src.Core.Domain.BOs.Interfaces;
 using ClockIt.src.Shared.Utils;
 using ClockIt.src.Presentation.Forms.Main.Admin.User;
+using ClockIt.src.Presentation.Forms.Main.Admin.Position;
 using ClockIt.src.Presentation.Forms.Main.Admin.Employee;
 using ClockIt.src.ApplicationLayer.Context.Interfaces;
 using ClockIt.src.ApplicationLayer.Context;
@@ -130,6 +130,7 @@ namespace ClockIt
             services.AddTransient<IAdminPasswordNavigator, AdminPasswordNavigator>();
             services.AddTransient<IAdminMainNavigator, AdminMainNavigator>();
             services.AddTransient<ICreateUserNavigator, CreateUserNavigator>();
+            services.AddTransient<ICreatePositionNavigator, CreatePositionNavigator>();
             services.AddTransient<ICreateEmployeeNavigator, CreateEmployeeNavigator>();
             services.AddTransient<IEmployeeMainNavigator, EmployeeMainNavigator>();
         }
@@ -147,6 +148,7 @@ namespace ClockIt
 
             services.AddTransient<IAdminMainPresenter, AdminMainPresenter>();
             services.AddTransient<ICreateUserPresenter, CreateUserPresenter>();
+            services.AddTransient<ICreatePositionPresenter, CreatePositionPresenter>();
             services.AddTransient<ICreateEmployeePresenter, CreateEmployeePresenter>();
 
             services.AddTransient<IEmployeeMainPresenter, EmployeeMainPresenter>();
@@ -162,6 +164,7 @@ namespace ClockIt
             // Main
             services.AddTransient<IAdminMainForm, AdminMainForm>();
             services.AddTransient<ICreateUserForm, CreateUserForm>();
+            services.AddTransient<ICreatePositionForm, CreatePositionForm>();
             services.AddTransient<ICreateEmployeeForm, CreateEmployeeForm>();
             services.AddTransient<IEmployeeMainForm, EmployeeMainForm>();
 
@@ -183,7 +186,7 @@ namespace ClockIt
             services.AddSingleton<IMachineService, MachineService>();
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IEmployeeService, EmployeeService>();
-            services.AddSingleton<IPositionsService, PositionsService>();
+            services.AddSingleton<IPositionService, PositionService>();
             services.AddSingleton<IScheduleService, ScheduleService>();
             services.AddSingleton<IAttendanceService, AttendanceService>();
             services.AddSingleton<IRecordService, RecordService>();
@@ -222,7 +225,7 @@ namespace ClockIt
             services.AddTransient<IMachineRepository, MachineRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
-            services.AddTransient<IPositionsRepository, PositionsRepository>();
+            services.AddTransient<IPositionRepository, PositionRepository>();
             services.AddTransient<IScheduleRepository, ScheduleRepository>();
             services.AddTransient<IAttendanceRepository, AttendanceRepository>();
             services.AddTransient<IRecordRepository, RecordRepository>();

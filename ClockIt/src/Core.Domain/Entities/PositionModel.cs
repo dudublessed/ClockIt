@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ClockIt.src.Core.Domain.Entities
 {
-    public class PositionsModel
+    public class PositionModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; } 
         public int EnterpriseId { get; set; }
 
-        public PositionsModel(int id, string name, string description, int enterpriseId)
+        public PositionModel(int id, string name, string description, int enterpriseId)
         {
             Id = id;
             Name = name;

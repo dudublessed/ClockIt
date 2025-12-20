@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClockIt.src.Core.Domain.Entities;
+using ClockIt.src.Shared.DTOs.PositionDTOs;
 
 namespace ClockIt.src.ApplicationLayer.Services.Interfaces
 {
-    public interface IPositionsService
+    public interface IPositionService
     {
-        List<PositionsModel> GetEnterprisePositions();
+        Task RegisterPosition(PositionDTO position);
+        List<PositionModel> GetEnterprisePositions();
     }
 }

@@ -21,6 +21,8 @@ namespace ClockIt.src.ApplicationLayer.Navigation
 
         public IAdminMainForm AdminMainForm => _serviceProvider.GetRequiredService<IAdminMainForm>();
         public ICreateUserPresenter CreateUserPresenter => _serviceProvider.GetRequiredService<ICreateUserPresenter>();
+        public ICreatePositionPresenter CreatePositionPresenter => _serviceProvider.GetRequiredService<ICreatePositionPresenter>();
+
         public ICreateEmployeePresenter CreateEmployeePresenter => _serviceProvider.GetRequiredService<ICreateEmployeePresenter>();
     }
 }

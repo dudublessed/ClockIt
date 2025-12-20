@@ -15,6 +15,8 @@ namespace ClockIt.src.Presentation.Forms.Interfaces
         event EventHandler ShowUpdateUserForm;
         event EventHandler ShowDeleteUserForm;
 
+        event EventHandler ShowCreatePositionForm;
+
         event EventHandler ShowCreateEmployeeForm;
     }
 }

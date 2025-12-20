@@ -37,7 +37,7 @@ namespace ClockIt.src.Presentation.Forms.Interfaces
         event EventHandler CreateEmployeeRequested;
 
         List<ShowUsersDTO> EnterpriseUsers { get; set; }
-        List<PositionsModel> EnterprisePositions { get; set; }
+        List<PositionModel> EnterprisePositions { get; set; }
 
         void ShowEnterpriseUsers();
         void ShowEnterprisePositions();

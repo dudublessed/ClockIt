@@ -22,6 +22,8 @@ namespace ClockIt.src.Presentation.Forms.Main
         public event EventHandler ShowUpdateUserForm;
         public event EventHandler ShowDeleteUserForm;
 
+        public event EventHandler ShowCreatePositionForm;
+
         public event EventHandler ShowCreateEmployeeForm;
 
         public AdminMainForm()
@@ -39,6 +41,11 @@ namespace ClockIt.src.Presentation.Forms.Main
         private void showCreateUserForm(object sender, EventArgs e)
         {
             ShowCreateUserForm?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void showCreatePositionForm(object sender, EventArgs e)
+        {
+            ShowCreatePositionForm?.Invoke(this, EventArgs.Empty);
         }
 
         private void showCreateEmployeeForm(object sender, EventArgs e)

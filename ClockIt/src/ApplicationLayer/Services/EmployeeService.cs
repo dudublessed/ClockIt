@@ -15,13 +15,13 @@ namespace ClockIt.src.ApplicationLayer.Services
 {
     public class EmployeeService : IEmployeeService
     {
-        private readonly IPositionsService _positionsService;
+        private readonly IPositionService _positionsService;
         private readonly IAttendanceService _attendanceService;
         private readonly IRecordService _recordService;
 
         private readonly IEmployeeRepository _repository;
 
-        public EmployeeService(IPositionsService positionsService, 
+        public EmployeeService(IPositionService positionsService, 
             IAttendanceService attendanceService, 
             IRecordService recordService, 
             IEmployeeRepository repository)
@@ -52,7 +52,7 @@ namespace ClockIt.src.ApplicationLayer.Services
             return _repository.GetEmployeeByUserContext();
         }
 
-        public List<PositionsModel> GetEnterprisePositions()
+        public List<PositionModel> GetEnterprisePositions()
         {
             return _positionsService.GetEnterprisePositions();
         }

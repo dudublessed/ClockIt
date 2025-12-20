@@ -43,7 +43,7 @@ namespace ClockIt.src.Presentation.Forms.Main.Admin.Employee
         public event EventHandler CreateEmployeeRequested;
 
         public List<ShowUsersDTO> EnterpriseUsers { get; set; }
-        public List<PositionsModel> EnterprisePositions { get; set; }
+        public List<PositionModel> EnterprisePositions { get; set; }
 
         public CreateEmployeeForm()
         {

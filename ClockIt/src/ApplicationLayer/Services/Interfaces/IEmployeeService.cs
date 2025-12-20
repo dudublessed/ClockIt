@@ -15,6 +15,6 @@ namespace ClockIt.src.ApplicationLayer.Services.Interfaces
         void RegisterEmployee(EmployeeDTO employee);
         EmployeeModel GetEmployeeByUserId(int userId);
         EmployeeModel GetEmployeeByUserContext();
-        List<PositionsModel> GetEnterprisePositions();
+        List<PositionModel> GetEnterprisePositions();
     }
 }

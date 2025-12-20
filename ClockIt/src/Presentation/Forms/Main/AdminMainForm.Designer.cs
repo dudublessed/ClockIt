@@ -42,13 +42,17 @@
             relatorioToolStripMenuItem = new ToolStripMenuItem();
             positionsToolStripMenuItem = new ToolStripMenuItem();
             settingsToolStripMenuItem = new ToolStripMenuItem();
+            criarCargoToolStripMenuItem = new ToolStripMenuItem();
+            visualizarCargosToolStripMenuItem = new ToolStripMenuItem();
+            atualizarCargoToolStripMenuItem = new ToolStripMenuItem();
+            deletarCargoToolStripMenuItem = new ToolStripMenuItem();
             adminActionsMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // adminActionsMenuStrip
             // 
             adminActionsMenuStrip.BackColor = Color.LightGray;
-            adminActionsMenuStrip.Items.AddRange(new ToolStripItem[] { userToolStripMenuItem, employeeToolStripMenuItem, relatorioToolStripMenuItem, positionsToolStripMenuItem, settingsToolStripMenuItem });
+            adminActionsMenuStrip.Items.AddRange(new ToolStripItem[] { userToolStripMenuItem, positionsToolStripMenuItem, employeeToolStripMenuItem, relatorioToolStripMenuItem, settingsToolStripMenuItem });
             adminActionsMenuStrip.Location = new Point(0, 0);
             adminActionsMenuStrip.Name = "adminActionsMenuStrip";
             adminActionsMenuStrip.Size = new Size(738, 24);
@@ -87,6 +91,38 @@
             deleteUserToolStripMenuItem.Size = new Size(171, 22);
             deleteUserToolStripMenuItem.Text = "Deletar Usuário";
             // 
+            // positionsToolStripMenuItem
+            // 
+            positionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { criarCargoToolStripMenuItem, visualizarCargosToolStripMenuItem, atualizarCargoToolStripMenuItem, deletarCargoToolStripMenuItem });
+            positionsToolStripMenuItem.Name = "positionsToolStripMenuItem";
+            positionsToolStripMenuItem.Size = new Size(56, 20);
+            positionsToolStripMenuItem.Text = "Cargos";
+            // 
+            // criarCargoToolStripMenuItem
+            // 
+            criarCargoToolStripMenuItem.Name = "criarCargoToolStripMenuItem";
+            criarCargoToolStripMenuItem.Size = new Size(180, 22);
+            criarCargoToolStripMenuItem.Text = "Criar Cargo";
+            criarCargoToolStripMenuItem.Click += showCreatePositionForm;
+            // 
+            // visualizarCargosToolStripMenuItem
+            // 
+            visualizarCargosToolStripMenuItem.Name = "visualizarCargosToolStripMenuItem";
+            visualizarCargosToolStripMenuItem.Size = new Size(180, 22);
+            visualizarCargosToolStripMenuItem.Text = "Visualizar Cargos";
+            // 
+            // atualizarCargoToolStripMenuItem
+            // 
+            atualizarCargoToolStripMenuItem.Name = "atualizarCargoToolStripMenuItem";
+            atualizarCargoToolStripMenuItem.Size = new Size(180, 22);
+            atualizarCargoToolStripMenuItem.Text = "Atualizar Cargo";
+            // 
+            // deletarCargoToolStripMenuItem
+            // 
+            deletarCargoToolStripMenuItem.Name = "deletarCargoToolStripMenuItem";
+            deletarCargoToolStripMenuItem.Size = new Size(180, 22);
+            deletarCargoToolStripMenuItem.Text = "Deletar Cargo";
+            // 
             // employeeToolStripMenuItem
             // 
             employeeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createEmployeeToolStripMenuItem, viewEmployeesToolStripMenuItem, updateEmployeeToolStripMenuItem1, deleteEmployeeToolStripMenuItem });
@@ -124,12 +160,6 @@
             relatorioToolStripMenuItem.Name = "relatorioToolStripMenuItem";
             relatorioToolStripMenuItem.Size = new Size(128, 20);
             relatorioToolStripMenuItem.Text = "Relatórios Gerenciais";
-            // 
-            // positionsToolStripMenuItem
-            // 
-            positionsToolStripMenuItem.Name = "positionsToolStripMenuItem";
-            positionsToolStripMenuItem.Size = new Size(56, 20);
-            positionsToolStripMenuItem.Text = "Cargos";
             // 
             // settingsToolStripMenuItem
             // 
@@ -175,6 +205,9 @@
         private ToolStripMenuItem relatorioToolStripMenuItem;
         private ToolStripMenuItem positionsToolStripMenuItem;
         private ToolStripMenuItem settingsToolStripMenuItem;
-
+        private ToolStripMenuItem criarCargoToolStripMenuItem;
+        private ToolStripMenuItem visualizarCargosToolStripMenuItem;
+        private ToolStripMenuItem atualizarCargoToolStripMenuItem;
+        private ToolStripMenuItem deletarCargoToolStripMenuItem;
     }
 }

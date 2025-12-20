@@ -12,7 +12,9 @@ namespace ClockIt.src.ApplicationLayer.Navigation.Interfaces
     {
         // Forms
         IAdminMainForm AdminMainForm { get; }
-        ICreateEmployeePresenter CreateEmployeePresenter{ get; }
         ICreateUserPresenter CreateUserPresenter { get; }
+        ICreatePositionPresenter CreatePositionPresenter { get; }
+        ICreateEmployeePresenter CreateEmployeePresenter { get; }
+
     }
 }

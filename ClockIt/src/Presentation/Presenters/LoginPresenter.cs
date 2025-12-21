@@ -59,19 +59,19 @@ namespace ClockIt.src.Presentation.Presenters
             FormHelper.OpenFormAndExit((Form)_view);
         }
 
-        private void LoadForm(object? sender, EventArgs e)
+        private async Task LoadForm(object? sender, EventArgs e)
         {
             try
             {
                 _view.EnterpriseName = _context.Enterprise.Name;
 
-                Users = _service.GetEnterpriseEmployeeUsers();
+                Users = await _service.GetEnterpriseEmployeeUsers();
 
                 _view.ClearInputFields();
-                _view.ShowUsers(Users);
+                await _view.ShowUsers(Users);
 
                 bool hasOnlyAdmin = (Users.Count == 1);
-                bool isAdminPasswordDefault = _service.IsAdminPasswordDefault();
+                bool isAdminPasswordDefault = await _service.IsAdminPasswordDefault();
 
                 if (hasOnlyAdmin && isAdminPasswordDefault)
                 {
@@ -84,7 +84,7 @@ namespace ClockIt.src.Presentation.Presenters
             }
         }
 
-        private void HandleLoginRequest(object? sender, EventArgs e)
+        private async Task HandleLoginRequest(object? sender, EventArgs e)
         {
             try
             {
@@ -95,7 +95,7 @@ namespace ClockIt.src.Presentation.Presenters
 
                 var inputDTO = new UserLoginDTO(_view.Login, _view.InputPassword, _context.Enterprise.Id);
 
-                _service.VerifyPassword(inputDTO);
+                await _service.VerifyPassword(inputDTO);
 
                 SetUserLogged();
 
@@ -106,7 +106,7 @@ namespace ClockIt.src.Presentation.Presenters
                     return;
                 }
 
-                SetEmployeeLogged();
+                await SetEmployeeLogged();
 
                 _navigator.EmployeeMainPresenter.ShowForm((Form)_view);
             } catch (Exception ex)
@@ -132,11 +132,11 @@ namespace ClockIt.src.Presentation.Presenters
             }
         }
 
-        private void SetEmployeeLogged()
+        private async Task SetEmployeeLogged()
         {
             try
             {
-                EmployeeModel employeeLogged = _service.GetEmployeeByUserContext();
+                EmployeeModel employeeLogged = await _service.GetEmployeeByUserContext();
 
                 _employeeContext.SetEmployeeLoggedContext(employeeLogged);
             }

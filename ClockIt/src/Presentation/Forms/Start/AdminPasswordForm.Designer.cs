@@ -114,7 +114,7 @@ namespace ClockIt.src.Presentation.Forms.Start
             //
             // firstViewPassword
             //
-            string pathToPasswordIcon = FileHelper.FindFileInProject("eye_solid.png");
+            string pathToPasswordIcon = FileHelper.FindFileInProjectSync("eye_solid.png");
             Image passwordIcon = Image.FromFile(pathToPasswordIcon);
             Image resizedPasswordIcon = new Bitmap(passwordIcon, new Size(18, 18));
 

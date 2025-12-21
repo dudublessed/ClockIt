@@ -6,7 +6,7 @@ namespace ClockIt.src.Shared.Utils
 {
     public static class FileHelper
     {
-        public static string FindFileInProject(string filename, string? searchDirectory = null)
+        public static string FindFileInProjectSync(string filename)
         {
             try
             {
@@ -17,7 +17,33 @@ namespace ClockIt.src.Shared.Utils
                     directory = Directory.GetParent(directory)?.FullName!;
                 }
 
-                string filePath = SearchFileInDirectory(directory, filename);
+                string? filePath = SearchFileInDirectory(directory, filename).GetAwaiter().GetResult();
+
+                if (string.IsNullOrEmpty(filePath) || !System.IO.File.Exists(filePath))
+                {
+                    throw new FileNotFoundException($"{filename} was not found in project.");
+                }
+
+                return filePath;
+            }
+            catch (Exception ex)
+            {
+                throw new FileNotFoundException($"{filename} was not found in project.");
+            }
+        }
+
+        public static async Task<string> FindFileInProject(string filename)
+        {
+            try
+            {
+                string directory = AppDomain.CurrentDomain.BaseDirectory;
+
+                while (!Directory.Exists(Path.Combine(directory, "src")) && Directory.GetParent(directory) != null)
+                {
+                    directory = Directory.GetParent(directory)?.FullName!;
+                }
+
+                string? filePath = await SearchFileInDirectory(directory, filename);
 
                 if (string.IsNullOrEmpty(filePath) || !System.IO.File.Exists(filePath))
                 {
@@ -32,7 +58,7 @@ namespace ClockIt.src.Shared.Utils
             }
         }
 
-        private static string SearchFileInDirectory(string directoryPath, string filename)
+        private static async Task<string?> SearchFileInDirectory(string directoryPath, string filename)
         {
             try
             {
@@ -46,7 +72,7 @@ namespace ClockIt.src.Shared.Utils
                 string[] subdirectories = Directory.GetDirectories(directoryPath);
                 foreach(var subDirectory in subdirectories)
                 {
-                    string? foundFile = SearchFileInDirectory(subDirectory, filename);
+                    string? foundFile = await SearchFileInDirectory(subDirectory, filename);
                     if (foundFile != null)
                     {
                         return foundFile;

@@ -24,9 +24,9 @@ namespace ClockIt.src.Presentation.Forms.Interfaces
         void RestartApplication();
 
         event EventHandler FormShown;
-        event EventHandler RegistrationRequested;
+        event Func<object, EventArgs, Task> RegistrationRequested;
 
-        event EventHandler LoadStatesByCountry;
-        event EventHandler LoadCitiesByState;
+        event Func<object, EventArgs, Task> LoadStatesByCountry;
+        event Func<object, EventArgs, Task> LoadCitiesByState;
     }
 }

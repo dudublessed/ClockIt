@@ -65,7 +65,7 @@ namespace ClockIt.src.Presentation.Presenters
             }
         }
 
-        private void LoadStates(object? sender, EventArgs e)
+        private async Task LoadStates(object? sender, EventArgs e)
         {
             try
             {
@@ -74,8 +74,7 @@ namespace ClockIt.src.Presentation.Presenters
                     MessageBoxHelper.ShowWarning("Por favor, selecione um país.");
                 }
 
-                var states = _service.GetStatesByCountry(_view.SelectedCountry);
-                _view.States = states;
+                _view.States = await _service.GetStatesByCountry(_view.SelectedCountry);
             }
             catch (Exception ex)
             {
@@ -83,7 +82,7 @@ namespace ClockIt.src.Presentation.Presenters
             }
         }
 
-        private void LoadCities(object? sender, EventArgs e)
+        private async Task LoadCities(object? sender, EventArgs e)
         {
             try
             {
@@ -96,7 +95,7 @@ namespace ClockIt.src.Presentation.Presenters
 
                 string stateId = selectedState!.ID;
 
-                var cities = _service.GetCitiesByCountryAndState(_view.SelectedCountry, _view.SelectedState);
+                var cities = await _service.GetCitiesByCountryAndState(_view.SelectedCountry, _view.SelectedState);
                 var citiesInState = cities
                     .Where(c => c.State == stateId)
                     .ToList();
@@ -109,7 +108,7 @@ namespace ClockIt.src.Presentation.Presenters
             }
         }
 
-        private void HandleRegistrationRequest(object? sender, EventArgs e)
+        private async Task HandleRegistrationRequest(object? sender, EventArgs e)
         {
             try
             {
@@ -117,8 +116,8 @@ namespace ClockIt.src.Presentation.Presenters
                 var enterpriseLocation = new Location(_view.SelectedCountry, _view.SelectedState, _view.SelectedCity);
                 var enterpriseToRegister = new EnterpriseRegisterDTO(_view.EnterpriseName, enterpriseEmail, enterpriseLocation);
 
-                _service.CheckEnterpriseExistance(enterpriseToRegister);
-                _service.CheckMachineExistance();
+                await _service.CheckEnterpriseExistance(enterpriseToRegister);
+                await _service.CheckMachineExistance();
 
                 var emailValidationCredentials = new EmailValidationDTO(_view.Email, _view.EnterpriseName);
                 var result = _navigator.EmailValidationPresenter.ShowDialog(emailValidationCredentials);
@@ -128,7 +127,7 @@ namespace ClockIt.src.Presentation.Presenters
                     return;
                 }
 
-                _service.Register(enterpriseToRegister);
+                await _service.Register(enterpriseToRegister);
 
                 MessageBoxHelper.ShowSucess("Perfeito! Sua empresa foi cadastrada!");
                 MessageBoxHelper.ShowSucess("O programa será encerrado para que seja iniciado com a sua empresa.");

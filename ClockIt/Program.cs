@@ -50,10 +50,10 @@ namespace ClockIt
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            TestDatabaseConnection();
+            await TestDatabaseConnection();
             CheckForUpdates();
 
-            var services = ConfigureServices();
+            var services = await ConfigureServices();
 
             using var provider = services.BuildServiceProvider();
 
@@ -89,15 +89,15 @@ namespace ClockIt
             }
         }
 
-        private static void TestDatabaseConnection()
+        private static async Task TestDatabaseConnection()
         {
-            string connectionString = DatabaseConfigReader.GetConnectionString();
+            string connectionString = await DatabaseConfigReader.GetConnectionString();
 
             try
             {
                 using (var connection = new NpgsqlConnection(connectionString))
                 {
-                    connection.Open();
+                    await connection.OpenAsync();
                 }
             }
             catch (Exception ex)
@@ -107,7 +107,7 @@ namespace ClockIt
             }
         }
 
-        private static ServiceCollection ConfigureServices()
+        private static async Task<ServiceCollection> ConfigureServices()
         {
             var services = new ServiceCollection();
 
@@ -117,7 +117,7 @@ namespace ClockIt
             addSingletonServices(services);
             AddSingletonContexts(services);
             addSingletonBOs(services);
-            addTransientRepositories(services);
+            await addTransientRepositories(services);
 
             return services;
         }
@@ -215,9 +215,9 @@ namespace ClockIt
             // services.AddSingleton<IEmployeeBO, EmployeeBO>();
         }
 
-        private static void addTransientRepositories(IServiceCollection services)
+        private static async Task addTransientRepositories(IServiceCollection services)
         {
-            string connectionString = DatabaseConfigReader.GetConnectionString();
+            string connectionString = await DatabaseConfigReader.GetConnectionString();
 
             services.AddSingleton(_ => connectionString);
 

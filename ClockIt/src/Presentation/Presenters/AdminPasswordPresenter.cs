@@ -38,7 +38,7 @@ namespace ClockIt.src.Presentation.Presenters
             _view.UpdateAdminPasswordRequested += UpdateAdminPassword;
         }
 
-        public DialogResult ShowDialog()
+        public void ShowDialog()
         {
             try
             {
@@ -48,17 +48,9 @@ namespace ClockIt.src.Presentation.Presenters
 
                 var adminPasswordForm = (Form)_view;
                 FormHelper.OpenFormAsDialog(adminPasswordForm);
-
-                if (adminPasswordForm.DialogResult != DialogResult.OK)
-                {
-                    return DialogResult.None;
-                }
-
-                return DialogResult.OK;
             } catch (Exception ex)
             {
                 MessageBoxHelper.ShowError(ex.Message);
-                return DialogResult.None;
             };
         }
 

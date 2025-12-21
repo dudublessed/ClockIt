@@ -51,13 +51,13 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             }
         }
 
-        public List<PositionModel> GetEnterprisePositions()
+        public async Task<List<PositionModel>> GetEnterprisePositions()
         {
             var enterprisePositions = new List<PositionModel>();
 
             using (var conn = new NpgsqlConnection(_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 string query = "SELECT * FROM tb_positions WHERE enterprise_id = @enterprise_id";
 

@@ -13,11 +13,11 @@ namespace ClockIt.src.Presentation.Forms.Interfaces
         string InputPassword { get; }
         string EnterpriseName { get; set; }
 
-        void ShowUsers(List<ShowUsersDTO> users);
+        Task ShowUsers(List<ShowUsersDTO> users);
         void ClearInputFields();
 
-        event EventHandler FormShown;
-        event EventHandler FormActivated;
-        event EventHandler LoginRequested;
+        event Func<object, EventArgs, Task> FormShown;
+        event Func<object, EventArgs, Task> FormActivated;
+        event Func<object, EventArgs, Task> LoginRequested;
     }
 }

@@ -9,6 +9,6 @@ namespace ClockIt.src.ApplicationLayer.Services.Interfaces
 {
     public interface IScheduleService
     {
-        void RegisterEmployeeSchedule(ScheduleDTO schedule);
+        Task RegisterEmployeeSchedule(ScheduleDTO schedule);
     }
 }

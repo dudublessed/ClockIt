@@ -100,7 +100,7 @@
             enterpriseEmailText.BackColor = Color.FromArgb(250, 250, 250);
             enterpriseEmailText.Font = new Font("Arial", 10F, FontStyle.Bold);
             enterpriseEmailText.Location = new Point(150, 190);
-            enterpriseEmailText.MaxLength = 23;
+            enterpriseEmailText.MaxLength = 40;
             enterpriseEmailText.Name = "enterpriseEmailText";
             enterpriseEmailText.Size = new Size(200, 23);
             enterpriseEmailText.TabIndex = 2;

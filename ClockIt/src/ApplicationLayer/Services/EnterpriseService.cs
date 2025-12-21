@@ -21,14 +21,14 @@ namespace ClockIt.src.ApplicationLayer.Services
             _repository = repository;
         }
 
-        public EnterpriseModel GetEnterpriseById(int enterpriseId)
+        public async Task<EnterpriseModel> GetEnterpriseById(int enterpriseId)
         {
-            return _repository.GetEnterpriseById(enterpriseId);
+            return await _repository.GetEnterpriseById(enterpriseId);
         }
 
-        public string GetEnterpriseNameById(int enterpriseId)
+        public async Task<string> GetEnterpriseNameById(int enterpriseId)
         {
-            return _BO.GetEnterpriseNameById(enterpriseId);
+            return await _BO.GetEnterpriseNameById(enterpriseId);
         }
     }
 }

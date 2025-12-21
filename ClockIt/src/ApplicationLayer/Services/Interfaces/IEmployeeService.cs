@@ -12,9 +12,9 @@ namespace ClockIt.src.ApplicationLayer.Services.Interfaces
 {
     public interface IEmployeeService
     {
-        void RegisterEmployee(EmployeeDTO employee);
-        EmployeeModel GetEmployeeByUserId(int userId);
-        EmployeeModel GetEmployeeByUserContext();
-        List<PositionModel> GetEnterprisePositions();
+        Task RegisterEmployee(EmployeeDTO employee);
+        Task<EmployeeModel> GetEmployeeByUserId(int userId);
+        Task<EmployeeModel> GetEmployeeByUserContext();
+        Task<List<PositionModel>> GetEnterprisePositions();
     }
 }

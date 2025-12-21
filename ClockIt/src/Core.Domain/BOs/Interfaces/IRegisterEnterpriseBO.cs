@@ -12,9 +12,9 @@ namespace ClockIt.src.Core.Domain.BOs.Interfaces
 {
     public interface IRegisterEnterpriseBO
     {
-        void CheckIfEnterpriseExists(EnterpriseRegisterDTO enterprise);
-        int RegisterEnterprise(EnterpriseRegisterDTO enterprise);
-        string GetStatesJsonByCountry(string country);
-        string GetCitiesJsonByCountry(string country);
+        Task CheckIfEnterpriseExists(EnterpriseRegisterDTO enterprise);
+        Task<int> RegisterEnterprise(EnterpriseRegisterDTO enterprise);
+        Task<string> GetStatesJsonByCountry(string country);
+        Task<string> GetCitiesJsonByCountry(string country);
     }
 }

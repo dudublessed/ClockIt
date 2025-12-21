@@ -58,11 +58,11 @@ namespace ClockIt.src.Presentation.Presenters
             FormHelper.OpenFormAsDialog(createEmployeeForm);
         }
 
-        private void ShowEntepriseUsers(object? sender, EventArgs e)
+        private async Task ShowEntepriseUsers(object? sender, EventArgs e)
         {
             try
             {
-                var enterpriseUsers = _userService.GetNotEmployeeUsers();
+                var enterpriseUsers = await _userService.GetNotEmployeeUsers();
 
                 _view.EnterpriseUsers = enterpriseUsers;
 
@@ -75,11 +75,11 @@ namespace ClockIt.src.Presentation.Presenters
             }
         }
 
-        private void ShowEnterprisePositions(object? sender, EventArgs e)
+        private async Task ShowEnterprisePositions(object? sender, EventArgs e)
         {
             try
             {
-                var enterprisePositions = _employeeService.GetEnterprisePositions();
+                var enterprisePositions = await _employeeService.GetEnterprisePositions();
 
                 _view.EnterprisePositions = enterprisePositions;
 
@@ -92,7 +92,7 @@ namespace ClockIt.src.Presentation.Presenters
             }
         }
 
-        private void CreateEmployee(object? sender, EventArgs e)
+        private async Task CreateEmployee(object? sender, EventArgs e)
         {
             try
             {
@@ -125,9 +125,10 @@ namespace ClockIt.src.Presentation.Presenters
 
                 using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
                 {
-                    _employeeService.RegisterEmployee(employee);
+                    await _employeeService.RegisterEmployee(employee);
 
-                    int newEmployeeId = _employeeService.GetEmployeeByUserId(userId).Id;
+                    var employeeModel = await _employeeService.GetEmployeeByUserId(userId);
+                    int newEmployeeId = employeeModel.Id;
 
                     var employeeSchedule = new ScheduleDTO(
                         newEmployeeId,
@@ -139,7 +140,7 @@ namespace ClockIt.src.Presentation.Presenters
                         true
                     );
 
-                    _scheduleService.RegisterEmployeeSchedule(employeeSchedule);
+                    await _scheduleService.RegisterEmployeeSchedule(employeeSchedule);
 
                     scope.Complete();
                 }

@@ -18,9 +18,9 @@ namespace ClockIt.src.Core.Domain.BOs
             _enterpriseRepository = enterpriseRepository;
         }
 
-        public int AddEnterprise(EnterpriseRegisterDTO enterprise)
+        public async Task<int> AddEnterprise(EnterpriseRegisterDTO enterprise)
         {
-            var generatedEnterpriseId = _enterpriseRepository.RegisterEnterprise(enterprise);
+            var generatedEnterpriseId = await _enterpriseRepository.RegisterEnterprise(enterprise);
 
             if (generatedEnterpriseId == 0)
             {
@@ -30,9 +30,9 @@ namespace ClockIt.src.Core.Domain.BOs
             return generatedEnterpriseId;
         }
 
-        public string GetEnterpriseNameById(int enterpriseId)
+        public async Task<string> GetEnterpriseNameById(int enterpriseId)
         {
-            string enterpriseName = _enterpriseRepository.GetEnterpriseNameById(enterpriseId);
+            string enterpriseName = await _enterpriseRepository.GetEnterpriseNameById(enterpriseId);
 
             if (string.IsNullOrEmpty(enterpriseName))
             {
@@ -42,9 +42,9 @@ namespace ClockIt.src.Core.Domain.BOs
             return enterpriseName;
         }
 
-        public bool ExistsEnterprise(EnterpriseRegisterDTO enterprise)
+        public async Task<bool> ExistsEnterprise(EnterpriseRegisterDTO enterprise)
         {
-            return _enterpriseRepository.ExistsEnterprise(enterprise);
+            return await _enterpriseRepository.ExistsEnterprise(enterprise);
         }
     }
 }

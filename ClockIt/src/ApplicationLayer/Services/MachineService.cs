@@ -24,9 +24,9 @@ namespace ClockIt.src.ApplicationLayer.Services
             _repository = repository;
         }
 
-        public void RegisterMachine(MachineRegisterDTO machine)
+        public async Task RegisterMachine(MachineRegisterDTO machine)
         {
-            _repository.AddMachine(machine);
+            await _repository.AddMachine(machine);
         }
 
         public Guid GetLocalMachineGuid()
@@ -38,18 +38,18 @@ namespace ClockIt.src.ApplicationLayer.Services
             return guid;
         }
 
-        public MachineModel GetMachine()
+        public async Task<MachineModel> GetMachine()
         {
             var guid = GetLocalMachineGuid();
 
-            return _repository.GetMachineByGuid(guid);
+            return await _repository.GetMachineByGuid(guid);
         }
 
-        public bool IsMachineRegistered()
+        public async Task<bool> IsMachineRegistered()
         {
             Guid guid = GetLocalMachineGuid();
 
-            return _repository.IsMachineRegistered(guid);
+            return await _repository.IsMachineRegistered(guid);
         }
     }
 }

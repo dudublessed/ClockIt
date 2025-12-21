@@ -22,26 +22,27 @@ namespace ClockIt.src.ApplicationLayer.Services
 
         }
 
-        public EmployeeModel GetEmployeeByUserContext()
+        public async Task<EmployeeModel> GetEmployeeByUserContext()
         {
-            return _employeeService.GetEmployeeByUserContext();
+            return await _employeeService.GetEmployeeByUserContext();
         }
 
-        public List<ShowUsersDTO> GetEnterpriseEmployeeUsers()
+        public async Task<List<ShowUsersDTO>> GetEnterpriseEmployeeUsers()
         {
-            return _userService.GetEnterpriseEmployeeUsers();
+            return await _userService.GetEnterpriseEmployeeUsers();
         }
 
-        public bool IsAdminPasswordDefault()
+        public async Task<bool> IsAdminPasswordDefault()
         { 
-            var adminPasswordHash = _userService.GetEnterpriseAdminPassword().Trim();;
+            var adminPasswordHash = await _userService.GetEnterpriseAdminPassword();
+            adminPasswordHash.Trim();
 
             return UserPassword.IsPasswordDefault(adminPasswordHash);
         }
 
-        public void VerifyPassword(UserLoginDTO input)
+        public async Task VerifyPassword(UserLoginDTO input)
         { 
-            string dbHashUserPassword = _userService.GetUserHashPasswordByLogin(input.Login);
+            string dbHashUserPassword = await _userService.GetUserHashPasswordByLogin(input.Login);
 
             bool isPasswordCorrect = input.Password.IsPasswordCorrect(dbHashUserPassword);
 

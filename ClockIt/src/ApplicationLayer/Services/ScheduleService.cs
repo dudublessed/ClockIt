@@ -19,11 +19,11 @@ namespace ClockIt.src.ApplicationLayer.Services
             _repository = scheduleRepository;
         }
 
-        public void RegisterEmployeeSchedule(ScheduleDTO schedule)
+        public async Task RegisterEmployeeSchedule(ScheduleDTO schedule)
         {
             using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
-                _repository.RegisterEmployeeSchedule(schedule);
+                await _repository.RegisterEmployeeSchedule(schedule);
 
                 scope.Complete();
             }

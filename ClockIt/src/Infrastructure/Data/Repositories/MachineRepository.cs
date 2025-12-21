@@ -22,13 +22,13 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             _connectionString = connectionstring;
         }
 
-        public MachineModel GetMachineByGuid(Guid guid)
+        public async Task<MachineModel> GetMachineByGuid(Guid guid)
         {
             MachineModel machine = null;
 
             using (var conn = new NpgsqlConnection(_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 string query = "SELECT * FROM tb_machines WHERE guid = @guid";
 
@@ -54,11 +54,11 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             return machine;
         }
 
-        public void AddMachine(MachineRegisterDTO machine)
+        public async Task AddMachine(MachineRegisterDTO machine)
         {
             using (var conn = new NpgsqlConnection(_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 string query = "INSERT INTO tb_machines (guid, enterprise_id) VALUES (@guid, @enterprise_id)";
 
@@ -72,11 +72,11 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             }
         }
 
-        public bool IsMachineRegistered(Guid guid)
+        public async Task<bool> IsMachineRegistered(Guid guid)
         {
             using (var conn = new NpgsqlConnection(_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 string query = @"SELECT 
                                     1 

@@ -11,6 +11,6 @@ namespace ClockIt.src.Infrastructure.Data.Interfaces
     public interface IPositionRepository
     {
         Task RegisterPosition(PositionDTO position);
-        List<PositionModel> GetEnterprisePositions();
+        Task<List<PositionModel>> GetEnterprisePositions();
     }
 }

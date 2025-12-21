@@ -20,37 +20,40 @@ namespace ClockIt.src.ApplicationLayer.Services
             _repository = repository;
         }
 
-        public bool IsUserRegistered(UserDTO user)
+        public async Task<bool> IsUserRegistered(UserDTO user)
         {
-            return _repository.IsUserRegistered(user);
+            return await _repository.IsUserRegistered(user);
         }
 
-        public void RegisterUser(UserDTO user)
+        public async Task RegisterUser(UserDTO user)
         {
             using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
-                bool userIsAlreadyRegistered = IsUserRegistered(user);
-                if (userIsAlreadyRegistered) throw new InvalidOperationException("Este usuário já esta cadastrado");
+                bool userIsAlreadyRegistered = await IsUserRegistered(user);
+                if (userIsAlreadyRegistered)
+                {
+                    throw new InvalidOperationException("Este usuário já esta cadastrado");
+                }
 
-                _repository.RegisterUser(user);
+                await _repository.RegisterUser(user);
 
                 scope.Complete();
             }
         }
 
-        public void UpdateAdminPassword(UpdateAdminPasswordDTO credentials)
+        public async Task UpdateAdminPassword(UpdateAdminPasswordDTO credentials)
         {
             using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
-                _repository.UpdateAdminPassword(credentials);
+                await _repository.UpdateAdminPassword(credentials);
 
                 scope.Complete();
             }
         }
 
-        public List<ShowUsersDTO> GetEnterpriseUsers()
+        public async Task<List<ShowUsersDTO>> GetEnterpriseUsers()
         {
-            var users = _repository.GetEnterpriseUsers();
+            var users = await _repository.GetEnterpriseUsers();
 
             bool hasUserInList = users.Any();
             if (!hasUserInList)
@@ -61,9 +64,9 @@ namespace ClockIt.src.ApplicationLayer.Services
             return users;
         }
 
-        public List<ShowUsersDTO> GetEnterpriseEmployeeUsers()
+        public async Task<List<ShowUsersDTO>> GetEnterpriseEmployeeUsers()
         {
-            var employeeUsers = _repository.GetEnterpriseEmployeeUsers();
+            var employeeUsers = await _repository.GetEnterpriseEmployeeUsers();
 
             bool hasUserInList = employeeUsers.Any();
             if (!hasUserInList)
@@ -74,9 +77,9 @@ namespace ClockIt.src.ApplicationLayer.Services
             return employeeUsers;
         }
 
-        public List<ShowUsersDTO> GetNotEmployeeUsers()
+        public async Task<List<ShowUsersDTO>> GetNotEmployeeUsers()
         {
-            var notEmployeeUsers = _repository.GetNotEmployeeUsers();
+            var notEmployeeUsers = await _repository.GetNotEmployeeUsers();
 
             bool hasUserInList = notEmployeeUsers.Any();
             if (!hasUserInList)
@@ -87,9 +90,9 @@ namespace ClockIt.src.ApplicationLayer.Services
             return notEmployeeUsers;
         }
 
-        public string GetEnterpriseAdminPassword()
+        public async Task<string> GetEnterpriseAdminPassword()
         {
-            string adminPassword = _repository.GetEnterpriseAdminPassword();
+            string adminPassword = await _repository.GetEnterpriseAdminPassword();
 
             if (string.IsNullOrEmpty(adminPassword))
             {
@@ -99,9 +102,9 @@ namespace ClockIt.src.ApplicationLayer.Services
             return adminPassword;
         }
 
-        public string GetUserHashPasswordByLogin(string login)
+        public async Task<string> GetUserHashPasswordByLogin(string login)
         {
-            string dbUserHashPassword = _repository.GetUserHashPasswordByLogin(login);
+            string dbUserHashPassword = await _repository.GetUserHashPasswordByLogin(login);
 
             if (string.IsNullOrEmpty(dbUserHashPassword))
             {
@@ -109,11 +112,6 @@ namespace ClockIt.src.ApplicationLayer.Services
             }
 
             return dbUserHashPassword;
-        }
-
-        public bool IsPasswordInputsMatching(PasswordsMatchDTO credentials)
-        {
-            return credentials.DoesPasswordsMatch();
         }
     }
 }

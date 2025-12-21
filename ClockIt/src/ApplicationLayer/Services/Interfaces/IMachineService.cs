@@ -10,9 +10,9 @@ namespace ClockIt.src.ApplicationLayer.Services.Interfaces
 {
     public interface IMachineService
     {
-        void RegisterMachine(MachineRegisterDTO machine);
+        Task RegisterMachine(MachineRegisterDTO machine);
         Guid GetLocalMachineGuid();
-        MachineModel GetMachine();
-        bool IsMachineRegistered();
+        Task<MachineModel> GetMachine();
+        Task<bool> IsMachineRegistered();
     }
 }

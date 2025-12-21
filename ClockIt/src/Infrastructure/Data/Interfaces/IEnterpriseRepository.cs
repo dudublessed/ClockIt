@@ -10,14 +10,14 @@ namespace ClockIt.src.Infrastructure.Data.Interfaces
 {
     public interface IEnterpriseRepository
     {
-        int RegisterEnterprise(EnterpriseRegisterDTO enterprise);
+        Task<int> RegisterEnterprise(EnterpriseRegisterDTO enterprise);
         //void UpdateEnterprise(EnterpriseModel enterprise);
         //void DeleteEnterprise(int id);
-        EnterpriseModel GetEnterpriseById(int id);
-        int GetEnterpriseIdByName(string enterpriseName);
+        Task<EnterpriseModel> GetEnterpriseById(int id);
+        Task<int> GetEnterpriseIdByName(string enterpriseName);
         //List<EnterpriseModel> GetAllEnterprises();
-        string GetEnterpriseNameById(int enterpriseId);
-        bool ExistsEnterprise(EnterpriseRegisterDTO enterprise);
+        Task<string> GetEnterpriseNameById(int enterpriseId);
+        Task<bool> ExistsEnterprise(EnterpriseRegisterDTO enterprise);
 
     }
 }

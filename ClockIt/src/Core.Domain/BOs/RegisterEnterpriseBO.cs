@@ -13,20 +13,16 @@ namespace ClockIt.src.Core.Domain.BOs
 {
     public class RegisterEnterpriseBO : IRegisterEnterpriseBO
     {
-        private readonly IMachineBO _machineBO;
         private readonly IEnterpriseBO _enterpriseBO;
-        private readonly IUserBO _userBO;
 
-        public RegisterEnterpriseBO(IMachineBO machineBO, IEnterpriseBO enterpriseBO, IUserBO userBO)
+        public RegisterEnterpriseBO(IEnterpriseBO enterpriseBO)
         {
-            _machineBO = machineBO;
             _enterpriseBO = enterpriseBO;
-            _userBO = userBO;
         }
 
-        public void CheckIfEnterpriseExists(EnterpriseRegisterDTO enterprise)
+        public async Task CheckIfEnterpriseExists(EnterpriseRegisterDTO enterprise)
         {
-            bool isEnterpriseRegistered = _enterpriseBO.ExistsEnterprise(enterprise);
+            bool isEnterpriseRegistered = await _enterpriseBO.ExistsEnterprise(enterprise);
 
             if (isEnterpriseRegistered)
             {
@@ -34,16 +30,16 @@ namespace ClockIt.src.Core.Domain.BOs
             }
         }
 
-        public int RegisterEnterprise(EnterpriseRegisterDTO enterprise)
+        public async Task<int> RegisterEnterprise(EnterpriseRegisterDTO enterprise)
         {
-            return _enterpriseBO.AddEnterprise(enterprise);
+            return await _enterpriseBO.AddEnterprise(enterprise);
         }
 
-        private string GetFile(string jsonFile)
+        private async Task<string> GetFile(string jsonFile)
         {
             string filePath = null;
 
-            filePath = FileHelper.FindFileInProject(jsonFile);
+            filePath = await FileHelper.FindFileInProject(jsonFile);
 
             if (!File.Exists(filePath))
             {
@@ -53,14 +49,14 @@ namespace ClockIt.src.Core.Domain.BOs
             return filePath;
         }
 
-        private string GetStatesFileByCountry(string country)
+        private async Task<string> GetStatesFileByCountry(string country)
         {
             string statesFile = null;
 
             switch (country)
             {
                 case "Brasil":
-                    statesFile = GetFile("br_states.json");
+                    statesFile = await GetFile("br_states.json");
                     break;
             }
 
@@ -72,9 +68,9 @@ namespace ClockIt.src.Core.Domain.BOs
             return statesFile;
         }
 
-        public string GetStatesJsonByCountry(string country)
+        public async Task<string> GetStatesJsonByCountry(string country)
         {
-            string statesFile = GetStatesFileByCountry(country);
+            string statesFile = await GetStatesFileByCountry(country);
 
             string jsonStates = File.ReadAllText(statesFile);
 
@@ -86,14 +82,14 @@ namespace ClockIt.src.Core.Domain.BOs
             return jsonStates;
         }
 
-        private string GetCitiesFileByState(string country)
+        private async Task<string> GetCitiesFileByState(string country)
         {
             string citiesFile = null;
 
             switch (country)
             {
                 case "Brasil":
-                    citiesFile = GetFile("br_cities.json");
+                    citiesFile = await GetFile("br_cities.json");
                     break;
             }
 
@@ -105,9 +101,9 @@ namespace ClockIt.src.Core.Domain.BOs
             return citiesFile;
         }
 
-        public string GetCitiesJsonByCountry(string country)
+        public async Task<string> GetCitiesJsonByCountry(string country)
         {
-            string citiesFile = GetCitiesFileByState(country);
+            string citiesFile = await GetCitiesFileByState(country);
 
             string jsonCities = File.ReadAllText(citiesFile);
 

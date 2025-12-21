@@ -21,11 +21,11 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             _connectionString = connectionString;
         }
 
-        public int RegisterEnterprise(EnterpriseRegisterDTO enterprise)
+        public async Task<int> RegisterEnterprise(EnterpriseRegisterDTO enterprise)
         {
             using (var conn = new NpgsqlConnection(_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 string query = "INSERT INTO tb_enterprises (enterprise_name, enterprise_email, enterprise_country, enterprise_state, enterprise_city) VALUES (@Name, @Email, @Country, @State, @City) RETURNING id";
 
@@ -44,13 +44,13 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             }
         }
 
-        public EnterpriseModel GetEnterpriseById(int id)
+        public async Task<EnterpriseModel> GetEnterpriseById(int id)
         {
             EnterpriseModel? enterprise = null;
 
             using (var conn = new NpgsqlConnection(_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 string query = "SELECT * FROM tb_enterprises WHERE id = @id";
 
@@ -85,13 +85,13 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             return enterprise!;
         }
 
-        public int GetEnterpriseIdByName(string enterpriseName)
+        public async Task<int> GetEnterpriseIdByName(string enterpriseName)
         {
             int enterpriseId = 0;
 
             using (var conn = new NpgsqlConnection(_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 string query = "SELECT id FROM tb_enterprises WHERE enterprise_name = @enterprise_name";
 
@@ -113,13 +113,13 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
         }
 
 
-        public string GetEnterpriseNameById(int enterpriseId)
+        public async Task<string> GetEnterpriseNameById(int enterpriseId)
         {
             string enterpriseName = "";
 
             using (var conn = new NpgsqlConnection(_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 string query = "SELECT enterprise_name FROM tb_enterprises WHERE id = @id";
 
@@ -140,11 +140,11 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             return enterpriseName;
         }
 
-        public bool ExistsEnterprise(EnterpriseRegisterDTO enterprise)
+        public async Task<bool> ExistsEnterprise(EnterpriseRegisterDTO enterprise)
         {
             using (var conn = new NpgsqlConnection(_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 string query = @"SELECT 
                                     1 

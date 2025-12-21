@@ -23,15 +23,15 @@ namespace ClockIt.src.ApplicationLayer.Services
             _mainContext = mainContext;
         }
 
-        public bool IsMachineRegistered()
+        public async Task<bool> IsMachineRegistered()
         {
-            return _machineService.IsMachineRegistered();
+            return await _machineService.IsMachineRegistered();
         }
 
-        public void SetApplicationContext()
+        public async Task SetApplicationContext()
         {
-            MachineModel contextMachine = _machineService.GetMachine();
-            EnterpriseModel contextEnterprise = _enterpriseService.GetEnterpriseById(contextMachine.EnterpriseId);
+            MachineModel contextMachine = await _machineService.GetMachine();
+            EnterpriseModel contextEnterprise = await _enterpriseService.GetEnterpriseById(contextMachine.EnterpriseId);
 
             _mainContext.SetMainContext(contextMachine, contextEnterprise);
         }

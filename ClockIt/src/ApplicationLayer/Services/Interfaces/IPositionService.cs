@@ -11,6 +11,6 @@ namespace ClockIt.src.ApplicationLayer.Services.Interfaces
     public interface IPositionService
     {
         Task RegisterPosition(PositionDTO position);
-        List<PositionModel> GetEnterprisePositions();
+        Task<List<PositionModel>> GetEnterprisePositions();
     }
 }

@@ -30,9 +30,9 @@ namespace ClockIt.src.ApplicationLayer.Services
             }
         }
 
-        public List<PositionModel> GetEnterprisePositions()
+        public async Task<List<PositionModel>> GetEnterprisePositions()
         {
-            var positions = _repository.GetEnterprisePositions();
+            var positions = await _repository.GetEnterprisePositions();
 
             bool enterpriseHasAnyPosition = positions.Any();
             if (!enterpriseHasAnyPosition)
@@ -40,7 +40,7 @@ namespace ClockIt.src.ApplicationLayer.Services
                 throw new InvalidOperationException("A sua empresa não possui cargos cadastrados.");
             }
 
-            return _repository.GetEnterprisePositions();
+            return positions;
         }
     }
 }

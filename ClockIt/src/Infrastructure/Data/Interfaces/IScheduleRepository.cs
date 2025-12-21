@@ -9,6 +9,6 @@ namespace ClockIt.src.Infrastructure.Data.Interfaces
 {
     public interface IScheduleRepository
     {
-        void RegisterEmployeeSchedule(ScheduleDTO schedule);
+        Task RegisterEmployeeSchedule(ScheduleDTO schedule);
     }
 }

@@ -19,11 +19,11 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             _connectionString = connectionString;
         }
 
-        public void RegisterEmployeeSchedule(ScheduleDTO schedule)
+        public async Task RegisterEmployeeSchedule(ScheduleDTO schedule)
         {
             using (var conn = new NpgsqlConnection(_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 string query = @"INSERT INTO tb_schedule 
                                     (employee_id, 

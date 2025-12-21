@@ -27,20 +27,20 @@ namespace ClockIt.src.Presentation.Forms.Main.Admin.Employee
         public DateTime LunchExitTime => employeeLunchExitTimeDatePicker.Value;
         public DateTime ExitTime => employeeExitTimeDatePicker.Value;
 
-        public event EventHandler EnterpriseUsersRequested;
-        public event EventHandler EnterprisePositionsRequested;
+        public event Func<object, EventArgs, Task> EnterpriseUsersRequested;
+        public event Func<object, EventArgs, Task> EnterprisePositionsRequested;
 
-        public event EventHandler EmployeeNameInputValidationRequested;
-        public event EventHandler CpfInputValidationRequested;
-        public event EventHandler BirthDateInputValidationRequested;
-        public event EventHandler EmailInputValidationRequested;
-        public event EventHandler PositionInputValidationRequested;
-        public event EventHandler EntryTimeInputValidationRequested;
-        public event EventHandler LunchEntryTimeInputValidationRequested;
-        public event EventHandler LunchExitTimeInputValidationRequested;
-        public event EventHandler ExitTimeInputValidationRequested;
+        public event Func<object, EventArgs, Task> EmployeeNameInputValidationRequested;
+        public event Func<object, EventArgs, Task> CpfInputValidationRequested;
+        public event Func<object, EventArgs, Task> BirthDateInputValidationRequested;
+        public event Func<object, EventArgs, Task> EmailInputValidationRequested;
+        public event Func<object, EventArgs, Task> PositionInputValidationRequested;
+        public event Func<object, EventArgs, Task> EntryTimeInputValidationRequested;
+        public event Func<object, EventArgs, Task> LunchEntryTimeInputValidationRequested;
+        public event Func<object, EventArgs, Task> LunchExitTimeInputValidationRequested;
+        public event Func<object, EventArgs, Task> ExitTimeInputValidationRequested;
 
-        public event EventHandler CreateEmployeeRequested;
+        public event Func<object, EventArgs, Task> CreateEmployeeRequested;
 
         public List<ShowUsersDTO> EnterpriseUsers { get; set; }
         public List<PositionModel> EnterprisePositions { get; set; }
@@ -52,8 +52,8 @@ namespace ClockIt.src.Presentation.Forms.Main.Admin.Employee
 
         private void CreateEmployeeForm_Load(object sender, EventArgs e)
         {
-            this.Shown += (s, e) => EnterpriseUsersRequested?.Invoke(this, EventArgs.Empty);
-            this.Shown += (s, e) => EnterprisePositionsRequested?.Invoke(this, EventArgs.Empty);
+            this.Shown += async (s, e) => await EnterpriseUsersRequested.Invoke(this, EventArgs.Empty);
+            this.Shown += async (s, e) => await EnterprisePositionsRequested.Invoke(this, EventArgs.Empty);
         }
 
         public void ShowEnterpriseUsers()
@@ -70,9 +70,9 @@ namespace ClockIt.src.Presentation.Forms.Main.Admin.Employee
             employeePositionCombo.SelectedIndex = -1;
         }
 
-        private void CreateEmployee(object sender, EventArgs e)
+        private async void CreateEmployee(object sender, EventArgs e)
         {
-            CreateEmployeeRequested?.Invoke(this, EventArgs.Empty);
+            await CreateEmployeeRequested.Invoke(this, EventArgs.Empty);
         }
 
         public void CleanScreenInputs()

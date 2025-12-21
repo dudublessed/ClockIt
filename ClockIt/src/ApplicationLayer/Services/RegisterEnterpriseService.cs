@@ -33,46 +33,46 @@ namespace ClockIt.src.ApplicationLayer.Services
             _BO = registerEnterpriseBO;
         }
 
-        public void CheckEnterpriseExistance(EnterpriseRegisterDTO enterprise)
+        public async Task CheckEnterpriseExistance(EnterpriseRegisterDTO enterprise)
         {
-            _BO.CheckIfEnterpriseExists(enterprise);
+            await _BO.CheckIfEnterpriseExists(enterprise);
         }
 
-        public void CheckMachineExistance()
+        public async Task CheckMachineExistance()
         {
-            _machineService.IsMachineRegistered();
+            await _machineService.IsMachineRegistered();
         }
 
-        public void Register(EnterpriseRegisterDTO enterprise)
+        public async Task Register(EnterpriseRegisterDTO enterprise)
         {
             using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
-                var registeredEnterpriseId = _BO.RegisterEnterprise(enterprise);
+                var registeredEnterpriseId = await _BO.RegisterEnterprise(enterprise);
 
                 var localMachineGuid = _machineService.GetLocalMachineGuid();
                 var machine = new MachineRegisterDTO(localMachineGuid, registeredEnterpriseId);
-                _machineService.RegisterMachine(machine);
+                await _machineService.RegisterMachine(machine);
 
                 var admin = new UserDTO("Admin", "ADMIN", "mA$p01MlLIO!", UserDTO.UserType.Admin, registeredEnterpriseId);
 
-                _userService.RegisterUser(admin);
+                await _userService.RegisterUser(admin);
 
                 scope.Complete();
             }
         }
 
-        public List<StateModel> GetStatesByCountry(string selectedCountry)
+        public async Task<List<StateModel>> GetStatesByCountry(string selectedCountry)
         {
-            string jsonStates = _BO.GetStatesJsonByCountry(selectedCountry);
+            string jsonStates = await _BO.GetStatesJsonByCountry(selectedCountry);
 
             var states = JsonConvert.DeserializeObject<Dictionary<string, List<StateModel>>>(jsonStates);
 
             return states![selectedCountry];
         }
 
-        public List<CityModel> GetCitiesByCountryAndState(string selectedCountry, string selectedState)
+        public async Task<List<CityModel>> GetCitiesByCountryAndState(string selectedCountry, string selectedState)
         {
-            string jsonCities = _BO.GetCitiesJsonByCountry(selectedCountry);
+            string jsonCities = await _BO.GetCitiesJsonByCountry(selectedCountry);
 
             var cities = JsonConvert.DeserializeObject<List<CityModel>>(jsonCities);
 

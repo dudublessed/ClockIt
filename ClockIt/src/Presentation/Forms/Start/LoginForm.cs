@@ -16,16 +16,16 @@ namespace ClockIt.src.Presentation.Forms.Start
             set => companyLabel.Text = value;
         }
 
-        public event EventHandler FormShown;
-        public event EventHandler FormActivated;
-        public event EventHandler LoginRequested;
+        public event Func<object, EventArgs, Task> FormShown;
+        public event Func<object, EventArgs, Task> FormActivated;
+        public event Func<object, EventArgs, Task> LoginRequested;
 
         public LoginForm()
         {
             InitializeComponent();
 
-            this.Shown += (s, e) => FormShown?.Invoke(this, EventArgs.Empty);
-            this.Activated += (s, e) => FormActivated?.Invoke(this, EventArgs.Empty);
+            this.Shown += async (s, e) => await (FormShown?.Invoke(this, EventArgs.Empty) ?? Task.CompletedTask);
+            this.Activated += async (s, e) => await (FormActivated?.Invoke(this, EventArgs.Empty) ?? Task.CompletedTask);
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
@@ -33,7 +33,7 @@ namespace ClockIt.src.Presentation.Forms.Start
             companyLabel.Text = EnterpriseName;  
         }
 
-        public void ShowUsers(List<ShowUsersDTO> users)
+        public async Task ShowUsers(List<ShowUsersDTO> users)
         {
             usersContainer.Controls.Clear();
 
@@ -62,7 +62,7 @@ namespace ClockIt.src.Presentation.Forms.Start
                 this.ApplyHoverEffect(userButton, [245, 245, 245]);
 
                 string userLogin = user.Login;
-                string userAvatar = FileHelper.FindFileInProject("user_avatar.png");
+                string userAvatar = await FileHelper.FindFileInProject("user_avatar.png");
 
                 Image original = Image.FromFile(userAvatar);
                 Image resizedUserAvatar = new Bitmap(original, new Size(50, 50));
@@ -121,11 +121,11 @@ namespace ClockIt.src.Presentation.Forms.Start
             };
         }
 
-        private void IsKeyDownEnter(object? sender, KeyEventArgs e)
+        private async void IsKeyDownEnter(object? sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                LoginRequested?.Invoke(this, EventArgs.Empty);
+                await LoginRequested.Invoke(this, EventArgs.Empty);
                 e.SuppressKeyPress = true;
             }
         }

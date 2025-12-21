@@ -28,11 +28,11 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             _connectionString = connectionstring;
         }
 
-        public void RegisterUser(UserDTO user)
+        public async Task RegisterUser(UserDTO user)
         {
             using (var conn = new NpgsqlConnection(_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 string query = "INSERT INTO tb_users (username, login, user_password, user_type, enterprise_id) VALUES (@username, @login, @user_password, @user_type, @enterprise_id)";
 
@@ -49,11 +49,11 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             }
         }
 
-        public bool IsUserRegistered(UserDTO user)
+        public async Task<bool> IsUserRegistered(UserDTO user)
         {
             using (var conn = new NpgsqlConnection(_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 string query = @"SELECT 
                                     true
@@ -81,11 +81,11 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             return false;
         }
 
-        public void UpdateAdminPassword(UpdateAdminPasswordDTO credentials)
+        public async Task UpdateAdminPassword(UpdateAdminPasswordDTO credentials)
         {
             using (var conn = new NpgsqlConnection(_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 string query = "UPDATE tb_users SET user_password = @user_password WHERE login = @login";
 
@@ -99,13 +99,13 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             }
         }
 
-        public string GetEnterpriseAdminPassword()
+        public async Task<string> GetEnterpriseAdminPassword()
         {
             string adminPassword = "";
 
             using (var conn = new NpgsqlConnection(_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 string query = @"SELECT 
                                     user_password 
@@ -132,13 +132,13 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             return adminPassword;
         }
 
-        public List<ShowUsersDTO> GetEnterpriseUsers()
+        public async Task<List<ShowUsersDTO>> GetEnterpriseUsers()
         {
             var users = new List<ShowUsersDTO>();
 
             using (var conn = new NpgsqlConnection(_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 string query = "SELECT * FROM tb_users WHERE enterprise_id = @enterprise_id";
 
@@ -165,13 +165,13 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             return users;
         }
 
-        public List<ShowUsersDTO> GetEnterpriseEmployeeUsers()
+        public async Task<List<ShowUsersDTO>> GetEnterpriseEmployeeUsers()
         {
             var employeeUsers = new List<ShowUsersDTO>();
 
             using (var conn = new NpgsqlConnection(_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 string query = @"SELECT 
                                     tu.* 
@@ -211,13 +211,13 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             return employeeUsers;
         }
 
-        public List<ShowUsersDTO> GetNotEmployeeUsers()
+        public async Task<List<ShowUsersDTO>> GetNotEmployeeUsers()
         {
             var notEmployeeUsers = new List<ShowUsersDTO>();
 
             using (var conn = new NpgsqlConnection(_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 string query = @"SELECT 
 	                                tu.* 
@@ -251,13 +251,13 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             return notEmployeeUsers;
         }
 
-        public string GetUserHashPasswordByLogin(string login)
+        public async Task<string> GetUserHashPasswordByLogin(string login)
         {
             string userPassword = "";
 
             using (var conn = new NpgsqlConnection(_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 string query = @"SELECT 
                                     user_password 

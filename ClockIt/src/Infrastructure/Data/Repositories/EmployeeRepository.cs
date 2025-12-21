@@ -28,11 +28,11 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             _userContext = userContext;
         }
 
-        public void RegisterEmployee(EmployeeDTO employee)
+        public async Task RegisterEmployee(EmployeeDTO employee)
         {
             using (var conn = new NpgsqlConnection(_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 string query = @"INSERT INTO tb_employees 
                                     (user_id, 
@@ -63,13 +63,13 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             }
         }
 
-        public EmployeeModel GetEmployeeByUserId(int userId)
+        public async Task<EmployeeModel> GetEmployeeByUserId(int userId)
         {
             EmployeeModel employee = null;
 
             using (var conn = new NpgsqlConnection(_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 string query = @"SELECT 
                                      te.*
@@ -104,13 +104,13 @@ namespace ClockIt.src.Infrastructure.Data.Repositories
             return employee;
         }
 
-        public EmployeeModel GetEmployeeByUserContext()
+        public async Task<EmployeeModel> GetEmployeeByUserContext()
         {
             EmployeeModel employee = null;
 
             using (var conn = new NpgsqlConnection(_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 string query = @"SELECT 
                                      te.*

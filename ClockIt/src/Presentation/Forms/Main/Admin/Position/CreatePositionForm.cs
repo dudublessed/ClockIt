@@ -30,8 +30,14 @@ namespace ClockIt.src.Presentation.Forms.Main.Admin.Position
 
         public void CleanUserInputFields()
         {
-            positionNameTextBox.Text = "";
-            positionDescriptionTextBox.Text = "";
+            if (InvokeRequired)
+            {
+                Invoke(new Action(CleanUserInputFields));
+                return;
+            }
+
+            positionNameTextBox.Clear();
+            positionDescriptionTextBox.Clear();
         }
     }
 }

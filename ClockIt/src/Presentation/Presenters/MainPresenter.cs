@@ -27,18 +27,18 @@ namespace ClockIt.src.Presentation.Presenters
             _service = mainService;
         }
 
-        public void Start()
+        public async Task Start()
         {
             try
             {
-                bool isMachineRegistered = _service.IsMachineRegistered();
+                bool isMachineRegistered = await _service.IsMachineRegistered();
                 if (!isMachineRegistered)
                 {
                     ShowRegistrationForm();
                     return;
                 }
 
-                _service.SetApplicationContext();
+                await _service.SetApplicationContext();
                 ShowLoginForm();
             } catch (Exception ex)
             {

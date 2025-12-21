@@ -10,17 +10,17 @@ namespace ClockIt.src.Infrastructure.Data.Interfaces
 {
     public interface IUserRepository
     {
-        void RegisterUser(UserDTO user);
+        Task RegisterUser(UserDTO user);
         // void FindUser();
         // void UpdateUser(UserModel user);
         // void DeleteUser(int userId);
 
-        bool IsUserRegistered(UserDTO user);
-        void UpdateAdminPassword(UpdateAdminPasswordDTO credentials);
-        string GetEnterpriseAdminPassword();
-        List<ShowUsersDTO> GetEnterpriseUsers();
-        List<ShowUsersDTO> GetEnterpriseEmployeeUsers();
-        List<ShowUsersDTO> GetNotEmployeeUsers();
-        string GetUserHashPasswordByLogin(string login);
+        Task<bool> IsUserRegistered(UserDTO user);
+        Task UpdateAdminPassword(UpdateAdminPasswordDTO credentials);
+        Task<string> GetEnterpriseAdminPassword();
+        Task<List<ShowUsersDTO>> GetEnterpriseUsers();
+        Task<List<ShowUsersDTO>> GetEnterpriseEmployeeUsers();
+        Task<List<ShowUsersDTO>> GetNotEmployeeUsers();
+        Task<string> GetUserHashPasswordByLogin(string login);
     }
 }

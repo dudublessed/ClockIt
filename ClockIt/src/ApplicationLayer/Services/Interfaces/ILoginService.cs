@@ -10,10 +10,10 @@ namespace ClockIt.src.ApplicationLayer.Services.Interfaces
 {
     public interface ILoginService
     {
-        EmployeeModel GetEmployeeByUserContext();
-        List<ShowUsersDTO> GetEnterpriseEmployeeUsers();
-        bool IsAdminPasswordDefault();
-        void VerifyPassword(UserLoginDTO input);
+        Task<EmployeeModel> GetEmployeeByUserContext();
+        Task<List<ShowUsersDTO>> GetEnterpriseEmployeeUsers();
+        Task<bool> IsAdminPasswordDefault();
+        Task VerifyPassword(UserLoginDTO input);
 
     }
 }

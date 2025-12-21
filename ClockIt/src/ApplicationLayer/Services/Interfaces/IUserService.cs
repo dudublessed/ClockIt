@@ -10,14 +10,13 @@ namespace ClockIt.src.ApplicationLayer.Services.Interfaces
 {
     public interface IUserService
     {
-        bool IsUserRegistered(UserDTO user);
-        void RegisterUser(UserDTO user);
-        void UpdateAdminPassword(UpdateAdminPasswordDTO credentials);
-        List<ShowUsersDTO> GetEnterpriseUsers();
-        List<ShowUsersDTO> GetEnterpriseEmployeeUsers();
-        List<ShowUsersDTO> GetNotEmployeeUsers();
-        string GetEnterpriseAdminPassword();
-        string GetUserHashPasswordByLogin(string login);
-        bool IsPasswordInputsMatching(PasswordsMatchDTO credentials);
+        Task<bool> IsUserRegistered(UserDTO user);
+        Task RegisterUser(UserDTO user);
+        Task UpdateAdminPassword(UpdateAdminPasswordDTO credentials);
+        Task<List<ShowUsersDTO>> GetEnterpriseUsers();
+        Task<List<ShowUsersDTO>> GetEnterpriseEmployeeUsers();
+        Task<List<ShowUsersDTO>> GetNotEmployeeUsers();
+        Task<string> GetEnterpriseAdminPassword();
+        Task<string> GetUserHashPasswordByLogin(string login);
     }
 }

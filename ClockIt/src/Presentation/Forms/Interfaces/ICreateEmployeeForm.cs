@@ -21,20 +21,20 @@ namespace ClockIt.src.Presentation.Forms.Interfaces
         DateTime LunchExitTime { get; }
         DateTime ExitTime { get; }
 
-        event EventHandler EnterpriseUsersRequested;
-        event EventHandler EnterprisePositionsRequested;
+        event Func<object, EventArgs, Task> EnterpriseUsersRequested;
+        event Func<object, EventArgs, Task> EnterprisePositionsRequested;
 
-        event EventHandler EmployeeNameInputValidationRequested;
-        event EventHandler CpfInputValidationRequested;
-        event EventHandler BirthDateInputValidationRequested;
-        event EventHandler EmailInputValidationRequested;
-        event EventHandler PositionInputValidationRequested;
-        event EventHandler EntryTimeInputValidationRequested;
-        event EventHandler LunchEntryTimeInputValidationRequested;
-        event EventHandler LunchExitTimeInputValidationRequested;
-        event EventHandler ExitTimeInputValidationRequested;
+        event Func<object, EventArgs, Task> EmployeeNameInputValidationRequested;
+        event Func<object, EventArgs, Task> CpfInputValidationRequested;
+        event Func<object, EventArgs, Task> BirthDateInputValidationRequested;
+        event Func<object, EventArgs, Task> EmailInputValidationRequested;
+        event Func<object, EventArgs, Task> PositionInputValidationRequested;
+        event Func<object, EventArgs, Task> EntryTimeInputValidationRequested;
+        event Func<object, EventArgs, Task> LunchEntryTimeInputValidationRequested;
+        event Func<object, EventArgs, Task> LunchExitTimeInputValidationRequested;
+        event Func<object, EventArgs, Task> ExitTimeInputValidationRequested;
 
-        event EventHandler CreateEmployeeRequested;
+        event Func<object, EventArgs, Task> CreateEmployeeRequested;
 
         List<ShowUsersDTO> EnterpriseUsers { get; set; }
         List<PositionModel> EnterprisePositions { get; set; }

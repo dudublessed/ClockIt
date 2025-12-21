@@ -16,45 +16,39 @@ namespace ClockIt.src.ApplicationLayer.Services
     public class EmployeeService : IEmployeeService
     {
         private readonly IPositionService _positionsService;
-        private readonly IAttendanceService _attendanceService;
-        private readonly IRecordService _recordService;
 
         private readonly IEmployeeRepository _repository;
 
         public EmployeeService(IPositionService positionsService, 
-            IAttendanceService attendanceService, 
-            IRecordService recordService, 
             IEmployeeRepository repository)
         {
             _positionsService = positionsService;
-            _attendanceService = attendanceService;
-
             _repository = repository;
         }
 
-        public void RegisterEmployee(EmployeeDTO employee)
+        public async Task RegisterEmployee(EmployeeDTO employee)
         {
             using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
-                _repository.RegisterEmployee(employee);
+                await _repository.RegisterEmployee(employee);
 
                 scope.Complete();
             }
         }
 
-        public EmployeeModel GetEmployeeByUserId(int userId)
+        public async Task<EmployeeModel> GetEmployeeByUserId(int userId)
         {
-            return _repository.GetEmployeeByUserId(userId);
+            return await _repository.GetEmployeeByUserId(userId);
         }
 
-        public EmployeeModel GetEmployeeByUserContext()
+        public async Task<EmployeeModel> GetEmployeeByUserContext()
         {
-            return _repository.GetEmployeeByUserContext();
+            return await _repository.GetEmployeeByUserContext();
         }
 
-        public List<PositionModel> GetEnterprisePositions()
+        public async Task<List<PositionModel>> GetEnterprisePositions()
         {
-            return _positionsService.GetEnterprisePositions();
+            return await _positionsService.GetEnterprisePositions();
         }
     }
 }

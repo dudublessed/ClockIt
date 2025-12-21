@@ -10,10 +10,10 @@ namespace ClockIt.src.Infrastructure.Data.Interfaces
 {
     public interface IMachineRepository
     {
-        MachineModel GetMachineByGuid(Guid guid);
-        void AddMachine(MachineRegisterDTO machine);
+        Task<MachineModel> GetMachineByGuid(Guid guid);
+        Task AddMachine(MachineRegisterDTO machine);
         //void UpdateMachine(MachineModel machine);
         //void DeleteMachine(Guid guid);
-        bool IsMachineRegistered(Guid guid);
+        Task<bool> IsMachineRegistered(Guid guid);
     }
 }

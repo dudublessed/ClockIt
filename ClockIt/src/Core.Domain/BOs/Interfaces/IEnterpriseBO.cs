@@ -9,8 +9,8 @@ namespace ClockIt.src.Core.Domain.BOs.Interfaces
 {
     public interface IEnterpriseBO
     {
-        int AddEnterprise(EnterpriseRegisterDTO enterprise);
-        string GetEnterpriseNameById(int enterpriseId);
-        bool ExistsEnterprise(EnterpriseRegisterDTO enterprise);
+        Task<int> AddEnterprise(EnterpriseRegisterDTO enterprise);
+        Task<string> GetEnterpriseNameById(int enterpriseId);
+        Task<bool> ExistsEnterprise(EnterpriseRegisterDTO enterprise);
     }
 }

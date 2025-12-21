@@ -10,8 +10,8 @@ namespace ClockIt.src.Infrastructure.Data.Interfaces
 {
     public interface IEmployeeRepository
     {
-        void RegisterEmployee(EmployeeDTO employee);
-        EmployeeModel GetEmployeeByUserId(int userId);
-        EmployeeModel GetEmployeeByUserContext();
+        Task RegisterEmployee(EmployeeDTO employee);
+        Task<EmployeeModel> GetEmployeeByUserId(int userId);
+        Task<EmployeeModel> GetEmployeeByUserContext();
     }
 }

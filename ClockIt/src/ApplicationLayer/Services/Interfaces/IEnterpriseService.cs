@@ -9,7 +9,7 @@ namespace ClockIt.src.ApplicationLayer.Services.Interfaces
 {
     public interface IEnterpriseService
     {
-        EnterpriseModel GetEnterpriseById(int enterpriseId);
-        string GetEnterpriseNameById(int enterpriseId);
+        Task<EnterpriseModel> GetEnterpriseById(int enterpriseId);
+        Task<string> GetEnterpriseNameById(int enterpriseId);
     }
 }

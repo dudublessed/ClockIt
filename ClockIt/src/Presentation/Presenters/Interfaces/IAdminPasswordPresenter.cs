@@ -8,6 +8,6 @@ namespace ClockIt.src.Presentation.Presenters.Interfaces
 {
     public interface IAdminPasswordPresenter
     {
-        DialogResult ShowDialog();
+        void ShowDialog();
     }
 }

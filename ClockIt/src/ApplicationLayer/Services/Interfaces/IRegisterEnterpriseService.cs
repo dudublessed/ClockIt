@@ -13,7 +13,7 @@ namespace ClockIt.src.ApplicationLayer.Services.Interfaces
         Task CheckEnterpriseExistance(EnterpriseRegisterDTO enterprise);
         Task CheckMachineExistance();
         Task Register(EnterpriseRegisterDTO enterprise);
-        Task<List<StateModel>> GetStatesByCountry(string selectedCountry);
-        Task<List<CityModel>> GetCitiesByCountryAndState(string selectedCountry, string selectedState);
+        List<StateModel> GetStatesByCountry(string selectedCountry);
+        List<CityModel> GetCitiesByCountryAndState(string selectedCountry, string selectedState);
     }
 }

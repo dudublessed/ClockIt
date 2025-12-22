@@ -26,7 +26,7 @@ namespace ClockIt.src.Presentation.Forms.Interfaces
         event EventHandler FormShown;
         event Func<object, EventArgs, Task> RegistrationRequested;
 
-        event Func<object, EventArgs, Task> LoadStatesByCountry;
-        event Func<object, EventArgs, Task> LoadCitiesByState;
+        event EventHandler LoadStatesByCountry;
+        event EventHandler LoadCitiesByState;
     }
 }

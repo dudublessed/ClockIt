@@ -61,18 +61,18 @@ namespace ClockIt.src.ApplicationLayer.Services
             }
         }
 
-        public async Task<List<StateModel>> GetStatesByCountry(string selectedCountry)
+        public List<StateModel> GetStatesByCountry(string selectedCountry)
         {
-            string jsonStates = await _BO.GetStatesJsonByCountry(selectedCountry);
+            string jsonStates = _BO.GetStatesJsonByCountry(selectedCountry);
 
             var states = JsonConvert.DeserializeObject<Dictionary<string, List<StateModel>>>(jsonStates);
 
             return states![selectedCountry];
         }
 
-        public async Task<List<CityModel>> GetCitiesByCountryAndState(string selectedCountry, string selectedState)
+        public List<CityModel> GetCitiesByCountryAndState(string selectedCountry, string selectedState)
         {
-            string jsonCities = await _BO.GetCitiesJsonByCountry(selectedCountry);
+            string jsonCities = _BO.GetCitiesJsonByCountry(selectedCountry);
 
             var cities = JsonConvert.DeserializeObject<List<CityModel>>(jsonCities);
 

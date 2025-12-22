@@ -24,8 +24,8 @@ namespace ClockIt.src.Presentation.Forms.Start
         public event EventHandler FormShown;
         public event Func<object, EventArgs, Task> RegistrationRequested;
 
-        public event Func<object, EventArgs, Task> LoadStatesByCountry;
-        public event Func<object, EventArgs, Task> LoadCitiesByState;
+        public event EventHandler LoadStatesByCountry;
+        public event EventHandler LoadCitiesByState;
 
         public RegisterEnterpriseForm()
         {
@@ -46,7 +46,7 @@ namespace ClockIt.src.Presentation.Forms.Start
 
         public async void ShowStatesByCountry(object sender, EventArgs e)
         {
-            await LoadStatesByCountry.Invoke(this, EventArgs.Empty);
+            LoadStatesByCountry.Invoke(this, EventArgs.Empty);
 
             enterpriseStateCombo.Items.Clear();
             enterpriseStateCombo.Items.AddRange(States.Select(s => s.Name).ToArray());
@@ -55,7 +55,7 @@ namespace ClockIt.src.Presentation.Forms.Start
 
         public async void ShowCitiesByState(object sender, EventArgs e)
         {
-            await LoadCitiesByState.Invoke(this, EventArgs.Empty);
+            LoadCitiesByState.Invoke(this, EventArgs.Empty);
 
             enterpriseCityCombo.Items.Clear();
             enterpriseCityCombo.Items.AddRange(Cities.Select(s => s.Name).ToArray());

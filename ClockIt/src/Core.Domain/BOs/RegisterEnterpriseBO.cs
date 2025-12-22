@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ClockIt.src.Core.Domain.BOs.Interfaces;
-using ClockIt.src.Shared.DTOs.MachineDTOs;
+﻿using ClockIt.src.Core.Domain.BOs.Interfaces;
 using ClockIt.src.Shared.DTOs.EnterpriseDTOs;
+using ClockIt.src.Shared.DTOs.MachineDTOs;
 using ClockIt.src.Shared.DTOs.UserDTOs;
 using ClockIt.src.Shared.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ClockIt.src.Core.Domain.BOs
 {
@@ -35,84 +36,79 @@ namespace ClockIt.src.Core.Domain.BOs
             return await _enterpriseBO.AddEnterprise(enterprise);
         }
 
-        private async Task<string> GetFile(string jsonFile)
+        public string GetStatesJsonByCountry(string country)
         {
-            string filePath = null;
+            string jsonStatesContent = GetStatesFileByCountry(country);
 
-            filePath = await FileHelper.FindFileInProject(jsonFile);
-
-            if (!File.Exists(filePath))
-            {
-                throw new Exception("O arquivo não existe ou não pode ser encontrado.");
-            }
-
-            return filePath;
-        }
-
-        private async Task<string> GetStatesFileByCountry(string country)
-        {
-            string statesFile = null;
-
-            switch (country)
-            {
-                case "Brasil":
-                    statesFile = await GetFile("br_states.json");
-                    break;
-            }
-
-            if (string.IsNullOrEmpty(statesFile))
-            {
-                throw new Exception("Não foi possível verificar os estados disponíveis.");
-            }
-
-            return statesFile;
-        }
-
-        public async Task<string> GetStatesJsonByCountry(string country)
-        {
-            string statesFile = await GetStatesFileByCountry(country);
-
-            string jsonStates = File.ReadAllText(statesFile);
-
-            if (string.IsNullOrEmpty(jsonStates))
+            if (string.IsNullOrEmpty(jsonStatesContent))
             {
                 throw new Exception("Não há estados para este país.");
             }
 
-            return jsonStates;
+            return jsonStatesContent;
         }
 
-        private async Task<string> GetCitiesFileByState(string country)
+        private string GetStatesFileByCountry(string country)
         {
-            string citiesFile = null;
+            string? jsonStatesContent = null;
 
             switch (country)
             {
                 case "Brasil":
-                    citiesFile = await GetFile("br_cities.json");
+                    jsonStatesContent = GetFileContent("ClockIt.config.resources.brazil.br_states.json");
                     break;
             }
 
-            if (string.IsNullOrEmpty(citiesFile))
+            if (string.IsNullOrEmpty(jsonStatesContent))
             {
-                throw new Exception("Não foi possível verificar as cidades disponíveis.");
+                throw new Exception("Não foi possível verificar os estados disponíveis.");
             }
 
-            return citiesFile;
+            return jsonStatesContent;
         }
 
-        public async Task<string> GetCitiesJsonByCountry(string country)
+        public string GetCitiesJsonByCountry(string country)
         {
-            string citiesFile = await GetCitiesFileByState(country);
+            string jsonCitiesContent = GetCitiesFileByState(country);
 
-            string jsonCities = File.ReadAllText(citiesFile);
-
-            if (string.IsNullOrEmpty(jsonCities))
+            if (string.IsNullOrEmpty(jsonCitiesContent))
             {
                 throw new Exception("Não há cidades para este país.");
             }
 
-            return jsonCities;
+            return jsonCitiesContent;
+        }
+
+
+        private string GetCitiesFileByState(string country)
+        {
+            string? jsonCitiesContent = null;
+
+            switch (country)
+            {
+                case "Brasil":
+                    jsonCitiesContent = GetFileContent("ClockIt.config.resources.brazil.br_cities.json");
+                    break;
+            }
+
+            if (string.IsNullOrEmpty(jsonCitiesContent))
+            {
+                throw new Exception("Não foi possível verificar as cidades disponíveis.");
+            }
+
+            return jsonCitiesContent;
+        }
+
+        private static string GetFileContent(string jsonFile)
+        {
+            using var stream =
+                Assembly.GetExecutingAssembly()
+                        .GetManifestResourceStream(jsonFile)
+                ?? throw new InvalidOperationException("Recurso não encontrado.");
+
+            using var reader = new StreamReader(stream);
+
+            return reader.ReadToEnd();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace ClockIt.src.Core.Domain.BOs.Interfaces
     {
         Task CheckIfEnterpriseExists(EnterpriseRegisterDTO enterprise);
         Task<int> RegisterEnterprise(EnterpriseRegisterDTO enterprise);
-        Task<string> GetStatesJsonByCountry(string country);
-        Task<string> GetCitiesJsonByCountry(string country);
+        string GetStatesJsonByCountry(string country);
+        string GetCitiesJsonByCountry(string country);
     }
 }

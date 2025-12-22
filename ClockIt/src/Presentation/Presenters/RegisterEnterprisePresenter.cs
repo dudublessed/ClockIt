@@ -65,7 +65,7 @@ namespace ClockIt.src.Presentation.Presenters
             }
         }
 
-        private async Task LoadStates(object? sender, EventArgs e)
+        private void LoadStates(object? sender, EventArgs e)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace ClockIt.src.Presentation.Presenters
                     MessageBoxHelper.ShowWarning("Por favor, selecione um país.");
                 }
 
-                _view.States = await _service.GetStatesByCountry(_view.SelectedCountry);
+                _view.States = _service.GetStatesByCountry(_view.SelectedCountry);
             }
             catch (Exception ex)
             {
@@ -82,7 +82,7 @@ namespace ClockIt.src.Presentation.Presenters
             }
         }
 
-        private async Task LoadCities(object? sender, EventArgs e)
+        private void LoadCities(object? sender, EventArgs e)
         {
             try
             {
@@ -95,7 +95,7 @@ namespace ClockIt.src.Presentation.Presenters
 
                 string stateId = selectedState!.ID;
 
-                var cities = await _service.GetCitiesByCountryAndState(_view.SelectedCountry, _view.SelectedState);
+                var cities = _service.GetCitiesByCountryAndState(_view.SelectedCountry, _view.SelectedState);
                 var citiesInState = cities
                     .Where(c => c.State == stateId)
                     .ToList();

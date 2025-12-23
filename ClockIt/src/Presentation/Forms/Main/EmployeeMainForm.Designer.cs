@@ -1,4 +1,6 @@
-﻿namespace ClockIt.src.Presentation.Forms.Main
+﻿using ClockIt.src.Presentation.Visual;
+
+namespace ClockIt.src.Presentation.Forms.Main
 {
     partial class EmployeeMainForm
     {
@@ -46,16 +48,19 @@
             // userPanelLabel
             // 
             userPanelLabel.BackColor = Color.Transparent;
-            userPanelLabel.Font = new Font("Arial", 14F, FontStyle.Bold);
-            userPanelLabel.Location = new Point(214, 36);
+            userPanelLabel.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            userPanelLabel.ForeColor = Color.FromArgb(17, 24, 39);
+            userPanelLabel.Location = new Point(150, 36);
             userPanelLabel.Name = "userPanelLabel";
-            userPanelLabel.Size = new Size(350, 22);
+            userPanelLabel.Size = new Size(500, 22);
             userPanelLabel.TabIndex = 5;
             userPanelLabel.Text = "NOME DE PESSOA TESTE ABODABI";
             userPanelLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // leftPanel
             // 
+            leftPanel.BackColor = Color.FromArgb(229, 231, 235);
+            leftPanel.BorderStyle = BorderStyle.FixedSingle;
             leftPanel.Controls.Add(userTodayClockInsLabel);
             leftPanel.Controls.Add(entryRecordLabel);
             leftPanel.Controls.Add(lunchEntryRecordLabel);
@@ -64,16 +69,16 @@
             leftPanel.Location = new Point(121, 132);
             leftPanel.Name = "leftPanel";
             leftPanel.Size = new Size(249, 212);
-            leftPanel.BackColor = Color.WhiteSmoke;
             leftPanel.TabIndex = 7;
             // 
             // userTodayClockInsLabel
             // 
             userTodayClockInsLabel.BackColor = Color.Transparent;
-            userTodayClockInsLabel.Font = new Font("Arial", 13F);
-            userTodayClockInsLabel.Location = new Point(38, 15);
+            userTodayClockInsLabel.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            userTodayClockInsLabel.ForeColor = Color.FromArgb(17, 24, 39);
+            userTodayClockInsLabel.Location = new Point(25, 15);
             userTodayClockInsLabel.Name = "userTodayClockInsLabel";
-            userTodayClockInsLabel.Size = new Size(165, 22);
+            userTodayClockInsLabel.Size = new Size(200, 22);
             userTodayClockInsLabel.TabIndex = 8;
             userTodayClockInsLabel.Text = "Marcações de Hoje";
             userTodayClockInsLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -81,9 +86,9 @@
             // entryRecordLabel
             // 
             entryRecordLabel.BackColor = Color.Transparent;
-            entryRecordLabel.Font = new Font("Arial", 13F, FontStyle.Bold);
-            entryRecordLabel.ForeColor = Color.FromArgb(15, 100, 220);
-            entryRecordLabel.Location = new Point(38, 60);
+            entryRecordLabel.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            entryRecordLabel.ForeColor = Color.FromArgb(26, 115, 232);
+            entryRecordLabel.Location = new Point(41, 60);
             entryRecordLabel.Name = "entryRecordLabel";
             entryRecordLabel.Size = new Size(165, 22);
             entryRecordLabel.TabIndex = 9;
@@ -93,9 +98,9 @@
             // lunchEntryRecordLabel
             // 
             lunchEntryRecordLabel.BackColor = Color.Transparent;
-            lunchEntryRecordLabel.Font = new Font("Arial", 13F, FontStyle.Bold);
-            lunchEntryRecordLabel.ForeColor = Color.FromArgb(15, 100, 220);
-            lunchEntryRecordLabel.Location = new Point(38, 90);
+            lunchEntryRecordLabel.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            lunchEntryRecordLabel.ForeColor = Color.FromArgb(26, 115, 232);
+            lunchEntryRecordLabel.Location = new Point(41, 90);
             lunchEntryRecordLabel.Name = "lunchEntryRecordLabel";
             lunchEntryRecordLabel.Size = new Size(165, 22);
             lunchEntryRecordLabel.TabIndex = 9;
@@ -105,9 +110,9 @@
             // lunchExitRecordLabel
             // 
             lunchExitRecordLabel.BackColor = Color.Transparent;
-            lunchExitRecordLabel.Font = new Font("Arial", 13F, FontStyle.Bold);
-            lunchExitRecordLabel.ForeColor = Color.FromArgb(15, 100, 220);
-            lunchExitRecordLabel.Location = new Point(38, 120);
+            lunchExitRecordLabel.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            lunchExitRecordLabel.ForeColor = Color.FromArgb(26, 115, 232);
+            lunchExitRecordLabel.Location = new Point(41, 120);
             lunchExitRecordLabel.Name = "lunchExitRecordLabel";
             lunchExitRecordLabel.Size = new Size(165, 22);
             lunchExitRecordLabel.TabIndex = 9;
@@ -117,9 +122,9 @@
             // exitRecordLabel
             // 
             exitRecordLabel.BackColor = Color.Transparent;
-            exitRecordLabel.Font = new Font("Arial", 13F, FontStyle.Bold);
-            exitRecordLabel.ForeColor = Color.FromArgb(15, 100, 220);
-            exitRecordLabel.Location = new Point(38, 150);
+            exitRecordLabel.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            exitRecordLabel.ForeColor = Color.FromArgb(26, 115, 232);
+            exitRecordLabel.Location = new Point(41, 150);
             exitRecordLabel.Name = "exitRecordLabel";
             exitRecordLabel.Size = new Size(165, 22);
             exitRecordLabel.TabIndex = 9;
@@ -128,23 +133,24 @@
             // 
             // rightPanel
             // 
+            rightPanel.BackColor = Color.FromArgb(229, 231, 235);
+            rightPanel.BorderStyle = BorderStyle.FixedSingle;
             rightPanel.Controls.Add(actualDateLabel);
             rightPanel.Controls.Add(clockInButton);
             rightPanel.Controls.Add(actualHourLabel);
-            rightPanel.Location = new Point(435, 177);
+            rightPanel.Location = new Point(422, 132);
             rightPanel.Name = "rightPanel";
-            rightPanel.Size = new Size(249, 117);
-            rightPanel.BackColor = Color.WhiteSmoke;
+            rightPanel.Size = new Size(249, 212);
             rightPanel.TabIndex = 9;
             // 
             // actualDateLabel
             // 
             actualDateLabel.BackColor = Color.Transparent;
-            actualDateLabel.Font = new Font("Arial", 12F, FontStyle.Bold);
-            actualDateLabel.ForeColor = Color.FromArgb(35, 125, 235);
-            actualDateLabel.Location = new Point(40, 15);
+            actualDateLabel.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            actualDateLabel.ForeColor = Color.FromArgb(26, 115, 232);
+            actualDateLabel.Location = new Point(37, 45);
             actualDateLabel.Name = "actualDateLabel";
-            actualDateLabel.Size = new Size(175, 22);
+            actualDateLabel.Size = new Size(175, 27);
             actualDateLabel.TabIndex = 10;
             actualDateLabel.Text = "Seg., 01 Jan. 2025";
             actualDateLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -152,41 +158,42 @@
             // actualHourLabel
             // 
             actualHourLabel.BackColor = Color.Transparent;
-            actualHourLabel.Font = new Font("Arial", 13F, FontStyle.Bold);
-            actualHourLabel.ForeColor = Color.FromArgb(15, 100, 220);
-            actualHourLabel.Location = new Point(82, 38);
+            actualHourLabel.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            actualHourLabel.ForeColor = Color.FromArgb(26, 115, 232);
+            actualHourLabel.Location = new Point(75, 85);
             actualHourLabel.Name = "actualHourLabel";
-            actualHourLabel.Size = new Size(90, 22);
+            actualHourLabel.Size = new Size(100, 30);
             actualHourLabel.TabIndex = 11;
             actualHourLabel.Text = "00:00:00";
             actualHourLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // clockInButton
             // 
-            clockInButton.BackColor = Color.FromArgb(15, 100, 220);
+            clockInButton.BackColor = Color.FromArgb(26, 115, 232);
             clockInButton.Cursor = Cursors.Hand;
             clockInButton.FlatStyle = FlatStyle.Flat;
             clockInButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            clockInButton.ForeColor = Color.GhostWhite;
-            clockInButton.Location = new Point(27, 74);
+            clockInButton.ForeColor = Color.WhiteSmoke;
+            clockInButton.Location = new Point(27, 145);
             clockInButton.Name = "clockInButton";
             clockInButton.Size = new Size(200, 30);
             clockInButton.TabIndex = 12;
             clockInButton.Text = "Marcar ponto";
-            clockInButton.UseVisualStyleBackColor = false;
+            clockInButton.UseVisualStyleBackColor = true;
             clockInButton.Click += RegisterRecord;
             // 
-            // UserMainForm
+            // EmployeeMainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.FromArgb(229, 231, 235);
+            ClientSize = new Size(800, 429);
             Controls.Add(userPanelLabel);
             Controls.Add(leftPanel);
             Controls.Add(rightPanel);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            Name = "UserMainForm";
+            Name = "EmployeeMainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ClockIt - User Panel";
             Load += UserMainForm_Load;

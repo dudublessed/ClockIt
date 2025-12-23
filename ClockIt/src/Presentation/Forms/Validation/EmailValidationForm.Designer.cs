@@ -1,4 +1,6 @@
-﻿namespace ClockIt.src.Presentation.Forms.Validation
+﻿using ClockIt.src.Presentation.Visual;
+
+namespace ClockIt.src.Presentation.Forms.Validation
 {
     partial class EmailValidationForm
     {
@@ -40,8 +42,8 @@
             // validationCodeLabel
             // 
             validationCodeLabel.BackColor = Color.Transparent;
-            validationCodeLabel.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
-            validationCodeLabel.ForeColor = Color.Black;
+            validationCodeLabel.Font = Theme.TitleFont;
+            validationCodeLabel.ForeColor = Theme.Text;
             validationCodeLabel.Location = new Point(44, 20);
             validationCodeLabel.Name = "validationCodeLabel";
             validationCodeLabel.Size = new Size(183, 25);
@@ -50,32 +52,31 @@
             // 
             // informativeRichText
             // 
-            informativeRichText.BackColor = Color.FromArgb(245, 245, 245);
+            informativeRichText.BackColor = Color.Transparent;
             informativeRichText.BorderStyle = BorderStyle.None;
-            informativeRichText.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            informativeRichText.ForeColor = Color.Gray;
+            informativeRichText.Font = Theme.DefaultFont;
+            informativeRichText.ForeColor = Theme.TextMuted;
             informativeRichText.Location = new Point(35, 60);
             informativeRichText.Name = "informativeRichText";
             informativeRichText.ReadOnly = true;
             informativeRichText.ScrollBars = RichTextBoxScrollBars.None;
             informativeRichText.Size = new Size(200, 34);
             informativeRichText.TabIndex = 2;
-            validationCodeRichBox.SelectionAlignment = HorizontalAlignment.Center;
             informativeRichText.TabStop = false;
             informativeRichText.Text = "Insira o código enviado para o seu email";
             // 
             // validationCodeRichBox
             // 
-            validationCodeRichBox.BackColor = Color.FromArgb(240, 240, 240);
+            validationCodeRichBox.BackColor = Color.Transparent;
             validationCodeRichBox.BorderStyle = BorderStyle.None;
-            validationCodeRichBox.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            validationCodeRichBox.Font = Theme.EmailCodeFont;
             validationCodeRichBox.Location = new Point(35, 115);
             validationCodeRichBox.Name = "validationCodeRichBox";
             validationCodeRichBox.ScrollBars = RichTextBoxScrollBars.None;
             validationCodeRichBox.Size = new Size(200, 35);
             validationCodeRichBox.TabIndex = 3;
             validationCodeRichBox.TabStop = false;
-            validationCodeRichBox.ForeColor = Color.FromArgb(26, 115, 232);
+            validationCodeRichBox.ForeColor = Theme.Primary;
             validationCodeRichBox.Text = "000000";
             validationCodeRichBox.SelectionAlignment = HorizontalAlignment.Center;
             validationCodeRichBox.MaxLength = 6;
@@ -86,7 +87,7 @@
             // 
             timerValidationLabel.BackColor = Color.Transparent;
             timerValidationLabel.Font = new Font("Segoe UI", 9.1F);
-            timerValidationLabel.ForeColor = Color.Black;
+            timerValidationLabel.ForeColor = Theme.Text;
             timerValidationLabel.Location = new Point(33, 155);
             timerValidationLabel.Name = "timerValidationLabel";
             timerValidationLabel.Size = new Size(183, 17);
@@ -95,11 +96,11 @@
             // 
             // validateEmailButton
             // 
-            validateEmailButton.BackColor = Color.FromArgb(26, 115, 232);
+            validateEmailButton.BackColor = Theme.Primary;
             validateEmailButton.Cursor = Cursors.Hand;
             validateEmailButton.FlatStyle = FlatStyle.Flat;
-            validateEmailButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            validateEmailButton.ForeColor = Color.GhostWhite;
+            validateEmailButton.Font = Theme.DefaultFont;
+            validateEmailButton.ForeColor = Theme.TextWhite;
             validateEmailButton.Location = new Point(35, 195);
             validateEmailButton.Name = "validateEmailButton";
             validateEmailButton.Size = new Size(200, 30);
@@ -111,8 +112,8 @@
             // resendCodeLabel
             // 
             resendCodeLabel.BackColor = Color.Transparent;
-            resendCodeLabel.Font = new Font("Segoe UI", 8.1F, FontStyle.Bold);
-            resendCodeLabel.ForeColor = Color.Gray;
+            resendCodeLabel.Font = Theme.LittleTitleFont;
+            resendCodeLabel.ForeColor = Theme.TextMuted;
             resendCodeLabel.Location = new Point(48, 233);
             resendCodeLabel.Name = "resendCodeLabel";
             resendCodeLabel.Size = new Size(78, 14);
@@ -124,7 +125,7 @@
             resendCodeLinkLabel.ActiveLinkColor = Color.Red;
             resendCodeLinkLabel.BackColor = Color.Transparent;
             resendCodeLinkLabel.Cursor = Cursors.Hand;
-            resendCodeLinkLabel.Font = new Font("Segoe UI", 8.1F, FontStyle.Bold);
+            resendCodeLinkLabel.Font = Theme.LittleTitleFont;
             resendCodeLinkLabel.LinkBehavior = LinkBehavior.HoverUnderline;
             resendCodeLinkLabel.LinkColor = Color.DarkSlateGray;
             resendCodeLinkLabel.Location = new Point(123, 233);
@@ -140,7 +141,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(245, 245, 245);
+            BackColor = Theme.Background;
             ClientSize = new Size(270, 270);
             Controls.Add(validationCodeLabel);
             Controls.Add(informativeRichText);

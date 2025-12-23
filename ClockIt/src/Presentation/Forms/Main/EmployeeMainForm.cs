@@ -1,4 +1,5 @@
 ﻿using ClockIt.src.Presentation.Forms.Interfaces;
+using ClockIt.src.Presentation.Visual.Form;
 using ClockIt.src.Shared.DTOs.AttendanceDTOs.RecordDTOs;
 using ClockIt.src.Shared.Utils;
 using System;

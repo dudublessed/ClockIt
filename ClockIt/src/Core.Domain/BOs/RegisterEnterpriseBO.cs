@@ -55,7 +55,7 @@ namespace ClockIt.src.Core.Domain.BOs
             switch (country)
             {
                 case "Brasil":
-                    jsonStatesContent = GetFileContent("ClockIt.config.resources.brazil.br_states.json");
+                    jsonStatesContent = FileHelper.GetJsonFileContent("ClockIt.config.resources.brazil.br_states.json");
                     break;
             }
 
@@ -87,7 +87,7 @@ namespace ClockIt.src.Core.Domain.BOs
             switch (country)
             {
                 case "Brasil":
-                    jsonCitiesContent = GetFileContent("ClockIt.config.resources.brazil.br_cities.json");
+                    jsonCitiesContent = FileHelper.GetJsonFileContent("ClockIt.config.resources.brazil.br_cities.json");
                     break;
             }
 
@@ -97,18 +97,6 @@ namespace ClockIt.src.Core.Domain.BOs
             }
 
             return jsonCitiesContent;
-        }
-
-        private static string GetFileContent(string jsonFile)
-        {
-            using var stream =
-                Assembly.GetExecutingAssembly()
-                        .GetManifestResourceStream(jsonFile)
-                ?? throw new InvalidOperationException("Recurso não encontrado.");
-
-            using var reader = new StreamReader(stream);
-
-            return reader.ReadToEnd();
         }
     }
 }

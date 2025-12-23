@@ -62,9 +62,8 @@ namespace ClockIt.src.Presentation.Forms.Start
                 this.ApplyHoverEffect(userButton, [245, 245, 245]);
 
                 string userLogin = user.Login;
-                string userAvatar = await FileHelper.FindFileInProject("user_avatar.png");
 
-                Image original = Image.FromFile(userAvatar);
+                Image original = FileHelper.GetImageFileContent("ClockIt.src.Assets.avatars.user_avatar.png");
                 Image resizedUserAvatar = new Bitmap(original, new Size(50, 50));
 
                 userButton.Name = $"userCard_{userLogin}";

@@ -53,7 +53,7 @@ namespace ClockIt
             await TestDatabaseConnection();
             CheckForUpdates();
 
-            var services = await ConfigureServices();
+            var services = ConfigureServices();
 
             using var provider = services.BuildServiceProvider();
 
@@ -91,7 +91,7 @@ namespace ClockIt
 
         private static async Task TestDatabaseConnection()
         {
-            string connectionString = await DatabaseConfigReader.GetConnectionString();
+            string connectionString = DatabaseConfigReader.GetConnectionString();
 
             try
             {
@@ -107,7 +107,7 @@ namespace ClockIt
             }
         }
 
-        private static async Task<ServiceCollection> ConfigureServices()
+        private static ServiceCollection ConfigureServices()
         {
             var services = new ServiceCollection();
 
@@ -117,7 +117,7 @@ namespace ClockIt
             addSingletonServices(services);
             AddSingletonContexts(services);
             addSingletonBOs(services);
-            await addTransientRepositories(services);
+            addTransientRepositories(services);
 
             return services;
         }
@@ -215,9 +215,9 @@ namespace ClockIt
             // services.AddSingleton<IEmployeeBO, EmployeeBO>();
         }
 
-        private static async Task addTransientRepositories(IServiceCollection services)
+        private static void addTransientRepositories(IServiceCollection services)
         {
-            string connectionString = await DatabaseConfigReader.GetConnectionString();
+            string connectionString = DatabaseConfigReader.GetConnectionString();
 
             services.AddSingleton(_ => connectionString);
 

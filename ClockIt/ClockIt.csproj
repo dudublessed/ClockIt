@@ -10,13 +10,15 @@
 
   <ItemGroup>
     <Compile Remove="docs\**" />
+    <Compile Remove="src\Assets\backgrounds\**" />
     <EmbeddedResource Remove="docs\**" />
+    <EmbeddedResource Remove="src\Assets\backgrounds\**" />
     <None Remove="docs\**" />
+    <None Remove="src\Assets\backgrounds\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="config\logging\debug\" />
-    <Folder Include="src\Assets\backgrounds\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +43,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
 	<EmbeddedResource Include="config\resources\brazil\*.json" />
+	<EmbeddedResource Include="config\database\DatabaseConfig.xml" />
+	<EmbeddedResource Include="src/Assets/avatars/*.png" />
+	<EmbeddedResource Include="src/Assets/icons/*.png" />
   </ItemGroup>
 
 </Project>

@@ -1,90 +1,47 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
+using System.Xml.Linq;
 using static System.Net.WebRequestMethods;
 
 namespace ClockIt.src.Shared.Utils
 {
     public static class FileHelper
     {
-        public static string FindFileInProjectSync(string filename)
+        public static string GetJsonFileContent(string jsonFile)
         {
-            try
-            {
-                string directory = AppDomain.CurrentDomain.BaseDirectory;
+            using var stream =
+                Assembly.GetExecutingAssembly()
+                        .GetManifestResourceStream(jsonFile)
+                ?? throw new InvalidOperationException("Arquivo não encontrado.");
 
-                while (!Directory.Exists(Path.Combine(directory, "src")) && Directory.GetParent(directory) != null)
-                {
-                    directory = Directory.GetParent(directory)?.FullName!;
-                }
+            using var reader = new StreamReader(stream);
 
-                string? filePath = SearchFileInDirectory(directory, filename).GetAwaiter().GetResult();
-
-                if (string.IsNullOrEmpty(filePath) || !System.IO.File.Exists(filePath))
-                {
-                    throw new FileNotFoundException($"{filename} was not found in project.");
-                }
-
-                return filePath;
-            }
-            catch (Exception ex)
-            {
-                throw new FileNotFoundException($"{filename} was not found in project.");
-            }
+            return reader.ReadToEnd();
         }
 
-        public static async Task<string> FindFileInProject(string filename)
+        public static XDocument GetXmlFileContent(string xmlFile)
         {
-            try
-            {
-                string directory = AppDomain.CurrentDomain.BaseDirectory;
+            using var stream =
+                Assembly.GetExecutingAssembly()
+                        .GetManifestResourceStream(xmlFile)
+                ?? throw new InvalidOperationException("Arquivo não encontrado.");
 
-                while (!Directory.Exists(Path.Combine(directory, "src")) && Directory.GetParent(directory) != null)
-                {
-                    directory = Directory.GetParent(directory)?.FullName!;
-                }
+            using var reader = new StreamReader(stream);
 
-                string? filePath = await SearchFileInDirectory(directory, filename);
-
-                if (string.IsNullOrEmpty(filePath) || !System.IO.File.Exists(filePath))
-                {
-                    throw new FileNotFoundException($"{filename} was not found in project.");
-                }
-
-                return filePath;
-            } 
-            catch (Exception ex)
-            {
-                throw new FileNotFoundException($"{filename} was not found in project.");
-            }
+            return XDocument.Load(stream);
         }
 
-        private static async Task<string?> SearchFileInDirectory(string directoryPath, string filename)
+        public static Image GetImageFileContent(string imageFile)
         {
-            try
-            {
-                string[] files = Directory.GetFiles(directoryPath, filename, SearchOption.TopDirectoryOnly);
+            using var stream =
+                Assembly.GetExecutingAssembly()
+                        .GetManifestResourceStream(imageFile)
+                ?? throw new InvalidOperationException("Imagem não encontrada.");
 
-                if (files.Length > 0)
-                {
-                    return files[0];
-                }
+            using var reader = new StreamReader(stream);
 
-                string[] subdirectories = Directory.GetDirectories(directoryPath);
-                foreach(var subDirectory in subdirectories)
-                {
-                    string? foundFile = await SearchFileInDirectory(subDirectory, filename);
-                    if (foundFile != null)
-                    {
-                        return foundFile;
-                    }
-                }
-
-                return null;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return Image.FromStream(stream);
         }
     }
 }

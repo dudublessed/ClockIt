@@ -42,12 +42,12 @@ namespace ClockIt.src.Presentation.Presenters
 
         private void PrepareEventHandlers()
         {
-            _view.FormShown -= LoadForm;
-            _view.FormActivated -= LoadForm;
+            _view.FormShown -= LoadFormOnShown;
+            _view.FormActivated -= LoadEnterpriseUsers;
             _view.LoginRequested -= HandleLoginRequest;
 
-            _view.FormShown += LoadForm;
-            _view.FormActivated += LoadForm;
+            _view.FormShown += LoadFormOnShown;
+            _view.FormActivated += LoadEnterpriseUsers;
             _view.LoginRequested += HandleLoginRequest;
         }
 
@@ -59,16 +59,11 @@ namespace ClockIt.src.Presentation.Presenters
             FormHelper.OpenFormAndExit((Form)_view);
         }
 
-        private async Task LoadForm(object? sender, EventArgs e)
+        private async Task LoadFormOnShown(object? sender, EventArgs e)
         {
             try
             {
-                _view.EnterpriseName = _context.Enterprise.Name;
-
-                Users = await _service.GetEnterpriseEmployeeUsers();
-
-                _view.ClearInputFields();
-                await _view.ShowUsers(Users);
+                await LoadEnterpriseUsers(sender, e);
 
                 bool hasOnlyAdmin = (Users.Count == 1);
                 bool isAdminPasswordDefault = await _service.IsAdminPasswordDefault();
@@ -82,6 +77,16 @@ namespace ClockIt.src.Presentation.Presenters
             {
                 MessageBoxHelper.ShowError(ex.Message);
             }
+        }
+
+        private async Task LoadEnterpriseUsers(object? sender, EventArgs e)
+        {
+            _view.EnterpriseName = _context.Enterprise.Name;
+
+            Users = await _service.GetEnterpriseEmployeeUsers();
+
+            _view.ClearInputFields();
+            await _view.ShowUsers(Users);
         }
 
         private async Task HandleLoginRequest(object? sender, EventArgs e)

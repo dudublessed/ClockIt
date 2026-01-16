@@ -38,7 +38,7 @@
             // 
             // createPositionFormTitle
             // 
-            createPositionFormTitle.BackColor = Color.Transparent;
+            createPositionFormTitle.BackColor = this.BackColor;
             createPositionFormTitle.Font = new Font("Arial", 13F, FontStyle.Bold);
             createPositionFormTitle.Location = new Point(122, 19);
             createPositionFormTitle.Name = "createPositionFormTitle";
@@ -48,7 +48,7 @@
             // 
             // positionNameLabel
             // 
-            positionNameLabel.BackColor = Color.Transparent;
+            positionNameLabel.BackColor = this.BackColor;
             positionNameLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
             positionNameLabel.Location = new Point(122, 71);
             positionNameLabel.Name = "positionNameLabel";
@@ -68,7 +68,7 @@
             // 
             // positionDescriptionLabel
             // 
-            positionDescriptionLabel.BackColor = Color.Transparent;
+            positionDescriptionLabel.BackColor = this.BackColor;
             positionDescriptionLabel.Font = new Font("Arial", 10, FontStyle.Bold);
             positionDescriptionLabel.Location = new Point(122, 135);
             positionDescriptionLabel.Name = "positionDescriptionLabel";

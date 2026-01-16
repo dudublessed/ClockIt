@@ -41,7 +41,7 @@ namespace ClockIt.src.Presentation.Forms.Validation
             // 
             // validationCodeLabel
             // 
-            validationCodeLabel.BackColor = Color.Transparent;
+            validationCodeLabel.BackColor = this.BackColor;
             validationCodeLabel.Font = Theme.TitleFont;
             validationCodeLabel.ForeColor = Theme.Text;
             validationCodeLabel.Location = new Point(44, 20);
@@ -52,7 +52,7 @@ namespace ClockIt.src.Presentation.Forms.Validation
             // 
             // informativeRichText
             // 
-            informativeRichText.BackColor = Color.Transparent;
+            informativeRichText.BackColor = this.BackColor;
             informativeRichText.BorderStyle = BorderStyle.None;
             informativeRichText.Font = Theme.DefaultFont;
             informativeRichText.ForeColor = Theme.TextMuted;
@@ -67,7 +67,7 @@ namespace ClockIt.src.Presentation.Forms.Validation
             // 
             // validationCodeRichBox
             // 
-            validationCodeRichBox.BackColor = Color.Transparent;
+            validationCodeRichBox.BackColor = this.BackColor;
             validationCodeRichBox.BorderStyle = BorderStyle.None;
             validationCodeRichBox.Font = Theme.EmailCodeFont;
             validationCodeRichBox.Location = new Point(35, 115);
@@ -85,7 +85,7 @@ namespace ClockIt.src.Presentation.Forms.Validation
             // 
             // timerValidationLabel
             // 
-            timerValidationLabel.BackColor = Color.Transparent;
+            timerValidationLabel.BackColor = this.BackColor;
             timerValidationLabel.Font = new Font("Segoe UI", 9.1F);
             timerValidationLabel.ForeColor = Theme.Text;
             timerValidationLabel.Location = new Point(33, 155);
@@ -111,7 +111,7 @@ namespace ClockIt.src.Presentation.Forms.Validation
             // 
             // resendCodeLabel
             // 
-            resendCodeLabel.BackColor = Color.Transparent;
+            resendCodeLabel.BackColor = this.BackColor;
             resendCodeLabel.Font = Theme.LittleTitleFont;
             resendCodeLabel.ForeColor = Theme.TextMuted;
             resendCodeLabel.Location = new Point(48, 233);
@@ -123,7 +123,7 @@ namespace ClockIt.src.Presentation.Forms.Validation
             // resendCodeLinkLabel
             // 
             resendCodeLinkLabel.ActiveLinkColor = Color.Red;
-            resendCodeLinkLabel.BackColor = Color.Transparent;
+            resendCodeLinkLabel.BackColor = this.BackColor;
             resendCodeLinkLabel.Cursor = Cursors.Hand;
             resendCodeLinkLabel.Font = Theme.LittleTitleFont;
             resendCodeLinkLabel.LinkBehavior = LinkBehavior.HoverUnderline;

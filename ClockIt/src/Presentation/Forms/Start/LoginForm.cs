@@ -69,7 +69,7 @@ namespace ClockIt.src.Presentation.Forms.Start
                 userButton.Name = $"userCard_{userLogin}";
                 userButton.Location = new Point(chosenX, startY);
                 userButton.Size = new Size(110, 90);
-                userButton.BackColor = Color.Transparent;
+                userButton.BackColor = this.BackColor;
                 userButton.FlatStyle = FlatStyle.Flat;
                 userButton.FlatAppearance.BorderSize = 0;
                 userButton.Cursor = Cursors.Hand;
@@ -114,7 +114,7 @@ namespace ClockIt.src.Presentation.Forms.Start
             {
                 if (!isHovering)
                 {
-                    container.BackColor = Color.Transparent;
+                    container.BackColor = this.BackColor;
                     isHovering = false;
                 }
             };

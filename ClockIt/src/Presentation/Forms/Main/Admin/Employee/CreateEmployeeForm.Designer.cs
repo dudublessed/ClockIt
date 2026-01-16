@@ -54,7 +54,7 @@
             // 
             // createUserFormTitle
             // 
-            createUserFormTitle.BackColor = Color.Transparent;
+            createUserFormTitle.BackColor = this.BackColor;
             createUserFormTitle.Font = new Font("Arial", 13F, FontStyle.Bold);
             createUserFormTitle.Location = new Point(98, 23);
             createUserFormTitle.Name = "createUserFormTitle";
@@ -64,7 +64,7 @@
             // 
             // employeeNameLabel
             // 
-            employeeNameLabel.BackColor = Color.Transparent;
+            employeeNameLabel.BackColor = this.BackColor;
             employeeNameLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
             employeeNameLabel.Location = new Point(112, 133);
             employeeNameLabel.Name = "employeeNameLabel";
@@ -84,7 +84,7 @@
             // 
             // employeeCPFLabel
             // 
-            employeeCPFLabel.BackColor = Color.Transparent;
+            employeeCPFLabel.BackColor = this.BackColor;
             employeeCPFLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
             employeeCPFLabel.Location = new Point(112, 195);
             employeeCPFLabel.Name = "employeeCPFLabel";
@@ -104,7 +104,7 @@
             // 
             // employeeBirthLabel
             // 
-            employeeBirthLabel.BackColor = Color.Transparent;
+            employeeBirthLabel.BackColor = this.BackColor;
             employeeBirthLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
             employeeBirthLabel.Location = new Point(112, 259);
             employeeBirthLabel.Name = "employeeBirthLabel";
@@ -124,7 +124,7 @@
             // 
             // employeeEmailLabel
             // 
-            employeeEmailLabel.BackColor = Color.Transparent;
+            employeeEmailLabel.BackColor = this.BackColor;
             employeeEmailLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
             employeeEmailLabel.Location = new Point(112, 326);
             employeeEmailLabel.Name = "employeeEmailLabel";
@@ -144,7 +144,7 @@
             // 
             // employeePositionLabel
             // 
-            employeePositionLabel.BackColor = Color.Transparent;
+            employeePositionLabel.BackColor = this.BackColor;
             employeePositionLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
             employeePositionLabel.Location = new Point(112, 394);
             employeePositionLabel.Name = "employeePositionLabel";
@@ -164,7 +164,7 @@
             // 
             // employeeEntryTimeLabel
             // 
-            employeeEntryTimeLabel.BackColor = Color.Transparent;
+            employeeEntryTimeLabel.BackColor = this.BackColor;
             employeeEntryTimeLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
             employeeEntryTimeLabel.Location = new Point(112, 458);
             employeeEntryTimeLabel.Name = "employeeEntryTimeLabel";
@@ -186,7 +186,7 @@
             // 
             // employeeLunchEntryTimeLabel
             // 
-            employeeLunchEntryTimeLabel.BackColor = Color.Transparent;
+            employeeLunchEntryTimeLabel.BackColor = this.BackColor;
             employeeLunchEntryTimeLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
             employeeLunchEntryTimeLabel.Location = new Point(112, 521);
             employeeLunchEntryTimeLabel.Name = "employeeLunchEntryTimeLabel";
@@ -208,7 +208,7 @@
             // 
             // employeeLunchExitTimeLabel
             // 
-            employeeLunchExitTimeLabel.BackColor = Color.Transparent;
+            employeeLunchExitTimeLabel.BackColor = this.BackColor;
             employeeLunchExitTimeLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
             employeeLunchExitTimeLabel.Location = new Point(112, 584);
             employeeLunchExitTimeLabel.Name = "employeeLunchExitTimeLabel";
@@ -230,7 +230,7 @@
             // 
             // employeeExitTimeLabel
             // 
-            employeeExitTimeLabel.BackColor = Color.Transparent;
+            employeeExitTimeLabel.BackColor = this.BackColor;
             employeeExitTimeLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
             employeeExitTimeLabel.Location = new Point(112, 647);
             employeeExitTimeLabel.Name = "employeeExitTimeLabel";
@@ -265,7 +265,7 @@
             // 
             // employeeUserLabel
             // 
-            employeeUserLabel.BackColor = Color.Transparent;
+            employeeUserLabel.BackColor = this.BackColor;
             employeeUserLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
             employeeUserLabel.Location = new Point(112, 71);
             employeeUserLabel.Name = "employeeUserLabel";

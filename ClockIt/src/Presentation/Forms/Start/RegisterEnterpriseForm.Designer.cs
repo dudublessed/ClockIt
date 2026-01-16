@@ -45,7 +45,7 @@
             // 
             // registerLabel
             // 
-            registerLabel.BackColor = Color.Transparent;
+            registerLabel.BackColor = this.BackColor;
             registerLabel.Font = new Font("Satoshi Black Italic", 20F, FontStyle.Bold);
             registerLabel.ForeColor = Color.FromArgb(0, 0, 0);
             registerLabel.Location = new Point(162, 30);
@@ -56,7 +56,7 @@
             // 
             // descriptionLabel
             // 
-            descriptionLabel.BackColor = Color.Transparent;
+            descriptionLabel.BackColor = this.BackColor;
             descriptionLabel.Font = new Font("Satoshi Black Italic", 12F);
             descriptionLabel.ForeColor = Color.FromArgb(55, 55, 55);
             descriptionLabel.Location = new Point(110, 70);
@@ -67,7 +67,7 @@
             // 
             // enterpriseNameLabel
             // 
-            enterpriseNameLabel.BackColor = Color.Transparent;
+            enterpriseNameLabel.BackColor = this.BackColor;
             enterpriseNameLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
             enterpriseNameLabel.Location = new Point(150, 115);
             enterpriseNameLabel.Name = "enterpriseNameLabel";
@@ -87,7 +87,7 @@
             // 
             // enterpriseEmailLabel
             // 
-            enterpriseEmailLabel.BackColor = Color.Transparent;
+            enterpriseEmailLabel.BackColor = this.BackColor;
             enterpriseEmailLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
             enterpriseEmailLabel.Location = new Point(150, 170);
             enterpriseEmailLabel.Name = "enterpriseEmailLabel";
@@ -107,7 +107,7 @@
             // 
             // enterpriseCountryLabel
             // 
-            enterpriseCountryLabel.BackColor = Color.Transparent;
+            enterpriseCountryLabel.BackColor = this.BackColor;
             enterpriseCountryLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
             enterpriseCountryLabel.Location = new Point(150, 225);
             enterpriseCountryLabel.Name = "enterpriseCountryLabel";
@@ -127,7 +127,7 @@
             // 
             // enterpriseStateLabel
             // 
-            enterpriseStateLabel.BackColor = Color.Transparent;
+            enterpriseStateLabel.BackColor = this.BackColor;
             enterpriseStateLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
             enterpriseStateLabel.Location = new Point(150, 280);
             enterpriseStateLabel.Name = "enterpriseStateLabel";
@@ -147,7 +147,7 @@
             // 
             // enterpriseCityLabel
             // 
-            enterpriseCityLabel.BackColor = Color.Transparent;
+            enterpriseCityLabel.BackColor = this.BackColor;
             enterpriseCityLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
             enterpriseCityLabel.Location = new Point(150, 335);
             enterpriseCityLabel.Name = "enterpriseCityLabel";

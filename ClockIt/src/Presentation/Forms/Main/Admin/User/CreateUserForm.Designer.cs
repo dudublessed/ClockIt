@@ -38,7 +38,7 @@
             // 
             // createUserFormTitle
             // 
-            createUserFormTitle.BackColor = Color.Transparent;
+            createUserFormTitle.BackColor = this.BackColor;
             createUserFormTitle.Font = new Font("Arial", 13F, FontStyle.Bold);
             createUserFormTitle.Location = new Point(122, 19);
             createUserFormTitle.Name = "createUserFormTitle";
@@ -48,7 +48,7 @@
             // 
             // userNameLabel
             // 
-            userNameLabel.BackColor = Color.Transparent;
+            userNameLabel.BackColor = this.BackColor;
             userNameLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
             userNameLabel.Location = new Point(122, 71);
             userNameLabel.Name = "userNameLabel";
@@ -68,7 +68,7 @@
             // 
             // userPasswordLabel
             // 
-            userPasswordLabel.BackColor = Color.Transparent;
+            userPasswordLabel.BackColor = this.BackColor;
             userPasswordLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
             userPasswordLabel.Location = new Point(122, 135);
             userPasswordLabel.Name = "userPasswordLabel";

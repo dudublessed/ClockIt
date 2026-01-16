@@ -50,7 +50,7 @@ namespace ClockIt.src.Presentation.Forms.Start
             // 
             // updateAdminPasswordLabel
             // 
-            updateAdminPasswordLabel.BackColor = Color.Transparent;
+            updateAdminPasswordLabel.BackColor = this.BackColor;
             updateAdminPasswordLabel.Font = new Font("Satoshi Black Italic", 19F, FontStyle.Bold);
             updateAdminPasswordLabel.ForeColor = Color.FromArgb(0, 0, 0);
             updateAdminPasswordLabel.Location = new Point(110, 30);
@@ -61,7 +61,7 @@ namespace ClockIt.src.Presentation.Forms.Start
             // 
             // firstDescriptionLabel
             // 
-            firstDescriptionLabel.BackColor = Color.Transparent;
+            firstDescriptionLabel.BackColor = this.BackColor;
             firstDescriptionLabel.Font = new Font("Satoshi Black Italic", 11F);
             firstDescriptionLabel.ForeColor = Color.FromArgb(55, 55, 55);
             firstDescriptionLabel.Location = new Point(45, 75);
@@ -72,7 +72,7 @@ namespace ClockIt.src.Presentation.Forms.Start
             // 
             // secondDescriptionLabel
             // 
-            secondDescriptionLabel.BackColor = Color.Transparent;
+            secondDescriptionLabel.BackColor = this.BackColor;
             secondDescriptionLabel.Font = new Font("Satoshi Black Italic", 10F);
             secondDescriptionLabel.ForeColor = Color.FromArgb(55, 55, 55);
             secondDescriptionLabel.Location = new Point(127, 100);
@@ -83,7 +83,7 @@ namespace ClockIt.src.Presentation.Forms.Start
             // 
             // enterAdminPasswordLabel
             // 
-            enterAdminPasswordLabel.BackColor = Color.Transparent;
+            enterAdminPasswordLabel.BackColor = this.BackColor;
             enterAdminPasswordLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
             enterAdminPasswordLabel.Location = new Point(110, 140);
             enterAdminPasswordLabel.Name = "enterAdminPasswordLabel";
@@ -104,7 +104,7 @@ namespace ClockIt.src.Presentation.Forms.Start
             //
             // enterPasswordErrorLabel
             //
-            enterPasswordErrorLabel.BackColor = Color.Transparent;
+            enterPasswordErrorLabel.BackColor = this.BackColor;
             enterPasswordErrorLabel.Font = errorLabel;
             enterPasswordErrorLabel.Location = new Point(110, 185);
             enterPasswordErrorLabel.ForeColor = Color.FromArgb(229, 57, 53);
@@ -129,7 +129,7 @@ namespace ClockIt.src.Presentation.Forms.Start
             // 
             // confirmAdminPasswordLabel
             // 
-            confirmAdminPasswordLabel.BackColor = Color.Transparent;
+            confirmAdminPasswordLabel.BackColor = this.BackColor;
             confirmAdminPasswordLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
             confirmAdminPasswordLabel.Location = new Point(110, 200);
             confirmAdminPasswordLabel.Name = "confirmAdminPasswordLabel";
@@ -150,7 +150,7 @@ namespace ClockIt.src.Presentation.Forms.Start
             //
             // confirmPasswordErrorLabel
             //
-            confirmPasswordErrorLabel.BackColor = Color.Transparent;
+            confirmPasswordErrorLabel.BackColor = this.BackColor;
             confirmPasswordErrorLabel.Font = errorLabel;
             confirmPasswordErrorLabel.Location = new Point(110, 245);
             confirmPasswordErrorLabel.ForeColor = Color.FromArgb(229, 57, 53);

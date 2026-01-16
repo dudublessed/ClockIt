@@ -47,7 +47,7 @@ namespace ClockIt.src.Presentation.Forms.Main
             // 
             // userPanelLabel
             // 
-            userPanelLabel.BackColor = Color.Transparent;
+            userPanelLabel.BackColor = this.BackColor;
             userPanelLabel.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             userPanelLabel.ForeColor = Color.FromArgb(17, 24, 39);
             userPanelLabel.Location = new Point(150, 36);
@@ -73,7 +73,7 @@ namespace ClockIt.src.Presentation.Forms.Main
             // 
             // userTodayClockInsLabel
             // 
-            userTodayClockInsLabel.BackColor = Color.Transparent;
+            userTodayClockInsLabel.BackColor = this.BackColor;
             userTodayClockInsLabel.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             userTodayClockInsLabel.ForeColor = Color.FromArgb(17, 24, 39);
             userTodayClockInsLabel.Location = new Point(25, 15);
@@ -85,7 +85,7 @@ namespace ClockIt.src.Presentation.Forms.Main
             // 
             // entryRecordLabel
             // 
-            entryRecordLabel.BackColor = Color.Transparent;
+            entryRecordLabel.BackColor = this.BackColor;
             entryRecordLabel.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             entryRecordLabel.ForeColor = Color.FromArgb(26, 115, 232);
             entryRecordLabel.Location = new Point(41, 60);
@@ -97,7 +97,7 @@ namespace ClockIt.src.Presentation.Forms.Main
             // 
             // lunchEntryRecordLabel
             // 
-            lunchEntryRecordLabel.BackColor = Color.Transparent;
+            lunchEntryRecordLabel.BackColor = this.BackColor;
             lunchEntryRecordLabel.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lunchEntryRecordLabel.ForeColor = Color.FromArgb(26, 115, 232);
             lunchEntryRecordLabel.Location = new Point(41, 90);
@@ -109,7 +109,7 @@ namespace ClockIt.src.Presentation.Forms.Main
             // 
             // lunchExitRecordLabel
             // 
-            lunchExitRecordLabel.BackColor = Color.Transparent;
+            lunchExitRecordLabel.BackColor = this.BackColor;
             lunchExitRecordLabel.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lunchExitRecordLabel.ForeColor = Color.FromArgb(26, 115, 232);
             lunchExitRecordLabel.Location = new Point(41, 120);
@@ -121,7 +121,7 @@ namespace ClockIt.src.Presentation.Forms.Main
             // 
             // exitRecordLabel
             // 
-            exitRecordLabel.BackColor = Color.Transparent;
+            exitRecordLabel.BackColor = this.BackColor;
             exitRecordLabel.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             exitRecordLabel.ForeColor = Color.FromArgb(26, 115, 232);
             exitRecordLabel.Location = new Point(41, 150);
@@ -145,7 +145,7 @@ namespace ClockIt.src.Presentation.Forms.Main
             // 
             // actualDateLabel
             // 
-            actualDateLabel.BackColor = Color.Transparent;
+            actualDateLabel.BackColor = this.BackColor;
             actualDateLabel.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             actualDateLabel.ForeColor = Color.FromArgb(26, 115, 232);
             actualDateLabel.Location = new Point(37, 45);
@@ -157,7 +157,7 @@ namespace ClockIt.src.Presentation.Forms.Main
             // 
             // actualHourLabel
             // 
-            actualHourLabel.BackColor = Color.Transparent;
+            actualHourLabel.BackColor = this.BackColor;
             actualHourLabel.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             actualHourLabel.ForeColor = Color.FromArgb(26, 115, 232);
             actualHourLabel.Location = new Point(75, 85);

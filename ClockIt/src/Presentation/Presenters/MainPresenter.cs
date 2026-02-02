@@ -55,7 +55,7 @@ namespace ClockIt.src.Presentation.Presenters
 
         private void ShowLoginForm()
         {
-            var loginPresenter = _serviceProvider.GetRequiredService<ILoginPresenter>();
+            var loginPresenter = _serviceProvider.GetRequiredService<IUserLoginPresenter>();
             loginPresenter.ShowForm();
         }
     }

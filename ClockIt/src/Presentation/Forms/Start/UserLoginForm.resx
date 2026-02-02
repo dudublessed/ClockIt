@@ -231,7 +231,7 @@
     <value>1</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>LoginForm</value>
+    <value>UserLoginForm</value>
   </data>
   <data name="adminButton.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>

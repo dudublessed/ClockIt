@@ -4,7 +4,7 @@ using System.Drawing.Text;
 
 namespace ClockIt.src.Presentation.Forms.Start
 {
-    partial class LoginForm
+    partial class UserLoginForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -32,7 +32,7 @@ namespace ClockIt.src.Presentation.Forms.Start
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserLoginForm));
             topPanel = new Panel();
             welcomeLabel = new Label();
             companyLabel = new Label();
@@ -127,7 +127,7 @@ namespace ClockIt.src.Presentation.Forms.Start
             passwordBox.UseSystemPasswordChar = true;
             passwordBox.KeyDown += IsKeyDownEnter;
             // 
-            // LoginForm
+            // UserLoginForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
@@ -139,7 +139,7 @@ namespace ClockIt.src.Presentation.Forms.Start
             Controls.Add(loginContainer);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             StartPosition = FormStartPosition.CenterScreen;
-            Name = "LoginForm";
+            Name = "UserLoginForm";
             SizeGripStyle = SizeGripStyle.Show;
             Load += LoginForm_Load;
             this.MaximizeBox = false;

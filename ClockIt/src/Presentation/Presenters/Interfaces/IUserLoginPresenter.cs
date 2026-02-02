@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClockIt.src.Presentation.Presenters.Interfaces
 {
-    public interface ILoginPresenter
+    public interface IUserLoginPresenter
     {
         void ShowForm();
     }

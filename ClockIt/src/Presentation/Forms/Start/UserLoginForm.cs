@@ -6,7 +6,7 @@ using ClockIt.src.Presentation.Forms.Interfaces;
 
 namespace ClockIt.src.Presentation.Forms.Start
 {
-    public partial class LoginForm : Form, ILoginForm
+    public partial class UserLoginForm : Form, IUserLoginForm
     {
         public string Login => nameBox.Text;
         public string InputPassword => passwordBox.Text;
@@ -20,7 +20,7 @@ namespace ClockIt.src.Presentation.Forms.Start
         public event Func<object, EventArgs, Task> FormActivated;
         public event Func<object, EventArgs, Task> LoginRequested;
 
-        public LoginForm()
+        public UserLoginForm()
         {
             InitializeComponent();
 

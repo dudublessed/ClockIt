@@ -10,10 +10,10 @@ using ClockIt.src.Presentation.Presenters.Interfaces;
 
 namespace ClockIt.src.ApplicationLayer.Navigation.Interfaces
 {
-    public interface ILoginNavigator
+    public interface IUserLoginNavigator
     {
         // Forms
-        ILoginForm LoginForm { get; }
+        IUserLoginForm UserLoginForm { get; }
         IAdminPasswordPresenter AdminPasswordPresenter { get; }
         IAdminMainPresenter AdminMainPresenter { get; }
         IEmployeeMainPresenter EmployeeMainPresenter { get; }

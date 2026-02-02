@@ -7,7 +7,7 @@ using ClockIt.src.Shared.DTOs.UserDTOs;
 
 namespace ClockIt.src.Presentation.Forms.Interfaces
 {
-    public interface ILoginForm
+    public interface IUserLoginForm
     {
         string Login { get; }
         string InputPassword { get; }

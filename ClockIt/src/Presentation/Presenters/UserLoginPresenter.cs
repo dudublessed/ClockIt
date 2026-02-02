@@ -15,11 +15,11 @@ using ClockIt.src.Core.Domain.Entities;
 
 namespace ClockIt.src.Presentation.Presenters
 {
-    public class LoginPresenter : ILoginPresenter
+    public class UserLoginPresenter : IUserLoginPresenter
     {
-        private readonly ILoginNavigator _navigator;
+        private readonly IUserLoginNavigator _navigator;
 
-        private ILoginForm _view;
+        private IUserLoginForm _view;
 
         private readonly ILoginService _service;
 
@@ -29,7 +29,7 @@ namespace ClockIt.src.Presentation.Presenters
 
         private List<ShowUsersDTO> Users;
 
-        public LoginPresenter(ILoginNavigator navigator)
+        public UserLoginPresenter(IUserLoginNavigator navigator)
         {
             _navigator = navigator;
 
@@ -53,7 +53,7 @@ namespace ClockIt.src.Presentation.Presenters
 
         public void ShowForm()
         {
-            _view = _navigator.LoginForm;
+            _view = _navigator.UserLoginForm;
 
             PrepareEventHandlers();
             FormHelper.OpenFormAndExit((Form)_view);

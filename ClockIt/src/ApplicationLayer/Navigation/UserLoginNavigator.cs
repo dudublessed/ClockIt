@@ -8,12 +8,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ClockIt.src.ApplicationLayer.Navigation
 {
-    public class LoginNavigator : ILoginNavigator
+    public class UserLoginNavigator : IUserLoginNavigator
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly ILoginService _loginService;
 
-        public LoginNavigator(
+        public UserLoginNavigator(
             IServiceProvider serviceProvider,
             ILoginService loginService)
         {
@@ -21,7 +21,7 @@ namespace ClockIt.src.ApplicationLayer.Navigation
             _loginService = loginService;
         }
 
-        public ILoginForm LoginForm => _serviceProvider.GetRequiredService<ILoginForm>();
+        public IUserLoginForm UserLoginForm => _serviceProvider.GetRequiredService<IUserLoginForm>();
         public IAdminPasswordPresenter AdminPasswordPresenter => _serviceProvider.GetRequiredService<IAdminPasswordPresenter>();
 
         public IAdminMainPresenter AdminMainPresenter => _serviceProvider.GetRequiredService<IAdminMainPresenter>();

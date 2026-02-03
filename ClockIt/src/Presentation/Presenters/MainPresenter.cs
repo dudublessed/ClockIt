@@ -49,7 +49,7 @@ namespace ClockIt.src.Presentation.Presenters
 
         private void ShowRegistrationForm()
         {
-            var registerPresenter = _serviceProvider.GetRequiredService<IRegisterEnterprisePresenter>();
+            var registerPresenter = _serviceProvider.GetRequiredService<IEnterpriseRegisterPresenter>();
             registerPresenter.ShowForm();
         }
 

@@ -7,19 +7,19 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ClockIt.src.ApplicationLayer.Navigation
 {
-    public class RegisterEnterpriseNavigator : IRegisterEnterpriseNavigator
+    public class EnterpriseRegisterNavigator : IEnterpriseRegisterNavigator
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly IRegisterEnterpriseService _registerEnterpriseService;
 
-        public RegisterEnterpriseNavigator(IServiceProvider serviceProvider,
+        public EnterpriseRegisterNavigator(IServiceProvider serviceProvider,
             IRegisterEnterpriseService registerEnterpriseService)
         {
             _serviceProvider = serviceProvider;
             _registerEnterpriseService = registerEnterpriseService;
         }
 
-        public IRegisterEnterpriseForm RegisterEnterpriseForm => _serviceProvider.GetRequiredService<IRegisterEnterpriseForm>();
+        public IEnterpriseRegisterForm EnterpriseRegisterForm => _serviceProvider.GetRequiredService<IEnterpriseRegisterForm>();
         public IEmailValidationPresenter EmailValidationPresenter => _serviceProvider.GetRequiredService<IEmailValidationPresenter>();
         public IRegisterEnterpriseService RegisterEnterpriseService => _registerEnterpriseService;
     }

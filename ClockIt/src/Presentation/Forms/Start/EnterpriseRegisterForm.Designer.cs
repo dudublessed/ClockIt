@@ -1,6 +1,6 @@
 ﻿namespace ClockIt.src.Presentation.Forms.Start
 {
-    partial class RegisterEnterpriseForm
+    partial class EnterpriseRegisterForm
     {
         /// <summary>
         /// Required designer variable.
@@ -177,7 +177,7 @@
             registerButton.UseVisualStyleBackColor = false;
             registerButton.Click += SubmitRegistration;
             // 
-            // RegisterEnterpriseForm
+            // EnterpriseRegisterForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -197,7 +197,7 @@
             Controls.Add(registerButton);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            Name = "RegisterEnterpriseForm";
+            Name = "EnterpriseRegisterForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ClockIt";
             Load += RegisterEnterpriseForm_Load;

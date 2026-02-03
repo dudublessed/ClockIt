@@ -7,7 +7,7 @@ using ClockIt.src.Core.Domain.Entities;
 
 namespace ClockIt.src.Presentation.Forms.Interfaces
 {
-    public interface IRegisterEnterpriseForm
+    public interface IEnterpriseRegisterForm
     {
         string EnterpriseName { get; }
         string Email { get; }

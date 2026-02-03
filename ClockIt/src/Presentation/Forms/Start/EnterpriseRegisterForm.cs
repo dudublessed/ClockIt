@@ -9,7 +9,7 @@ using ClockIt.src.Presentation.Forms.Interfaces;
 
 namespace ClockIt.src.Presentation.Forms.Start
 {
-    public partial class RegisterEnterpriseForm : Form, IRegisterEnterpriseForm
+    public partial class EnterpriseRegisterForm : Form, IEnterpriseRegisterForm
     {
         public string EnterpriseName => enterpriseNameText.Text.ToUpper().Trim();
         public string Email => enterpriseEmailText.Text.Trim();
@@ -27,7 +27,7 @@ namespace ClockIt.src.Presentation.Forms.Start
         public event EventHandler LoadStatesByCountry;
         public event EventHandler LoadCitiesByState;
 
-        public RegisterEnterpriseForm()
+        public EnterpriseRegisterForm()
         {
             InitializeComponent();
         }

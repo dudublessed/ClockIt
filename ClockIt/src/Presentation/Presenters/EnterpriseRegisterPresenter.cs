@@ -17,14 +17,14 @@ using ClockIt.src.Shared.Utils;
 
 namespace ClockIt.src.Presentation.Presenters
 {
-    public class RegisterEnterprisePresenter : IRegisterEnterprisePresenter
+    public class EnterpriseRegisterPresenter : IEnterpriseRegisterPresenter
     {
-        private readonly IRegisterEnterpriseNavigator _navigator;
+        private readonly IEnterpriseRegisterNavigator _navigator;
 
-        private IRegisterEnterpriseForm _view;
+        private IEnterpriseRegisterForm _view;
         private readonly IRegisterEnterpriseService _service;
 
-        public RegisterEnterprisePresenter(IRegisterEnterpriseNavigator navigator)
+        public EnterpriseRegisterPresenter(IEnterpriseRegisterNavigator navigator)
         {
             _navigator = navigator;
 
@@ -48,7 +48,7 @@ namespace ClockIt.src.Presentation.Presenters
 
         public void ShowForm()
         {
-            _view = _navigator.RegisterEnterpriseForm;
+            _view = _navigator.EnterpriseRegisterForm;
 
             PrepareEventHandlers();
             FormHelper.OpenFormAndExit((Form)_view);

@@ -9,10 +9,10 @@ using ClockIt.src.Presentation.Presenters.Interfaces;
 
 namespace ClockIt.src.ApplicationLayer.Navigation.Interfaces
 {
-    public interface IRegisterEnterpriseNavigator
+    public interface IEnterpriseRegisterNavigator
     {
         // Forms
-        IRegisterEnterpriseForm RegisterEnterpriseForm { get; }
+        IEnterpriseRegisterForm EnterpriseRegisterForm { get; }
         IEmailValidationPresenter EmailValidationPresenter { get; }
 
         // Services

@@ -125,7 +125,7 @@ namespace ClockIt
         private static void addTransientNavigators(IServiceCollection services)
         {
             services.AddTransient<IUserLoginNavigator, UserLoginNavigator>();
-            services.AddTransient<IRegisterEnterpriseNavigator, RegisterEnterpriseNavigator>();
+            services.AddTransient<IEnterpriseRegisterNavigator, EnterpriseRegisterNavigator>();
             services.AddTransient<IEmailValidationNavigator, EmailValidationNavigator>();
             services.AddTransient<IAdminPasswordNavigator, AdminPasswordNavigator>();
             services.AddTransient<IAdminMainNavigator, AdminMainNavigator>();
@@ -140,7 +140,7 @@ namespace ClockIt
             services.AddTransient<IMainPresenter, MainPresenter>();
 
             services.AddTransient<IUserLoginPresenter, UserLoginPresenter>();
-            services.AddTransient<IRegisterEnterprisePresenter, RegisterEnterprisePresenter>();
+            services.AddTransient<IEnterpriseRegisterPresenter, EnterpriseRegisterPresenter>();
 
             services.AddTransient<IEmailValidationPresenter, EmailValidationPresenter>();
 
@@ -158,7 +158,7 @@ namespace ClockIt
         {
             // Start
             services.AddTransient<IUserLoginForm, UserLoginForm>();
-            services.AddTransient<IRegisterEnterpriseForm, RegisterEnterpriseForm>();
+            services.AddTransient<IEnterpriseRegisterForm, EnterpriseRegisterForm>();
             services.AddTransient<IAdminPasswordForm, AdminPasswordForm>();
 
             // Main
